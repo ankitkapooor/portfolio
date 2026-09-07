@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { sitemapOrigin, staticRoutes } from "@/content/site";
 import { projects, projectPath } from "@/content/projects";
 
+/** Required by `output: "export"`: emitted as a file at build time. */
+export const dynamic = "force-static";
+
 /**
  * Sitemap entries need absolute URLs, so this uses `sitemapOrigin`, which
  * falls back to the local dev origin until a real one is configured. It never

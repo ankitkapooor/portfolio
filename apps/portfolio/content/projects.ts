@@ -11,21 +11,21 @@ import { z } from "zod";
  * Project register.
  *
  * All three projects are at `status: "prototype"`: the software genuinely runs.
- * None of them carries a `demoUrl`, because none is publicly hosted — they run
- * only on a local machine, so there is no address to send a visitor to. Those
- * are two separate facts, and the UI treats them that way: a demo that runs but
- * cannot be reached renders no launch action at all.
+ * Each now carries a `demoUrl` on its own subdomain, because each one is
+ * deployed and a visitor can actually reach it. Those remain two separate
+ * facts, and the UI treats them that way: `status` describes how mature the
+ * software is, `demoUrl` describes whether the public can get to it.
  *
- * Running software is not a finding. Every Position still reads "Investigation
- * in progress" and every `recommendation` is still null, because no project has
- * reached a conclusion. What each project has actually produced is carried by
- * `evidenceStatus` alone: Disrupt This Business and Priced In remain
- * `illustrative`, and The Moat Test is `measured-partial` on the strength of two
- * archived baseline runs whose gold annotations no person has reviewed.
+ * Being reachable is not a finding either. Every Position still reads
+ * "Investigation in progress" and every `recommendation` is still null, because
+ * no project has reached a conclusion. What each project has actually produced
+ * is carried by `evidenceStatus` alone: Disrupt This Business and Priced In
+ * remain `illustrative`, and The Moat Test is `measured-partial` on the
+ * strength of two archived baseline runs whose gold annotations no person has
+ * reviewed. Deploying changed none of that.
  *
- * To make a demo launchable, set `demoUrl` and nothing else. A successful build
- * is not a reason to move `status`, and a running demo is not a reason to move
- * `evidenceStatus`.
+ * A successful build is not a reason to move `status`, and a deployed demo is
+ * not a reason to move `evidenceStatus`.
  *
  * See README.md, "Updating project status".
  */
@@ -52,7 +52,7 @@ const raw: Project[] = [
       decision:
         "An established software business watches a challenger reach the same customer outcome with a different cost structure. Defend the current position, or reposition around what the technology has made cheap?",
       position:
-        "Investigation in progress. The scenario now plays: a commitment locked in one quarter activates on the delay its rule specifies, and the resolution ledger shows each line's arithmetic against the formula that produced it. But it runs only on a local machine, and no playtest has been run and no outcome has been recorded, so there is still no answer worth publishing. The proposed test is to run the seeded four-round scenario from both sides under three disclosed environment presets, then check whether a commitment sequence that wins as the incumbent still holds when it is attacked from the challenger's side.",
+        "Investigation in progress. The scenario now plays: a commitment locked in one quarter activates on the delay its rule specifies, and the resolution ledger shows each line's arithmetic against the formula that produced it. Anyone can reach it and play it, but no playtest has been run and no outcome has been recorded, so there is still no answer worth publishing. The proposed test is to run the seeded four-round scenario from both sides under three disclosed environment presets, then check whether a commitment sequence that wins as the incumbent still holds when it is attacked from the challenger's side.",
       evidence:
         "None measured. What exists is a running deterministic engine over a documented parameter set, both fictional and both editable in one file, with unit and end-to-end test suites passing. No playtest has been run, no player has been observed, and no outcome has been recorded.",
       tradeoff:
@@ -160,7 +160,7 @@ const raw: Project[] = [
         "Every parameter is a fictional design assumption, written in one file and printed on a methodology page. The point is not that these are the right numbers for the software market. The point is that they are visible, so a disagreement can be about a specific number rather than about vibes.",
       ],
       evidenceAndResults: [
-        "The scenario runs. It resolves four quarters of commitments into a ledger that shows the arithmetic behind each line and links it to the formula that produced it, and it states its segment totals explicitly rather than leaving them to be inferred. It runs on a local machine only; it is not publicly hosted, which is why this page offers nothing to launch.",
+        "The scenario runs. It resolves four quarters of commitments into a ledger that shows the arithmetic behind each line and links it to the formula that produced it, and it states its segment totals explicitly rather than leaving them to be inferred. It is deployed and open to anyone, so everything claimed on this page can be checked against the running scenario instead of taken on trust.",
         "There are still no results, and a demo that runs is not one. No playtest has been run, no player has been observed, and no outcome study has been recorded. Publishing a chart here would mean fabricating one.",
         "What does exist is listed under Evidence on this page: the seeded parameter set, the resolution rules that the engine now implements, and the concept schematic above. All three are illustrative — they describe a specified and working design, not an observed outcome.",
       ],
@@ -174,8 +174,7 @@ const raw: Project[] = [
         "A rules-based opponent does not learn. Beating it demonstrates something about the stated rules, not about a competitor that adapts.",
       ],
       nextTest: [
-        "The four-round loop, the economic resolution, and the decision ledger run locally. Making them reachable without a local checkout is the outstanding task, and until it is done nobody but me can inspect a single result.",
-        "Then run the first honest test — play the seeded scenario from both sides under each preset, and record whether any commitment sequence survives its own reversal. Publish the ledger alongside the analysis so the result can be checked.",
+        "Run the first honest test — play the seeded scenario from both sides under each preset, and record whether any commitment sequence survives its own reversal. Publish the ledger alongside the analysis so the result can be checked.",
         "Then take it to five playtesters, ask each to explain one trade-off in their own words afterwards, and report the sample size rather than a percentage.",
       ],
     },
@@ -187,8 +186,8 @@ const raw: Project[] = [
     humanReviewStatus:
       "Reviewed by me on 7 September 2026 for accuracy of status and claims. No external review. No playtest has been run.",
 
-    demoUrl: null,
-    demoTarget: "internal",
+    demoUrl: "https://disrupt.ankitkapoor.me",
+    demoTarget: "external",
     demoLabel: "Play the scenario",
     repositoryUrl: null,
 
@@ -236,7 +235,7 @@ const raw: Project[] = [
       decision:
         "A category of paid AI products rests on a capability that a competent engineer can now reproduce in a weekend. Is the price supported by something else, or by the capability?",
       position:
-        "Investigation in progress. Reproducing the capability is the easy half and proves little on its own; the claim worth testing is about the other half. The lab now runs, the deterministic baseline has been executed over the synthetic transcripts and archived twice, and the blind comparison genuinely withholds both method identities until a choice is made. But the gold annotations behind those runs are unreviewed drafts, no model-based challenger has yet been measured against them, and it all runs on a local machine, so there is still nothing to conclude. The proposed test is unchanged: run the challenger against the baseline on a human-reviewed evaluation set, publish the actual outputs including the failures, and only then argue about which remaining advantages are real.",
+        "Investigation in progress. Reproducing the capability is the easy half and proves little on its own; the claim worth testing is about the other half. The lab now runs, the deterministic baseline has been executed over the synthetic transcripts and archived twice, and the blind comparison genuinely withholds both method identities until a choice is made. But the gold annotations behind those runs are unreviewed drafts and no model-based challenger has yet been measured against them, so there is still nothing to conclude. The proposed test is unchanged: run the challenger against the baseline on a human-reviewed evaluation set, publish the actual outputs including the failures, and only then argue about which remaining advantages are real.",
       evidence:
         "Measured in part. On the held-out split — 12 synthetic transcripts, gold annotations that no person has reviewed — the tagged-line baseline returned 8 actions, all 8 of which matched the gold set, against the 33 actions that gold set records. Every one of its 22 extracted items carried a transcript line reference and all 22 references resolved, but whether each cited passage actually supports its claim is unmeasured for all 22, because that needs a reader. No challenger has been measured against the baseline and no potential user has been interviewed.",
       tradeoff:
@@ -353,7 +352,7 @@ const raw: Project[] = [
         "The concept preview on this page is illustrative demo. The figures under Evidence and results are recorded experiment: they come from archived runs with their metadata attached, and the run record they are copied from is cited below.",
       ],
       evidenceAndResults: [
-        "The lab runs. It executes the deterministic baseline over the synthetic transcripts and archives each run with its metadata, and the blind comparison keeps both method identities hidden until a choice has been made. It runs on a local machine only; it is not publicly hosted, which is why this page offers nothing to launch.",
+        "The lab runs. It executes the deterministic baseline over the synthetic transcripts and archives each run with its metadata, and the blind comparison keeps both method identities hidden until a choice has been made. It is deployed and open to anyone, so a reader can run the blind comparison themselves rather than take my description of it.",
         "Two runs have been recorded and archived, and that is the whole reason this case is labelled Measured, partial rather than Illustrative. On the held-out split — 12 synthetic transcripts — the tagged-line baseline returned 8 actions and all 8 of them matched the gold annotations, against the 33 actions those annotations record. It assigned the correct status to 1 of 14 matched decisions. Every one of its 22 extracted items carried a transcript line reference, and all 22 references resolved. Those figures are copied from the archived run record cited below, and they describe the deliberately unimpressive baseline, not a challenger.",
         "The word partial is doing real work here. The corpus is synthetic and was authored for this benchmark. The gold annotations are drafts written by a coding agent and no person has reviewed them, so a recall figure measured against them is a measurement against an unreviewed draft. Whether each cited passage actually supports the claim attached to it is not measured at all, for any of the 22 items, because that requires someone to sit and read. And the thing this investigation is actually about — whether a model-based challenger clears this floor, and which commercial advantages survive if it does — has not been measured.",
         "The evidence listed on this page therefore splits in two. The baseline, the output contract, and the concept schematic are design artefacts: they establish what would count as a result. The archived runs are a result, of a narrow and clearly bounded kind.",
@@ -369,8 +368,7 @@ const raw: Project[] = [
         "Live model output varies between runs. Reproducibility here means archived outputs with run metadata, not a promise that a future run returns the same text.",
       ],
       nextTest: [
-        "The transcript playground, the tagged baseline, both output panels, the blind comparison, and the archived run pipeline run locally. Making them reachable without a local checkout is the outstanding task.",
-        "Then have a person review the gold annotations and read every cited passage, so the recorded metrics stop being measurements against an unreviewed draft and citation support stops being unmeasured. Until that happens this benchmark can only honestly be reported as partial.",
+        "Have a person review the gold annotations and read every cited passage, so the recorded metrics stop being measurements against an unreviewed draft and citation support stops being unmeasured. Until that happens this benchmark can only honestly be reported as partial.",
         "Then talk to three to five people who actually run these meetings about how notes reach their workflow, and report what they said with the sample size attached rather than as a finding about the market.",
       ],
     },
@@ -382,8 +380,8 @@ const raw: Project[] = [
     humanReviewStatus:
       "Reviewed by me on 7 September 2026 for accuracy of status and claims. No external review. The baseline runs cited here are archived machine output; no person has reviewed their gold annotations or their citation support, and no user interviews have been carried out.",
 
-    demoUrl: null,
-    demoTarget: "internal",
+    demoUrl: "https://moat.ankitkapoor.me",
+    demoTarget: "external",
     demoLabel: "Try the challenger",
     repositoryUrl: null,
 
@@ -437,7 +435,7 @@ const raw: Project[] = [
       decision:
         "A company's valuation embeds a forecast that nobody has written down. Before arguing about whether it is too high, work out what it actually requires the business to do.",
       position:
-        "Investigation in progress. The workbench now computes a valuation and draws the expectations map, and its arithmetic agrees with golden fixtures worked out by hand. But it runs only on a local machine, no real company has been analysed, no finance professional has looked at the method, and no case has been authored, so there is nothing to conclude. The proposed test is unchanged: reconcile the five-year cash-flow model against an independent golden model within a stated tolerance, then publish one fully worked synthetic case with every input traced to its source.",
+        "Investigation in progress. The workbench now computes a valuation and draws the expectations map, and its arithmetic agrees with golden fixtures worked out by hand. But no real company has been analysed, no finance professional has looked at the method, and no case has been authored, so there is nothing to conclude. The proposed test is unchanged: reconcile the five-year cash-flow model against an independent golden model within a stated tolerance, then publish one fully worked synthetic case with every input traced to its source.",
       evidence:
         "None measured. The workbench runs and its output matches fixtures computed by hand, but a fixture checks arithmetic rather than establishing a finding, and the synthetic sample company is a calculation fixture, not a company. No real company has been analysed, no end-to-end reconciliation against an independent model has been run, no finance professional has reviewed anything, and no case has been authored.",
       tradeoff:
@@ -546,7 +544,7 @@ const raw: Project[] = [
         "Market data, reported financials, normalised adjustments, and future assumptions are visually distinct everywhere they appear. Editing an input marks dependent calculations stale until they are recomputed; the previous valid result stays on screen, labelled, rather than being silently mixed with new numbers.",
       ],
       evidenceAndResults: [
-        "The workbench runs. It computes a valuation from the supplied inputs and renders the expectations map as a forty-one by forty-one grid, drawn off the main thread, with the band that lands near the chosen target marked and the cells whose inputs are invalid hatched rather than quietly filled in. It runs on a local machine only; it is not publicly hosted, which is why this page offers nothing to launch.",
+        "The workbench runs. It computes a valuation from the supplied inputs and renders the expectations map as a forty-one by forty-one grid, drawn off the main thread, with the band that lands near the chosen target marked and the cells whose inputs are invalid hatched rather than quietly filled in. It is deployed and open to anyone, so the map can be explored directly rather than described here.",
         "There are still no results. Golden fixtures worked out by hand agree with what the model returns, which establishes that the arithmetic does what it claims — and nothing whatsoever about a company. The model has not been reconciled against an independent implementation end to end, no real company has been analysed, no finance professional has reviewed the method, no case has been authored, and no valuation has been published.",
         "The evidence on this page is the synthetic fixture, the input-provenance rules, and the concept schematic. The fixture is a calculation fixture: its purpose is to exercise arithmetic, and it is labelled fictional wherever it appears.",
       ],
@@ -561,7 +559,7 @@ const raw: Project[] = [
         "Automated statement retrieval and PDF extraction are a later release stage. Until they exist, upload support should not be described as broad.",
       ],
       nextTest: [
-        "The five-year model and the expectations map run locally. The rest of the first release scope in the brief, and making any of it reachable without a local checkout, is still outstanding.",
+        "The five-year model and the expectations map are live. The rest of the first release scope in the brief is still outstanding.",
         "Then reconcile the model against an independently built golden model and publish the agreed tolerance. Hand-computed fixtures check individual figures; they are not a reconciliation, and an unreconciled valuation model is not evidence about a company.",
         "Then author one complete worked case on the synthetic company, with every input traced to a source and every conclusion attributable to a stated assumption.",
       ],
@@ -574,8 +572,8 @@ const raw: Project[] = [
     humanReviewStatus:
       "Reviewed by me on 7 September 2026 for accuracy of status and claims. No external review, and no review by a finance professional. No end-to-end numerical reconciliation has been run and no case has been authored.",
 
-    demoUrl: null,
-    demoTarget: "internal",
+    demoUrl: "https://priced.ankitkapoor.me",
+    demoTarget: "external",
     demoLabel: "Explore the sample",
     repositoryUrl: null,
 

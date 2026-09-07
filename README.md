@@ -50,8 +50,9 @@ The Moat Test also has four working command-line tools for its benchmark
 pipeline: `validate-content`, `run-benchmark`, `evaluate-run`, and
 `build-report`. See its README.
 
-Two repo-wide QA scripts live in [`tools/`](tools). Start all four servers
-first, then run them from the repo root:
+Two repo-wide QA scripts live in [`tools/`](tools). Build each app and start
+all four servers first (`npm run start` serves the exported `out/` directory
+via `tools/serve-static.mjs`), then run these from the repo root:
 
 ```sh
 node tools/screenshots.mjs      # writes docs/screenshots at 360/768/1440
@@ -60,10 +61,16 @@ node tools/overflow-check.mjs   # fails loudly on horizontal overflow at 360px
 
 ## Current state
 
-All four applications run and their test suites pass. **Nothing is deployed.**
-There is no public URL for any of them, which is why the portfolio renders no
-launch buttons: a launch action requires both a non-concept status and a
-recorded `demoUrl`, and no `demoUrl` exists yet.
+All four applications run, their test suites pass, and all four are configured
+for deployment to Cloudflare Pages — see
+[`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md). Every route in every app is
+prerendered, so each builds to a static `out/` directory with nothing running
+on a server. The portfolio renders a launch button for each project, pointing
+at that project's own subdomain of `ankitkapoor.me`.
+
+**The Pages projects have not been created yet**, so those subdomains do not
+resolve. Deploy the three demos before the portfolio, or the portfolio ships
+with three dead links.
 
 | | Unit tests | End-to-end | Status | Evidence |
 |---|---|---|---|---|
@@ -92,8 +99,8 @@ Scoped out of this pass, and stated plainly rather than implied as done:
   Moat Test's gold annotations, and any reviewed real-company analysis. Gold
   annotations are drafts marked `humanReviewed: false`.
 - **Owner-supplied assets**: verified contact links, LinkedIn, GitHub, résumé,
-  headshot, and a custom domain. None have been invented; the contact section
-  says details are pending.
+  and headshot. None have been invented; the contact section says details are
+  pending, and `npm run validate:content` still warns about it.
 
 ## Requirement matrix
 

@@ -104,11 +104,12 @@ describe("sitemap", () => {
 describe("robots policy", () => {
   const policy = robots();
 
-  it("stays closed while no site origin is configured", () => {
-    // The default configuration has no origin, so nothing should be crawlable.
-    expect(siteOrigin).toBeNull();
-    expect(policy.rules).toEqual({ userAgent: "*", disallow: "/" });
-    expect(policy.sitemap).toBeUndefined();
+  it("opens crawling and advertises the sitemap, now that an origin is configured", () => {
+    // The site is deployed, so the policy that kept an unpublished preview out
+    // of search results no longer applies.
+    expect(siteOrigin).toBe("https://ankitkapoor.me");
+    expect(policy.rules).toEqual({ userAgent: "*", allow: "/" });
+    expect(policy.sitemap).toBe("https://ankitkapoor.me/sitemap.xml");
   });
 });
 

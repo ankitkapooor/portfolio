@@ -1,9 +1,15 @@
 # Handover checklist
 
-State as handed over: **P0 built, not deployed.** All three projects are at
-prototype status — the demos genuinely run — but none of them is hosted, so no
-project carries a `demoUrl` and no launch button is rendered. `robots.txt`
-disallows all crawling until a real site origin is configured.
+State as handed over: **P0 built and configured for deployment.** All three
+projects are at prototype status, each carries a `demoUrl` on its own
+subdomain, and every project renders a launch button. The site origin is set to
+`https://ankitkapoor.me`, so canonical URLs, the sitemap, and an open
+`robots.txt` are all active. See `docs/DEPLOYMENT.md` for the Cloudflare Pages
+setup.
+
+Those launch buttons point at subdomains that exist only once the three demo
+applications are deployed. **Deploy the three demos before the portfolio**, or
+the portfolio ships with three dead links.
 
 Work through this before showing the site to anyone outside the project, and
 again before launch.
@@ -18,14 +24,14 @@ site, and the site renders correctly without it.
 | # | Item | Where it goes | Blocking launch? |
 | --- | --- | --- | --- |
 | 1 | **At least one verified contact method** (LinkedIn URL, email, or a deliberate decision to omit contact entirely) | `profile.verifiedLinks` in `content/profile.ts` | **Yes** — or a conscious decision to launch without contact |
-| 2 | **The real site origin** (domain or hosting URL) | `NEXT_PUBLIC_SITE_ORIGIN`, or the fallback in `content/site.ts` | **Yes** — canonical URLs and robots stay off without it |
+| 2 | ~~The real site origin~~ — supplied: `https://ankitkapoor.me` | `content/site.ts`; `NEXT_PUBLIC_SITE_ORIGIN` overrides it for previews | Done |
 | 3 | **Review of the biography copy** in `content/profile.ts` — four paragraphs, written from the BRD's starter copy plus confirmed facts only | `content/profile.ts` | **Yes** |
 | 4 | **Review of the three case narratives** — the long-form sections, trade-offs, and uncertainties are drafted from the project briefs and are the owner's argument to sign off | `content/projects.ts` | **Yes** |
 | 5 | Resume file, if one is wanted | `public/`, then an asset record and `profile.resumeAsset` | No |
 | 6 | Headshot, if one is wanted | `public/`, then an asset record and `profile.portraitAsset`. **Not generated** — must be a real photograph | No |
 | 7 | Location line, if wanted in the footer | `profile.locationOptional` | No |
 | 8 | GitHub or repository URLs for the three projects | `repositoryUrl` on each project | No |
-| 9 | Public demo URLs, once the applications are **hosted** — they already run locally | `demoUrl` per project — see README, "Updating project status" | No |
+| 9 | ~~Public demo URLs~~ — supplied: the three subdomains in `docs/DEPLOYMENT.md` | `demoUrl` per project | Done, but only true once those demos are deployed |
 | 10 | Real screenshots, now that the applications run | New `kind: "file"` assets — see README, "Replacing a concept preview" | No |
 | 11 | Employers, job titles, dates, or any impact number, if they are to appear at all | `content/profile.ts` — and the honesty assertions in `lib/site-content.test.ts` will need updating in the same edit | No |
 | 12 | Confirmation that "USC Marshall" and "BITS Pilani Dubai" are the preferred renderings of the two institutions | `profile.education` | No |
@@ -55,11 +61,16 @@ absence as the normal case: no placeholder, no disabled control, no dead link.
 
 ### Configuration
 
-- [ ] `NEXT_PUBLIC_SITE_ORIGIN` is set to the real origin.
-- [ ] `npm run build` no longer prints the `metadataBase` warning.
+- [x] The site origin is set (`content/site.ts`, `https://ankitkapoor.me`).
+- [x] `npm run build` no longer prints the `metadataBase` warning.
 - [ ] `curl <origin>/robots.txt` returns `Allow: /` and the sitemap line.
 - [ ] `curl <origin>/sitemap.xml` lists six absolute URLs on the real origin
       and contains no `localhost`.
+- [ ] `curl -sI <origin>/opengraph-image` returns `Content-Type: image/png`.
+      The card is exported to an extensionless path, so `public/_headers`
+      supplies the type that Cloudflare would otherwise guess wrong.
+- [ ] All three launch buttons reach a live demo. They are absolute URLs to
+      separate applications, so nothing in this build can verify them.
 - [ ] `<link rel="canonical">` is present on `/`, `/about`, `/method`, and each
       case page, and points at the real origin.
 - [ ] The three Open Graph cards render correctly in a preview tool
@@ -107,18 +118,27 @@ Automated checks supplement this list; they do not replace it.
 
 ## 3. Deployment
 
-Nothing here is configured, and nothing should be assumed.
+Target is Cloudflare Pages. The full setup — build settings, root directories,
+subdomain map, and deploy order — is in `docs/DEPLOYMENT.md`.
 
-- [ ] No hosting platform is set up. There is no `.openai/hosting.json` and no
-      deployment configuration in this app.
-- [ ] No custom domain, no DNS records, and no purchases have been made.
-- [ ] No analytics. P0 works without it; if it is added later, keep it to page
-      views, project opens, demo opens, and verified contact clicks — and never
-      record visitor text or model inputs.
-- [ ] A preview deployment must not be described as a public launch. Until the
-      site origin is configured, `robots.txt` enforces that.
-- [ ] The footer currently states the site is "not hosted publicly". Update
-      that line when it stops being true.
+Configured in this repository:
+
+- `output: "export"` in `next.config.ts`, so `npm run build` emits `out/`.
+- `.node-version` pinning Node 24.20.0 for the build image.
+- `public/_headers` fixing the content type of the exported Open Graph cards.
+- The real site origin, so `robots.txt` allows crawling and the sitemap and
+  canonical URLs use it.
+
+Still to do by hand, in the Cloudflare dashboard:
+
+- [ ] Create four Pages projects against this repository, one per application.
+- [ ] Attach the custom domains, and redirect `www` to the apex.
+- [ ] No analytics is configured. P0 works without it; if it is added later,
+      keep it to page views, project opens, demo opens, and verified contact
+      clicks — and never record visitor text or model inputs.
+- [ ] Preview deployments now inherit the production origin. Set
+      `NEXT_PUBLIC_SITE_ORIGIN` on a preview branch if its canonical URLs
+      should point at itself rather than at the live site.
 
 ---
 
@@ -129,8 +149,9 @@ are **not** wired into this site in any way. Their URLs are configuration
 values (`demoUrl` per project) and nothing more. This app imports no code from
 them and does not need them to build, test, or run.
 
-All three run locally; none is hosted. To connect one, see README, "Updating
-project status" — and confirm the URL is genuinely reachable first.
+All three are configured to deploy to their own subdomains, listed in
+`docs/DEPLOYMENT.md`. To change one, see README, "Updating project status" —
+and confirm the URL is genuinely reachable first.
 
 The Moat Test case page quotes figures from an archived run record in that
 sibling directory (`experiments/runs/…/report.json`), cited as a source. That

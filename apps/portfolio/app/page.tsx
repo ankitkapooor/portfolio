@@ -82,8 +82,8 @@ export default function HomePage() {
           </h2>
           <p className={styles.sectionNote}>
             Three independent projects. Each states its status plainly: all
-            three run as software, none of them is publicly hosted, and only
-            one has recorded a measured result.
+            three run as software you can open and use, and only one has
+            recorded a measured result.
           </p>
         </div>
 

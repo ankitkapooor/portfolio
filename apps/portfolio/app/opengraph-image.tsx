@@ -8,6 +8,9 @@ export const alt =
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+/** Required by `output: "export"`: the card is rendered once, at build time. */
+export const dynamic = "force-static";
+
 /*
  * Original graphics only: the site's own palette, its own copy, a rule, and
  * the three project numbers. No photograph, no logo, no borrowed imagery.

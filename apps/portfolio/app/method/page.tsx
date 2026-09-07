@@ -122,12 +122,11 @@ export default function MethodPage() {
           </div>
 
           <p className={styles.labelsIntro}>
-            All three projects are currently Prototype: the software runs, on a
-            local machine, and none of it is publicly hosted, so there is no
-            address to send you to and no project shows a launch button. Two
-            carry Illustrative evidence; The Moat Test carries Measured,
-            partial. No case publishes a recommendation, because software that
-            runs is not a finding.
+            All three projects are currently Prototype: the software runs and
+            each one is deployed where you can reach it, so every project shows
+            a launch button. Two carry Illustrative evidence; The Moat Test
+            carries Measured, partial. No case publishes a recommendation,
+            because software that runs is not a finding.
           </p>
         </section>
       </div>

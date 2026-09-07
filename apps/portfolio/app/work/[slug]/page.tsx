@@ -109,7 +109,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
               <p className={styles.noDemo}>
                 {project.status === "concept"
                   ? "There is no demo to launch yet. The case below is the whole of it."
-                  : "The demo runs, but only on a local machine — it is not publicly hosted, so there is nothing to launch from here. The case below is what can be read."}
+                  : "The demo runs, but it is not publicly reachable, so there is nothing to launch from here. The case below is what can be read."}
               </p>
             ) : null}
           </div>

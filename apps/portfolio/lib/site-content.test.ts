@@ -100,10 +100,13 @@ describe("project status", () => {
     }
   });
 
-  it("renders no launch action, because no demo is publicly reachable", () => {
+  it("renders a launch action for every project, because each demo is deployed", () => {
     for (const project of projects) {
-      expect(project.demoUrl, project.slug).toBeNull();
-      expect(hasLaunchAction(project), project.slug).toBe(false);
+      // An absolute https URL, not a root-relative path: each demo is a
+      // separate application on its own subdomain.
+      expect(project.demoUrl, project.slug).toMatch(/^https:\/\//);
+      expect(project.demoTarget, project.slug).toBe("external");
+      expect(hasLaunchAction(project), project.slug).toBe(true);
     }
   });
 

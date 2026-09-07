@@ -1,17 +1,22 @@
 /**
  * Site-level configuration.
  *
- * `siteOrigin` is deliberately null until a real origin exists. Nothing in the
- * app substitutes a placeholder domain: canonical URLs and absolute Open Graph
- * URLs stay switched off, and robots.txt stays closed, until it is set.
+ * `siteOrigin` is the address this site is served from. Canonical URLs,
+ * absolute Open Graph URLs, and an open robots.txt all depend on it.
  *
- * To configure it, either set NEXT_PUBLIC_SITE_ORIGIN at build time or replace
- * the fallback below with the real origin, e.g. "https://ankitkapoor.dev".
+ * It is a committed constant rather than a build-time-only variable so that a
+ * deploy cannot silently lose it and ship a site that blocks every crawler.
+ * NEXT_PUBLIC_SITE_ORIGIN overrides it, which is what a preview deployment on
+ * its own hostname should do.
+ *
+ * The `| null` return is kept because callers still guard against an
+ * unconfigured origin; with a default set, those guards no longer fire.
  */
 
+const defaultOrigin = "https://ankitkapoor.me";
+
 function readOrigin(): string | null {
-  const raw = process.env.NEXT_PUBLIC_SITE_ORIGIN?.trim();
-  if (!raw) return null;
+  const raw = process.env.NEXT_PUBLIC_SITE_ORIGIN?.trim() || defaultOrigin;
 
   // Fail loudly rather than emitting a broken canonical URL.
   const url = new URL(raw);

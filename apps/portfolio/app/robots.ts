@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { siteOrigin } from "@/content/site";
 
+/** Required by `output: "export"`: emitted as a file at build time. */
+export const dynamic = "force-static";
+
 /**
  * Robots policy tied to configuration, not to hope.
  *

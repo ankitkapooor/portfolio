@@ -144,13 +144,13 @@ Every project in `content/projects.ts` currently reads:
 
 ```ts
 status: "prototype",
-demoUrl: null,
-demoTarget: "internal",
+demoUrl: "https://disrupt.ankitkapoor.me",
+demoTarget: "external",
 demoLabel: "Play the scenario",
 ```
 
-All three demos genuinely run, and none of them is hosted anywhere, so there is
-no URL a visitor could reach.
+All three demos run and each is deployed to its own subdomain, so every project
+renders a launch button. The subdomain map is in `docs/DEPLOYMENT.md`.
 
 **`status` and `demoUrl` are separate facts.** `status` says how mature the
 software is; `demoUrl` says whether the public can reach it — the same
@@ -160,16 +160,16 @@ run and still not be deployed.
 
 Launch actions are derived from `status` and `demoUrl` together, by
 `hasLaunchAction()` in `lib/content-validation.ts`, and **both** are required.
-No component knows about any specific project. So once a demo is actually
-hosted:
+No component knows about any specific project. Withdrawing a launch button, if
+a demo is taken down, is one edit:
 
 ```ts
-demoUrl: "/demos/disrupt-this-business",   // or an absolute https URL
+demoUrl: null,
 ```
 
-That is the whole change. The launch button appears on the homepage feature and
-at the top of the case page, using the existing `demoLabel`. Until then, no
-button is rendered and the case page says the demo is not publicly hosted.
+The button then disappears from the homepage feature and from the top of the
+case page, and the case page explains that the demo is not publicly reachable.
+Nothing else needs changing.
 
 **What the labels are allowed to mean** (also published on `/method`):
 
@@ -280,23 +280,26 @@ Add the new slug to `REQUIRED_SLUGS` in `lib/site-content.test.ts`.
 ## Configuring the site origin
 
 Canonical URLs, absolute Open Graph URLs, and the robots policy are all driven
-by one value, and it is deliberately unset:
+by one value, set in `content/site.ts`:
 
-```bash
-NEXT_PUBLIC_SITE_ORIGIN=https://your-real-domain.example npm run build
+```ts
+const defaultOrigin = "https://ankitkapoor.me";
 ```
 
-Or replace the fallback in `content/site.ts`. Until it is set:
+It is a committed constant rather than a build-time-only variable, so a deploy
+cannot silently lose it and ship a site whose `robots.txt` blocks every
+crawler. Override it for a deployment served from a different hostname:
 
-- No `<link rel="canonical">` is emitted anywhere. The site never publishes a
-  placeholder domain as canonical.
-- `robots.txt` returns `Disallow: /` and advertises no sitemap, so a preview
-  cannot be mistaken for a public launch.
-- `sitemap.xml` uses `http://localhost:3000`, because the sitemap format
-  requires absolute URLs.
-- `next build` prints one warning: *"metadataBase property in metadata export
-  is not set…, using http://localhost:3000"*. That warning is the intended
-  state, not a defect. It disappears once the origin is configured.
+```bash
+NEXT_PUBLIC_SITE_ORIGIN=https://preview.example.com npm run build
+```
+
+With an origin set:
+
+- `<link rel="canonical">` is emitted on every page, pointing at that origin.
+- `robots.txt` returns `Allow: /` and advertises the sitemap.
+- `sitemap.xml` lists absolute URLs on that origin and no `localhost`.
+- `next build` prints no `metadataBase` warning.
 
 Only `https` origins are accepted (plus `localhost`); anything else throws at
 build time rather than shipping a broken canonical.

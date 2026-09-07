@@ -9,6 +9,9 @@ import { profile } from "@/content/profile";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+/** Required by `output: "export"`: one card per project, at build time. */
+export const dynamic = "force-static";
+
 /** Hex values matching styles/tokens.css, since ImageResponse has no CSS vars. */
 const ACCENTS: Record<string, string> = {
   "--project-accent-01": "#315B85",
