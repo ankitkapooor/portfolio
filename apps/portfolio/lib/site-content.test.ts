@@ -3,7 +3,11 @@ import { assets } from "@/content/assets";
 import { contactPlaceholder, profile } from "@/content/profile";
 import { projects, getProject, projectPath } from "@/content/projects";
 import { approachSteps } from "@/content/approach";
-import { hasLaunchAction, statusLabels } from "@/lib/content-validation";
+import {
+  hasLaunchAction,
+  statusDescriptions,
+  statusLabels,
+} from "@/lib/content-validation";
 import { schematicIds } from "@/components/schematics/ids";
 
 /**
@@ -65,14 +69,38 @@ describe("project registry", () => {
 });
 
 describe("project status", () => {
-  it("ships all three projects at concept stage", () => {
+  it("ships all three projects at prototype stage, because the software runs", () => {
     for (const project of projects) {
-      expect(project.status, project.slug).toBe("concept");
-      expect(project.evidenceStatus, project.slug).toBe("illustrative");
+      expect(project.status, project.slug).toBe("prototype");
     }
   });
 
-  it("renders no launch action, because no demo exists", () => {
+  it("claims measured evidence only for The Moat Test, and never claims review", () => {
+    const byStatus = Object.fromEntries(
+      projects.map((project) => [project.slug, project.evidenceStatus]),
+    );
+    expect(byStatus).toEqual({
+      "disrupt-this-business": "illustrative",
+      "the-moat-test": "measured-partial",
+      "priced-in": "illustrative",
+    });
+  });
+
+  it("backs a measured-partial claim with at least one measured evidence item", () => {
+    for (const project of projects) {
+      if (project.evidenceStatus !== "measured-partial") continue;
+      const measured = project.evidence.filter(
+        (item) => item.status === "measured-partial",
+      );
+      expect(measured.length, project.slug).toBeGreaterThan(0);
+      // A measured claim has to be traceable to the run that produced it.
+      for (const item of measured) {
+        expect(item.sourceRefs.length, item.id).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it("renders no launch action, because no demo is publicly reachable", () => {
     for (const project of projects) {
       expect(project.demoUrl, project.slug).toBeNull();
       expect(hasLaunchAction(project), project.slug).toBe(false);
@@ -94,8 +122,16 @@ describe("project status", () => {
     }
   });
 
-  it("labels concept status honestly in the UI vocabulary", () => {
+  it("labels status honestly in the UI vocabulary", () => {
     expect(statusLabels.concept).toBe("Concept");
+    expect(statusLabels.prototype).toBe("Prototype");
+  });
+
+  it("keeps hosting out of the status description, so it survives deployment", () => {
+    for (const description of Object.values(statusDescriptions)) {
+      expect(description.toLowerCase()).not.toContain("hosted");
+      expect(description.toLowerCase()).not.toContain("deployed");
+    }
   });
 });
 

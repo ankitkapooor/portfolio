@@ -39,7 +39,7 @@ npm run dev          # http://localhost:3000
 | `npm run build` | Production build. Fails on any TypeScript error and on invalid content. |
 | `npm run lint` | ESLint with `eslint-config-next` core-web-vitals plus TypeScript rules. |
 | `npm test` | Vitest. Content integrity, navigation, statuses, links, hero line breaks, and computed colour contrast. |
-| `npm run validate:content` | Content validator: schemas, duplicate slugs, dangling source IDs, missing assets, demo actions without URLs, date sanity, honesty guards. |
+| `npm run validate:content` | Content validator: schemas, duplicate slugs, dangling source IDs, missing assets, malformed demo URLs, date sanity, honesty guards. |
 
 Run all four before handing the site to anyone. `npm run build` also runs the
 content validator implicitly, because `content/projects.ts` asserts its own
@@ -143,30 +143,40 @@ This is the edit that matters most, so it is deliberately small.
 Every project in `content/projects.ts` currently reads:
 
 ```ts
-status: "concept",
+status: "prototype",
 demoUrl: null,
 demoTarget: "internal",
 demoLabel: "Play the scenario",
 ```
 
-Launch actions are derived from `status` and `demoUrl` alone, by
-`hasLaunchAction()` in `lib/content-validation.ts`. No component knows about
-any specific project. To promote a project whose demo genuinely runs:
+All three demos genuinely run, and none of them is hosted anywhere, so there is
+no URL a visitor could reach.
+
+**`status` and `demoUrl` are separate facts.** `status` says how mature the
+software is; `demoUrl` says whether the public can reach it — the same
+separation the BRD keeps between `status` and `evidenceStatus`. The validator
+does not require a URL for a non-concept project, because a demo can genuinely
+run and still not be deployed.
+
+Launch actions are derived from `status` and `demoUrl` together, by
+`hasLaunchAction()` in `lib/content-validation.ts`, and **both** are required.
+No component knows about any specific project. So once a demo is actually
+hosted:
 
 ```ts
-status: "prototype",
 demoUrl: "/demos/disrupt-this-business",   // or an absolute https URL
 ```
 
 That is the whole change. The launch button appears on the homepage feature and
-at the top of the case page, using the existing `demoLabel`.
+at the top of the case page, using the existing `demoLabel`. Until then, no
+button is rendered and the case page says the demo is not publicly hosted.
 
 **What the labels are allowed to mean** (also published on `/method`):
 
 | `status` | Requirement |
 | --- | --- |
-| `concept` | Designed and specified. `demoUrl` must be `null`. |
-| `prototype` | The demo actually runs. `demoUrl` is required. |
+| `concept` | Designed and specified. `demoUrl` must be `null` — there is nothing to link to. |
+| `prototype` | The demo actually runs. `demoUrl` is optional, and is only for a demo the public can reach. |
 | `published` | An authored case exists alongside a running demo. |
 
 | `evidenceStatus` | Requirement |
@@ -176,17 +186,21 @@ at the top of the case page, using the existing `demoLabel`.
 | `reviewed` | Measured evidence a person has actually reviewed. |
 
 The two fields are separate claims and must be moved separately. **A successful
-build is never a reason to promote either one.** The validator enforces the
-mechanical parts of this:
+build is never a reason to promote either one, and a demo that runs is never a
+reason to move `evidenceStatus`.** The validator enforces the mechanical parts
+of this:
 
 - `concept` with a `demoUrl` is an error.
-- `prototype` or `published` without a `demoUrl` is an error.
 - `concept` with a non-null `recommendation` is an error.
 - `concept` whose `brief.position` does not begin "Investigation in progress"
   is an error.
 - Evidence items claiming a stronger status than the project is an error.
+- A project with `reviewed` evidence and no `recommendation` is a **warning**,
+  not an error. Nothing trips it today, because no project has reviewed
+  evidence. The rule keys off `evidenceStatus` rather than `status` on
+  purpose: a conclusion follows evidence, not a demo that happens to run.
 
-So promoting a project also forces you to write the conclusion it now supports.
+Writing software is not reaching a finding, and the site keeps those apart.
 
 ### Setting `demoTarget`
 

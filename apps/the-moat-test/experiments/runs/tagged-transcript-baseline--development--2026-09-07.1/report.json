@@ -1,6 +1,6 @@
 {
   "runId": "tagged-transcript-baseline--development--2026-09-07.1",
-  "generatedAt": "2026-09-07T08:02:39.593Z",
+  "generatedAt": "2026-09-07T09:02:40.485Z",
   "corpusVersion": "2026-09-07.1",
   "corpusIsSynthetic": true,
   "goldAnnotationsHumanReviewed": false,
@@ -123,10 +123,10 @@
   },
   "latency": {
     "sampleCount": 12,
-    "p50Ms": 0.11262500000020736,
-    "p95Ms": 4.835332999999991,
-    "minMs": 0.02983300000005329,
-    "maxMs": 4.835332999999991,
+    "p50Ms": 0.027125000000012278,
+    "p95Ms": 0.9166659999999922,
+    "minMs": 0.01624999999998522,
+    "maxMs": 0.9166659999999922,
     "note": "Nearest-rank percentiles over 12 samples. With a sample this small the p95 is close to the maximum; read the observed range instead of treating p95 as a tail estimate."
   },
   "reviewQueueLength": 35,

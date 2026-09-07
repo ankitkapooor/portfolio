@@ -21,7 +21,8 @@
   background-color: var(--page-accent);
 }
 
-/* Concept status reads as an outline: nothing runs yet. */
+/* A filled dot means the software runs, whether or not it is reachable.
+   Concept status reads as an outline instead: no software runs yet. */
 .statusDotConcept {
   background-color: transparent;
   box-shadow: inset 0 0 0 1.5px var(--muted-ink);

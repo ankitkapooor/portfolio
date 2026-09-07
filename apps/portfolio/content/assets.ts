@@ -24,7 +24,7 @@ const raw: Asset[] = [
       "Both compete for the same fictional market of 800 small teams, which are price sensitive and cheap to switch, and 200 enterprise teams, which weigh reliability first and are costly to switch.",
       "Play runs over four quarters. Each quarter the player commits one move, the opponent's move is then revealed, and the result resolves from stated rules.",
       "After the result, the player switches sides and attacks the strategy they just recorded.",
-      "No outcome, score, or currency figure is shown, because none has been produced.",
+      "No outcome, score, or currency figure is shown: this is a drawing of the decision the game presents, not a record of a result it produced.",
     ],
     source:
       "Original SVG drawn for this repository from the Disrupt This Business brief (docs/01_Disrupt_This_Business_BRD.md, section 5). No third-party imagery.",
@@ -41,7 +41,7 @@ const raw: Asset[] = [
       "The baseline method extracts only tagged lines. It returns \u201cship Thursday\u201d from line 3 and \u201cPriya to draft\u201d from line 6, and ignores every untagged line. It is a deterministic string match and sets the floor any model has to beat.",
       "The challenger method returns richer structure: a decision (ship Thursday, current, from line 3), an action (Priya, due unresolved, from line 6), an open question (who signs off, from lines 4 to 5), and one item where the owner was ambiguous and was therefore left null, from line 7.",
       "Every claim in either panel carries the transcript line it came from. Both panels stay blind until the reveal.",
-      "No accuracy figure appears, because no benchmark run has been executed.",
+      "No accuracy figure appears in the drawing. The figures from the recorded baseline runs are given as text under Evidence and results, where their sample size and caveats can travel with them.",
     ],
     source:
       "Original SVG drawn for this repository from The Moat Test brief (docs/02_The_Moat_Test_BRD.md, section 5). No third-party imagery.",

@@ -1,8 +1,9 @@
 # Handover checklist
 
 State as handed over: **P0 built, not deployed.** All three projects are at
-concept status, no demo exists, and `robots.txt` disallows all crawling until a
-real site origin is configured.
+prototype status — the demos genuinely run — but none of them is hosted, so no
+project carries a `demoUrl` and no launch button is rendered. `robots.txt`
+disallows all crawling until a real site origin is configured.
 
 Work through this before showing the site to anyone outside the project, and
 again before launch.
@@ -24,8 +25,8 @@ site, and the site renders correctly without it.
 | 6 | Headshot, if one is wanted | `public/`, then an asset record and `profile.portraitAsset`. **Not generated** — must be a real photograph | No |
 | 7 | Location line, if wanted in the footer | `profile.locationOptional` | No |
 | 8 | GitHub or repository URLs for the three projects | `repositoryUrl` on each project | No |
-| 9 | Working demo URLs, once the applications run | `status` + `demoUrl` per project — see README, "Updating project status" | No |
-| 10 | Real screenshots, once the applications run | New `kind: "file"` assets — see README, "Replacing a concept preview" | No |
+| 9 | Public demo URLs, once the applications are **hosted** — they already run locally | `demoUrl` per project — see README, "Updating project status" | No |
+| 10 | Real screenshots, now that the applications run | New `kind: "file"` assets — see README, "Replacing a concept preview" | No |
 | 11 | Employers, job titles, dates, or any impact number, if they are to appear at all | `content/profile.ts` — and the honesty assertions in `lib/site-content.test.ts` will need updating in the same edit | No |
 | 12 | Confirmation that "USC Marshall" and "BITS Pilani Dubai" are the preferred renderings of the two institutions | `profile.education` | No |
 
@@ -39,11 +40,14 @@ absence as the normal case: no placeholder, no disabled control, no dead link.
 ### Content and honesty
 
 - [ ] `npm run validate:content` passes with **zero warnings** (it currently
-      reports one: no verified links configured).
+      reports one: no verified links configured, which needs a real contact
+      method from the owner).
 - [ ] Every project's `status` and `evidenceStatus` matches reality. A
-      successful build is not a reason to promote either.
+      successful build is not a reason to promote either, and a running demo
+      is not a reason to move `evidenceStatus`.
 - [ ] No project has been promoted past `concept` without its demo actually
-      running and its `recommendation` written.
+      running, and no `recommendation` has been written that the evidence does
+      not support.
 - [ ] The owner has read every sentence of `content/profile.ts` and
       `content/projects.ts` and stands behind it.
 - [ ] Nothing on the site claims a title, client, employer, date, award, or
@@ -125,8 +129,12 @@ are **not** wired into this site in any way. Their URLs are configuration
 values (`demoUrl` per project) and nothing more. This app imports no code from
 them and does not need them to build, test, or run.
 
-To connect one, see README, "Updating project status". Verify the demo actually
-runs first.
+All three run locally; none is hosted. To connect one, see README, "Updating
+project status" — and confirm the URL is genuinely reachable first.
+
+The Moat Test case page quotes figures from an archived run record in that
+sibling directory (`experiments/runs/…/report.json`), cited as a source. That
+is a prose citation copied by hand, not a build-time dependency.
 
 ---
 
@@ -140,7 +148,8 @@ suite.
 - Dangling evidence citations, and evidence with no citation.
 - Cover assets that reference an unregistered asset, and file-backed assets
   whose file is not on disk.
-- `concept` with a demo URL; `prototype`/`published` without one.
+- `concept` with a demo URL. (A non-concept project with no demo URL is
+  valid: a demo can run without being hosted.)
 - `concept` with a recommendation, or a Position that does not open with
   "Investigation in progress".
 - Evidence items claiming a stronger status than their project.

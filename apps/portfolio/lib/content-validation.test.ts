@@ -107,19 +107,39 @@ describe("validateContent", () => {
   });
 
   describe("demo actions", () => {
+    /**
+     * `status` and `demoUrl` are separate facts: how mature the software is,
+     * and whether the public can reach it. Only the concept direction is
+     * constrained, because a concept has nothing to link to.
+     */
     it("rejects a concept project that carries a demo URL", () => {
-      const issues = errorsFor({ ...base, demoUrl: "/play" });
+      const issues = errorsFor({
+        ...base,
+        status: "concept",
+        demoUrl: "/play",
+      });
       expect(messages(issues)).toContain('status "concept" must have demoUrl null');
     });
 
-    it("rejects a promoted project with no demo URL", () => {
+    it("still rejects a concept project carrying an external demo URL", () => {
       const issues = errorsFor({
         ...base,
-        status: "prototype",
-        recommendation: "Something supported by evidence.",
-        brief: { ...base.brief, position: "A supported position." },
+        status: "concept",
+        demoUrl: "https://demo.example/play",
+        demoTarget: "external",
       });
-      expect(messages(issues)).toContain("promises a runnable demo but demoUrl is null");
+      expect(messages(issues)).toContain('status "concept" must have demoUrl null');
+    });
+
+    it("accepts a promoted project with no demo URL, and renders no launch action", () => {
+      const promoted: Project = {
+        ...base,
+        status: "prototype",
+        demoUrl: null,
+      };
+      // A demo can genuinely run and still not be hosted.
+      expect(messages(errorsFor(promoted))).toBe("");
+      expect(hasLaunchAction(promoted)).toBe(false);
     });
 
     it("accepts a promoted project with a demo URL", () => {
@@ -178,6 +198,7 @@ describe("validateContent", () => {
     it("rejects a recommendation on a concept-stage project", () => {
       const issues = errorsFor({
         ...base,
+        status: "concept",
         recommendation: "Reposition immediately.",
       });
       expect(messages(issues)).toContain("recommendation must be null");
@@ -186,6 +207,7 @@ describe("validateContent", () => {
     it("requires a concept Position to open with Investigation in progress", () => {
       const issues = errorsFor({
         ...base,
+        status: "concept",
         brief: { ...base.brief, position: "Defend the installed base." },
       });
       expect(messages(issues)).toContain('must open Position with "Investigation in progress"');

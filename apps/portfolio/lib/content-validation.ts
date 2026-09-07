@@ -6,7 +6,7 @@
  *     themselves at import time, so a malformed record breaks the build.
  *  2. `validateContent` — cross-record rules that a single-record schema
  *     cannot express: duplicate slugs, dangling source IDs, missing assets,
- *     demo actions without URLs, dates that do not make sense, and honesty
+ *     malformed demo URLs, dates that do not make sense, and honesty
  *     guards on concept-stage projects.
  *
  * `npm run validate:content` runs both plus a filesystem check for
@@ -197,7 +197,10 @@ export const statusLabels: Record<ProjectStatus, string> = {
 export const statusDescriptions: Record<ProjectStatus, string> = {
   concept:
     "Designed and specified. No runnable demo and no measured results yet.",
-  prototype: "A working demo runs. Results are partial.",
+  // Deliberately silent on hosting and on results. Whether the public can
+  // reach the demo is `demoUrl`; what the demo has produced is
+  // `evidenceStatus`. Both stay true whether or not the demo is deployed.
+  prototype: "A working demo runs. Results are reported by the evidence label.",
   published: "An authored case with reviewed evidence.",
 };
 
@@ -433,19 +436,19 @@ export function validateContent(bundle: ContentBundle): ValidationIssue[] {
     }
 
     // Demo actions
+    //
+    // `status` and `demoUrl` are separate facts and only one direction is
+    // constrained. `status` says how mature the software is; `demoUrl` says
+    // whether the public can reach it — the same separation the BRD keeps
+    // between `status` and `evidenceStatus`. A demo can genuinely run and
+    // still not be hosted, so a non-concept status does not require a URL.
+    // The reverse is still unsound: a concept has nothing to link to.
     if (project.status === "concept" && project.demoUrl !== null) {
       issues.push({
         severity: "error",
         where,
         message:
           'status "concept" must have demoUrl null; a runnable demo means the status is at least "prototype"',
-      });
-    }
-    if (project.status !== "concept" && project.demoUrl === null) {
-      issues.push({
-        severity: "error",
-        where,
-        message: `status "${project.status}" promises a runnable demo but demoUrl is null`,
       });
     }
     if (project.demoUrl !== null) {
@@ -491,12 +494,16 @@ export function validateContent(bundle: ContentBundle): ValidationIssue[] {
         });
       }
     }
-    if (project.status !== "concept" && project.recommendation === null) {
+    // A conclusion follows evidence, not software maturity. Keying this off
+    // `status` would ask for a recommendation as soon as the code runs, which
+    // is the confusion the rest of this file exists to prevent. Only reviewed
+    // evidence is enough to support an authored recommendation.
+    if (project.evidenceStatus === "reviewed" && project.recommendation === null) {
       issues.push({
         severity: "warning",
         where: `${where}.recommendation`,
         message:
-          "project has left concept stage but still has no authored recommendation",
+          "project has reviewed evidence but still has no authored recommendation",
       });
     }
 

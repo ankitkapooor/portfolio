@@ -2,7 +2,7 @@
   {
     "caseId": "case-001",
     "output": {
-      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 32 transcript lines: 1 tagged action and 1 tagged decision. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "summary": "Extracted 2 tagged lines from 32 transcript lines: 1 tagged action and 1 tagged decision. This output covers tagged lines only. Untagged discussion is not summarised, and owners, dates and decision status are not inferred.",
       "decisions": [
         {
           "id": "baseline-decision-L010",
@@ -38,14 +38,14 @@
       ]
     },
     "attemptCount": 1,
-    "elapsedMs": 4.835332999999991,
+    "elapsedMs": 0.9166659999999922,
     "costUsd": 0,
     "invalidLineReferences": []
   },
   {
     "caseId": "case-002",
     "output": {
-      "summary": "Tagged transcript baseline. Extracted 3 tagged lines from 32 transcript lines: 1 tagged action and 2 tagged decisions. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "summary": "Extracted 3 tagged lines from 32 transcript lines: 1 tagged action and 2 tagged decisions. This output covers tagged lines only. Untagged discussion is not summarised, and owners, dates and decision status are not inferred.",
       "decisions": [
         {
           "id": "baseline-decision-L006",
@@ -90,14 +90,14 @@
       ]
     },
     "attemptCount": 1,
-    "elapsedMs": 0.2444580000001224,
+    "elapsedMs": 0.05608300000000099,
     "costUsd": 0,
     "invalidLineReferences": []
   },
   {
     "caseId": "case-003",
     "output": {
-      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 32 transcript lines: 2 tagged actions and 0 tagged decisions. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "summary": "Extracted 2 tagged lines from 32 transcript lines: 2 tagged actions and 0 tagged decisions. This output covers tagged lines only. Untagged discussion is not summarised, and owners, dates and decision status are not inferred.",
       "decisions": [],
       "actions": [
         {
@@ -127,14 +127,14 @@
       "uncertainties": []
     },
     "attemptCount": 1,
-    "elapsedMs": 0.1720839999998134,
+    "elapsedMs": 0.02745899999999324,
     "costUsd": 0,
     "invalidLineReferences": []
   },
   {
     "caseId": "case-004",
     "output": {
-      "summary": "Tagged transcript baseline. Extracted 1 tagged line from 32 transcript lines: 0 tagged actions and 1 tagged decision. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "summary": "Extracted 1 tagged line from 32 transcript lines: 0 tagged actions and 1 tagged decision. This output covers tagged lines only. Untagged discussion is not summarised, and owners, dates and decision status are not inferred.",
       "decisions": [
         {
           "id": "baseline-decision-L031",
@@ -158,14 +158,14 @@
       ]
     },
     "attemptCount": 1,
-    "elapsedMs": 0.1112079999998059,
+    "elapsedMs": 0.022750000000002046,
     "costUsd": 0,
     "invalidLineReferences": []
   },
   {
     "caseId": "case-005",
     "output": {
-      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 32 transcript lines: 0 tagged actions and 2 tagged decisions. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "summary": "Extracted 2 tagged lines from 32 transcript lines: 0 tagged actions and 2 tagged decisions. This output covers tagged lines only. Untagged discussion is not summarised, and owners, dates and decision status are not inferred.",
       "decisions": [
         {
           "id": "baseline-decision-L005",
@@ -198,14 +198,14 @@
       ]
     },
     "attemptCount": 1,
-    "elapsedMs": 0.3257499999999709,
+    "elapsedMs": 0.025624999999990905,
     "costUsd": 0,
     "invalidLineReferences": []
   },
   {
     "caseId": "case-006",
     "output": {
-      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 32 transcript lines: 0 tagged actions and 2 tagged decisions. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "summary": "Extracted 2 tagged lines from 32 transcript lines: 0 tagged actions and 2 tagged decisions. This output covers tagged lines only. Untagged discussion is not summarised, and owners, dates and decision status are not inferred.",
       "decisions": [
         {
           "id": "baseline-decision-L009",
@@ -238,14 +238,14 @@
       ]
     },
     "attemptCount": 1,
-    "elapsedMs": 0.054667000000335975,
+    "elapsedMs": 0.023791000000016993,
     "costUsd": 0,
     "invalidLineReferences": []
   },
   {
     "caseId": "case-007",
     "output": {
-      "summary": "Tagged transcript baseline. Extracted 1 tagged line from 32 transcript lines: 0 tagged actions and 1 tagged decision. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "summary": "Extracted 1 tagged line from 32 transcript lines: 0 tagged actions and 1 tagged decision. This output covers tagged lines only. Untagged discussion is not summarised, and owners, dates and decision status are not inferred.",
       "decisions": [
         {
           "id": "baseline-decision-L031",
@@ -269,28 +269,28 @@
       ]
     },
     "attemptCount": 1,
-    "elapsedMs": 0.02983300000005329,
+    "elapsedMs": 0.028542000000015832,
     "costUsd": 0,
     "invalidLineReferences": []
   },
   {
     "caseId": "case-008",
     "output": {
-      "summary": "Tagged transcript baseline. Extracted 0 tagged lines from 32 transcript lines: 0 tagged actions and 0 tagged decisions. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "summary": "Extracted 0 tagged lines from 32 transcript lines: 0 tagged actions and 0 tagged decisions. This output covers tagged lines only. Untagged discussion is not summarised, and owners, dates and decision status are not inferred.",
       "decisions": [],
       "actions": [],
       "openQuestions": [],
       "uncertainties": []
     },
     "attemptCount": 1,
-    "elapsedMs": 0.09012500000017099,
+    "elapsedMs": 0.01624999999998522,
     "costUsd": 0,
     "invalidLineReferences": []
   },
   {
     "caseId": "case-009",
     "output": {
-      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 33 transcript lines: 1 tagged action and 1 tagged decision. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "summary": "Extracted 2 tagged lines from 33 transcript lines: 1 tagged action and 1 tagged decision. This output covers tagged lines only. Untagged discussion is not summarised, and owners, dates and decision status are not inferred.",
       "decisions": [
         {
           "id": "baseline-decision-L027",
@@ -326,14 +326,14 @@
       ]
     },
     "attemptCount": 1,
-    "elapsedMs": 0.17670899999984613,
+    "elapsedMs": 0.0357919999999865,
     "costUsd": 0,
     "invalidLineReferences": []
   },
   {
     "caseId": "case-010",
     "output": {
-      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 32 transcript lines: 1 tagged action and 1 tagged decision. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "summary": "Extracted 2 tagged lines from 32 transcript lines: 1 tagged action and 1 tagged decision. This output covers tagged lines only. Untagged discussion is not summarised, and owners, dates and decision status are not inferred.",
       "decisions": [
         {
           "id": "baseline-decision-L028",
@@ -369,14 +369,14 @@
       ]
     },
     "attemptCount": 1,
-    "elapsedMs": 0.14270799999985684,
+    "elapsedMs": 0.03275000000002137,
     "costUsd": 0,
     "invalidLineReferences": []
   },
   {
     "caseId": "case-011",
     "output": {
-      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 32 transcript lines: 1 tagged action and 1 tagged decision. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "summary": "Extracted 2 tagged lines from 32 transcript lines: 1 tagged action and 1 tagged decision. This output covers tagged lines only. Untagged discussion is not summarised, and owners, dates and decision status are not inferred.",
       "decisions": [
         {
           "id": "baseline-decision-L021",
@@ -412,14 +412,14 @@
       ]
     },
     "attemptCount": 1,
-    "elapsedMs": 0.11262500000020736,
+    "elapsedMs": 0.024790999999993346,
     "costUsd": 0,
     "invalidLineReferences": []
   },
   {
     "caseId": "case-012",
     "output": {
-      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 32 transcript lines: 1 tagged action and 1 tagged decision. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "summary": "Extracted 2 tagged lines from 32 transcript lines: 1 tagged action and 1 tagged decision. This output covers tagged lines only. Untagged discussion is not summarised, and owners, dates and decision status are not inferred.",
       "decisions": [
         {
           "id": "baseline-decision-L020",
@@ -455,7 +455,7 @@
       ]
     },
     "attemptCount": 1,
-    "elapsedMs": 0.08720799999991868,
+    "elapsedMs": 0.027125000000012278,
     "costUsd": 0,
     "invalidLineReferences": []
   }

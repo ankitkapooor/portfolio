@@ -99,10 +99,14 @@ export function runTaggedTranscriptBaseline(transcript: string): BaselineResult 
   }
 
   const taggedLineCount = actions.length + decisions.length;
+  // The summary states the scope of the extraction but never names the method.
+  // It renders inside a blind comparison panel, and a name embedded in the output
+  // would identify the panel before the reveal (BRD section 8, requirement M-F05).
+  // The method name belongs in the metadata disclosed at reveal.
   const summary = [
-    `Tagged transcript baseline. Extracted ${taggedLineCount} tagged ${plural(taggedLineCount, "line")} from ${lines.length} transcript ${plural(lines.length, "line")}:`,
+    `Extracted ${taggedLineCount} tagged ${plural(taggedLineCount, "line")} from ${lines.length} transcript ${plural(lines.length, "line")}:`,
     `${actions.length} tagged ${plural(actions.length, "action")} and ${decisions.length} tagged ${plural(decisions.length, "decision")}.`,
-    "This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+    "This output covers tagged lines only. Untagged discussion is not summarised, and owners, dates and decision status are not inferred.",
   ].join(" ");
 
   return {

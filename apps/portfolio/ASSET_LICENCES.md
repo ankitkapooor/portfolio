@@ -98,8 +98,10 @@ OFL permits it, and this notice already covers redistribution.
 - **No portrait of Ankit.** None generated, none sourced. A user-supplied
   headshot can be added later with an intentional crop and meaningful alt text
   (see README, "Adding a resume" for the equivalent asset-record pattern).
-- **No product screenshots.** None of the three applications runs yet, so
-  there is nothing honest to capture.
+- **No product screenshots.** All three applications now run locally, so there
+  is something honest to capture; none has been captured yet. Until one is, the
+  three figures stay original schematics labelled "Concept preview". See
+  README, "Replacing a concept preview with a real screenshot".
 - **No third-party logos.** No USC, no employer, no reference company, no
   technology badges. Nothing on the site implies endorsement.
 - **No icon library.** The site uses no icon font or SVG icon set, so there is

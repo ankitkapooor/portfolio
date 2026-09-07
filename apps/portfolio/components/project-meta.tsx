@@ -44,10 +44,10 @@ export function ProjectStatus({
  * Actions for a project.
  *
  * The launch action is derived entirely from `status` and `demoUrl` via
- * `hasLaunchAction`. Absence is the default path: when a project has no
- * runnable demo, nothing is rendered in its place and no disabled control is
- * left on the page. Setting `status` and `demoUrl` in content is all it takes
- * for the launch button to appear.
+ * `hasLaunchAction`, and both are required. A demo that runs but is not hosted
+ * has no URL and so gets no button. Absence is the default path: nothing is
+ * rendered in its place and no disabled control is left on the page. Recording
+ * a reachable `demoUrl` in content is all it takes for the button to appear.
  */
 export function ProjectActions({
   project,

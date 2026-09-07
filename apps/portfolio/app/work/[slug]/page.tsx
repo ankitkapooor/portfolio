@@ -8,6 +8,7 @@ import { EvidenceFigure } from "@/components/evidence-figure";
 import { ProjectActions, ProjectStatus } from "@/components/project-meta";
 import {
   evidenceStatusLabels,
+  hasLaunchAction,
   statusDescriptions,
   type Project,
 } from "@/lib/content-validation";
@@ -102,10 +103,13 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
           <div className={styles.metaBlock}>
             <ProjectStatus project={project} withNote />
             <ProjectActions project={project} showCaseLink={false} />
-            {project.status === "concept" ? (
+            {/* Explains the absent launch action. The reason differs: concept
+                software does not exist, a prototype's is simply unreachable. */}
+            {!hasLaunchAction(project) ? (
               <p className={styles.noDemo}>
-                There is no demo to launch yet. The case below is the whole of
-                it.
+                {project.status === "concept"
+                  ? "There is no demo to launch yet. The case below is the whole of it."
+                  : "The demo runs, but only on a local machine — it is not publicly hosted, so there is nothing to launch from here. The case below is what can be read."}
               </p>
             ) : null}
           </div>

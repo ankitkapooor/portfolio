@@ -6,9 +6,9 @@
  * the run — they are the launch checklist, not a broken build.
  *
  * Checks: zod shape and enums, duplicate slugs and project numbers, dangling
- * source IDs, unknown or missing assets (including files on disk), demo
- * actions without URLs, invalid or inconsistent dates, honesty guards on
- * concept-stage projects, and the 50-80 word homepage introduction limit.
+ * source IDs, unknown or missing assets (including files on disk), malformed
+ * demo URLs, invalid or inconsistent dates, honesty guards on concept-stage
+ * projects, and the 50-80 word homepage introduction limit.
  */
 
 import { existsSync } from "node:fs";

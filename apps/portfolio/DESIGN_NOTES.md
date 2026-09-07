@@ -187,8 +187,10 @@ rather than by care.
   inconsistent content fails `npm run build` rather than rendering.
 - A `concept` project cannot carry a `demoUrl`, cannot carry a
   `recommendation`, and must open its Position with "Investigation in
-  progress". Promotion therefore forces you to write the conclusion the new
-  status implies.
+  progress". Promotion is not the reverse of that: a `prototype` needs no
+  `demoUrl` and no `recommendation`, because `status` describes how mature the
+  software is while `demoUrl` describes whether the public can reach it and
+  `evidenceStatus` describes what it has produced. Three separate facts.
 - Launch actions are a pure function of `status` and `demoUrl`. Absence is the
   default branch, not a special case, so there is no way to leave a dead
   button on the page.

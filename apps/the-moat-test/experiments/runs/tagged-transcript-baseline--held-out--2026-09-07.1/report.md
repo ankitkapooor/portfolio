@@ -1,6 +1,6 @@
 # Benchmark report: tagged-transcript-baseline--held-out--2026-09-07.1
 
-Generated 2026-09-07T08:02:39.078Z.
+Generated 2026-09-07T09:02:42.430Z.
 
 ## Scope
 
@@ -47,7 +47,7 @@ There is no overall score. Each measure has its own denominator and they are not
 
 ## Latency
 
-- p50 0.03 ms, p95 0.94 ms, observed range 0.02–0.94 ms, n=12
+- p50 0.04 ms, p95 1.39 ms, observed range 0.02–1.39 ms, n=12
 - Nearest-rank percentiles over 12 samples. With a sample this small the p95 is close to the maximum; read the observed range instead of treating p95 as a tail estimate.
 
 ## Limitations

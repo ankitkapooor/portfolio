@@ -1931,10 +1931,10 @@
   },
   "latency": {
     "sampleCount": 12,
-    "p50Ms": 0.02991700000001174,
-    "p95Ms": 0.9385409999999865,
-    "minMs": 0.01683399999998869,
-    "maxMs": 0.9385409999999865,
+    "p50Ms": 0.035166000000003805,
+    "p95Ms": 1.3911250000000166,
+    "minMs": 0.018000000000000682,
+    "maxMs": 1.3911250000000166,
     "note": "Nearest-rank percentiles over 12 samples. With a sample this small the p95 is close to the maximum; read the observed range instead of treating p95 as a tail estimate."
   },
   "corpusHashAtEvaluation": "dfd6e81e83e8124c27287854fb6a81f7fbc9153e96b5242042225eb260268130",

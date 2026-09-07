@@ -23,7 +23,7 @@ export const approachSteps: readonly ApproachStep[] = [
     detail: [
       "An assumption that cannot fail is not an assumption, it is a preference. The test has to be capable of returning an inconvenient answer, and the comparison has to be against something honest rather than something flattering.",
       "That is why The Moat Test measures its challenger against a deterministic tagged-line extractor rather than a commercial product: the baseline is unimpressive, legal to publish, and impossible to argue with. It is also why the economic engine in Disrupt This Business is deterministic — a result nobody can reconstruct is not evidence.",
-      "Where a test has not been run, the project says so. None of the three has produced measured results yet.",
+      "Where a test has not been run, the project says so. All three now run as software, which is a different claim: only The Moat Test has recorded a measured run, and its gold annotations are still unreviewed drafts.",
     ],
   },
   {
