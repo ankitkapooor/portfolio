@@ -1,0 +1,50 @@
+.statusRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--type-ui-sm);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--page-accent);
+}
+
+/* Concept status reads as an outline: nothing runs yet. */
+.statusDotConcept {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--muted-ink);
+}
+
+.statusNote {
+  font-size: var(--type-ui-sm);
+  color: var(--muted-ink);
+}
+
+.evidence {
+  font-size: var(--type-ui-sm);
+  color: var(--muted-ink);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+}
+
+.externalHint {
+  font-size: var(--type-label);
+  color: var(--muted-ink);
+}

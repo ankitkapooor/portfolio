@@ -1,0 +1,116 @@
+.figure {
+  margin: 0;
+}
+
+.frame {
+  position: relative;
+  padding: var(--space-6) var(--space-5) var(--space-5);
+  background-color: var(--surface);
+  border: var(--border-width) solid var(--rule);
+  border-radius: var(--radius-figure);
+}
+
+/*
+ * The asset label sits over the frame's top rule as a printed caption tab.
+ * "Concept preview" has to be readable at a glance; it is not decoration.
+ */
+.badge {
+  position: absolute;
+  top: 0;
+  left: var(--space-5);
+  transform: translateY(-50%);
+  padding: 0 var(--space-2);
+  background-color: var(--surface);
+  color: var(--page-accent);
+  font-size: var(--type-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/*
+ * The schematics are drawn on a fixed 720-unit canvas, so on a phone the whole
+ * drawing would scale to roughly 270px and its labels to under 6px. Below
+ * 720px the drawing is held at a legible size and the viewport pans instead.
+ * WCAG 1.4.10 exempts content that needs a two-dimensional layout, which a
+ * labelled diagram does; the complete content is also in the text alternative
+ * below, so nothing here is reachable only by panning.
+ */
+@media (max-width: 719px) {
+  .viewport {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
+  .viewport > svg {
+    min-width: 560px;
+  }
+}
+
+.figcaption {
+  margin-top: var(--space-4);
+}
+
+.panNote {
+  display: none;
+}
+
+@media (max-width: 719px) {
+  .panNote {
+    display: block;
+    margin-top: var(--space-2);
+    font-size: var(--type-label);
+    line-height: 1.5;
+    color: var(--muted-ink);
+  }
+}
+
+.caption {
+  font-size: var(--type-ui-sm);
+  line-height: var(--leading-tight);
+  color: var(--muted-ink);
+  max-width: 62ch;
+}
+
+.alternative {
+  margin-top: var(--space-3);
+  font-size: var(--type-ui-sm);
+  color: var(--muted-ink);
+}
+
+.alternative summary {
+  cursor: pointer;
+  padding: var(--space-1) 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.alternative summary:hover {
+  color: var(--ink);
+}
+
+.alternativeList {
+  margin-top: var(--space-3);
+  padding-left: var(--space-5);
+  list-style: square;
+  max-width: 62ch;
+}
+
+.alternativeList li {
+  margin-bottom: var(--space-2);
+  line-height: var(--leading-tight);
+}
+
+.source {
+  margin-top: var(--space-3);
+  font-size: var(--type-label);
+  line-height: 1.5;
+  color: var(--muted-ink);
+  max-width: 62ch;
+}
+
+@media (min-width: 641px) {
+  .frame {
+    padding: var(--space-7) var(--space-6) var(--space-6);
+  }
+}

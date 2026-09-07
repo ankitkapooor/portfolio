@@ -1,0 +1,139 @@
+{
+  "runId": "tagged-transcript-baseline--held-out--2026-09-07.1",
+  "generatedAt": "2026-09-07T08:02:39.078Z",
+  "corpusVersion": "2026-09-07.1",
+  "corpusIsSynthetic": true,
+  "goldAnnotationsHumanReviewed": false,
+  "comparable": true,
+  "method": {
+    "id": "tagged-transcript-baseline",
+    "name": "Tagged transcript baseline",
+    "version": "1.0.0",
+    "summary": "Extracts only transcript lines that carry an explicit ACTION: or DECISION: tag, records the line id, and leaves owner and date null.",
+    "isNot": "Not a measure of human performance, not a commercial product, and not named after any vendor."
+  },
+  "dataMode": "recorded-experiment",
+  "split": "held-out",
+  "caseCount": 12,
+  "metrics": {
+    "actionPrecision": {
+      "status": "ok",
+      "value": 1,
+      "numerator": 8,
+      "denominator": 8
+    },
+    "actionRecall": {
+      "status": "ok",
+      "value": 0.24242424242424243,
+      "numerator": 8,
+      "denominator": 33
+    },
+    "actionF1": {
+      "status": "ok",
+      "value": 0.3902439024390244,
+      "numerator": 0.48484848484848486,
+      "denominator": 1.2424242424242424
+    },
+    "ownerAccuracy": {
+      "status": "ok",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 6
+    },
+    "dueDateAccuracy": {
+      "status": "not-applicable",
+      "reason": "No matched action has an explicit gold date.",
+      "numerator": 0,
+      "denominator": 0
+    },
+    "inventedOwnerRate": {
+      "status": "ok",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 2
+    },
+    "resolvedDateWhereGoldUnknownRate": {
+      "status": "ok",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 8
+    },
+    "decisionStatusCorrectness": {
+      "status": "ok",
+      "value": 0.07142857142857142,
+      "numerator": 1,
+      "denominator": 14
+    },
+    "citationCoverage": {
+      "status": "ok",
+      "value": 1,
+      "numerator": 22,
+      "denominator": 22
+    },
+    "citationValidity": {
+      "status": "ok",
+      "value": 1,
+      "numerator": 22,
+      "denominator": 22
+    },
+    "citationSupport": {
+      "status": "requires-human-review",
+      "pendingItems": 22,
+      "note": "Citation support requires a reviewer to confirm that each cited passage actually supports the claim. No reviewer has done so."
+    }
+  },
+  "totals": {
+    "predictedActions": 8,
+    "goldActions": 33,
+    "matchedActions": 8,
+    "ownerCorrect": 0,
+    "ownerDenominator": 6,
+    "dueDateCorrect": 0,
+    "dueDateDenominator": 0,
+    "inventedOwner": 0,
+    "goldOwnerUnknown": 2,
+    "resolvedDateWhereUnknown": 0,
+    "goldDateUnknown": 8,
+    "predictedDecisions": 14,
+    "goldDecisions": 20,
+    "matchedDecisions": 14,
+    "decisionStatusCorrect": 1,
+    "decisionsMissed": 6,
+    "decisionsInvented": 0,
+    "decisionsIncorrectlyFinalized": 0,
+    "citedItems": 22,
+    "extractedItems": 22,
+    "validReferences": 22,
+    "totalReferences": 22,
+    "needsAdjudication": 0
+  },
+  "acceptedCases": 0,
+  "attemptedCases": 12,
+  "noActionCaseCount": 0,
+  "criticalDefectCount": 0,
+  "costPerAcceptedCase": {
+    "status": "no-accepted-cases",
+    "totalSpendUsd": 0,
+    "note": "No case met the acceptance criteria, so there is no per-accepted-case cost to report."
+  },
+  "reviewInclusiveCost": {
+    "status": "not-applicable",
+    "reason": "No review minutes have been recorded. Review-inclusive cost cannot be computed without measured review time."
+  },
+  "latency": {
+    "sampleCount": 12,
+    "p50Ms": 0.02991700000001174,
+    "p95Ms": 0.9385409999999865,
+    "minMs": 0.01683399999998869,
+    "maxMs": 0.9385409999999865,
+    "note": "Nearest-rank percentiles over 12 samples. With a sample this small the p95 is close to the maximum; read the observed range instead of treating p95 as a tail estimate."
+  },
+  "reviewQueueLength": 36,
+  "limitations": [
+    "The corpus is synthetic. It was authored for this benchmark and depicts no real meeting.",
+    "Gold annotations are drafts written by a coding agent. No human has reviewed them.",
+    "Citation support is not measured. It requires a reviewer to read each cited passage.",
+    "Twelve cases per split is a small sample. Read the observed range, not the tail estimate.",
+    "No commercial product was tested, and no result here describes any vendor's performance."
+  ]
+}

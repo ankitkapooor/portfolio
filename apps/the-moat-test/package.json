@@ -9,7 +9,11 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "validate-content": "tsx scripts/validate-content.ts",
+    "run-benchmark": "tsx scripts/run-benchmark.ts",
+    "evaluate-run": "tsx scripts/evaluate-run.ts",
+    "build-report": "tsx scripts/build-report.ts"
   },
   "dependencies": {
     "idb": "^8.0.3",

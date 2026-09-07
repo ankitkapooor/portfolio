@@ -1,0 +1,1924 @@
+{
+  "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+  "cases": [
+    {
+      "caseId": "case-001",
+      "family": "explicit-action-ownership",
+      "split": "development",
+      "produced": true,
+      "counts": {
+        "predictedActions": 1,
+        "goldActions": 3,
+        "matchedActions": 1,
+        "ownerCorrect": 0,
+        "ownerDenominator": 1,
+        "dueDateCorrect": 0,
+        "dueDateDenominator": 0,
+        "inventedOwner": 0,
+        "goldOwnerUnknown": 0,
+        "resolvedDateWhereUnknown": 0,
+        "goldDateUnknown": 1,
+        "predictedDecisions": 1,
+        "goldDecisions": 1,
+        "matchedDecisions": 1,
+        "decisionStatusCorrect": 0,
+        "decisionsMissed": 0,
+        "decisionsInvented": 0,
+        "decisionsIncorrectlyFinalized": 0,
+        "citedItems": 2,
+        "extractedItems": 2,
+        "validReferences": 2,
+        "totalReferences": 2,
+        "needsAdjudication": 0
+      },
+      "metrics": {
+        "actionPrecision": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 1,
+          "denominator": 1
+        },
+        "actionRecall": {
+          "status": "ok",
+          "value": 0.3333333333333333,
+          "numerator": 1,
+          "denominator": 3
+        },
+        "actionF1": {
+          "status": "ok",
+          "value": 0.5,
+          "numerator": 0.6666666666666666,
+          "denominator": 1.3333333333333333
+        },
+        "ownerAccuracy": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "dueDateAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "inventedOwnerRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "resolvedDateWhereGoldUnknownRate": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "decisionStatusCorrectness": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "citationCoverage": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationValidity": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationSupport": {
+          "status": "requires-human-review",
+          "pendingItems": 2,
+          "note": "Citation support requires a reviewer to confirm that each cited passage actually supports the claim. No reviewer has done so."
+        }
+      },
+      "criticalDefects": [],
+      "invalidLineReferences": [],
+      "emptyCase": false,
+      "accepted": false,
+      "acceptanceFailures": [
+        "Action recall 0.33 is below the 0.90 threshold.",
+        "Owner accuracy 0.00 is below the required 1.00."
+      ],
+      "judgments": [
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-001",
+          "itemType": "action",
+          "predictedId": "baseline-action-L014",
+          "goldId": "case-001-a1",
+          "judgment": "match",
+          "reason": "Exact match after normalization, or an accepted alternative phrasing.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-001",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-001-a2",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-001",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-001-a3",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-001",
+          "itemType": "decision",
+          "predictedId": "baseline-decision-L010",
+          "goldId": "case-001-d1",
+          "judgment": "match",
+          "reason": "Matched, but status unresolved should be current.",
+          "requiresHumanReview": true
+        }
+      ]
+    },
+    {
+      "caseId": "case-002",
+      "family": "explicit-action-ownership",
+      "split": "development",
+      "produced": true,
+      "counts": {
+        "predictedActions": 1,
+        "goldActions": 3,
+        "matchedActions": 1,
+        "ownerCorrect": 0,
+        "ownerDenominator": 1,
+        "dueDateCorrect": 0,
+        "dueDateDenominator": 1,
+        "inventedOwner": 0,
+        "goldOwnerUnknown": 0,
+        "resolvedDateWhereUnknown": 0,
+        "goldDateUnknown": 0,
+        "predictedDecisions": 2,
+        "goldDecisions": 2,
+        "matchedDecisions": 2,
+        "decisionStatusCorrect": 0,
+        "decisionsMissed": 0,
+        "decisionsInvented": 0,
+        "decisionsIncorrectlyFinalized": 0,
+        "citedItems": 3,
+        "extractedItems": 3,
+        "validReferences": 3,
+        "totalReferences": 3,
+        "needsAdjudication": 0
+      },
+      "metrics": {
+        "actionPrecision": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 1,
+          "denominator": 1
+        },
+        "actionRecall": {
+          "status": "ok",
+          "value": 0.3333333333333333,
+          "numerator": 1,
+          "denominator": 3
+        },
+        "actionF1": {
+          "status": "ok",
+          "value": 0.5,
+          "numerator": 0.6666666666666666,
+          "denominator": 1.3333333333333333
+        },
+        "ownerAccuracy": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "dueDateAccuracy": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "inventedOwnerRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "resolvedDateWhereGoldUnknownRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "decisionStatusCorrectness": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 2
+        },
+        "citationCoverage": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 3,
+          "denominator": 3
+        },
+        "citationValidity": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 3,
+          "denominator": 3
+        },
+        "citationSupport": {
+          "status": "requires-human-review",
+          "pendingItems": 3,
+          "note": "Citation support requires a reviewer to confirm that each cited passage actually supports the claim. No reviewer has done so."
+        }
+      },
+      "criticalDefects": [],
+      "invalidLineReferences": [],
+      "emptyCase": false,
+      "accepted": false,
+      "acceptanceFailures": [
+        "Action recall 0.33 is below the 0.90 threshold.",
+        "Owner accuracy 0.00 is below the required 1.00."
+      ],
+      "judgments": [
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-002",
+          "itemType": "action",
+          "predictedId": "baseline-action-L010",
+          "goldId": "case-002-a1",
+          "judgment": "match",
+          "reason": "Exact match after normalization, or an accepted alternative phrasing.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-002",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-002-a2",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-002",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-002-a3",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-002",
+          "itemType": "decision",
+          "predictedId": "baseline-decision-L006",
+          "goldId": "case-002-d1",
+          "judgment": "match",
+          "reason": "Matched, but status unresolved should be current.",
+          "requiresHumanReview": true
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-002",
+          "itemType": "decision",
+          "predictedId": "baseline-decision-L026",
+          "goldId": "case-002-d2",
+          "judgment": "match",
+          "reason": "Matched, but status unresolved should be current.",
+          "requiresHumanReview": true
+        }
+      ]
+    },
+    {
+      "caseId": "case-003",
+      "family": "ambiguous-owner-or-date",
+      "split": "development",
+      "produced": true,
+      "counts": {
+        "predictedActions": 2,
+        "goldActions": 4,
+        "matchedActions": 2,
+        "ownerCorrect": 0,
+        "ownerDenominator": 0,
+        "dueDateCorrect": 0,
+        "dueDateDenominator": 0,
+        "inventedOwner": 0,
+        "goldOwnerUnknown": 2,
+        "resolvedDateWhereUnknown": 0,
+        "goldDateUnknown": 2,
+        "predictedDecisions": 0,
+        "goldDecisions": 1,
+        "matchedDecisions": 0,
+        "decisionStatusCorrect": 0,
+        "decisionsMissed": 1,
+        "decisionsInvented": 0,
+        "decisionsIncorrectlyFinalized": 0,
+        "citedItems": 2,
+        "extractedItems": 2,
+        "validReferences": 2,
+        "totalReferences": 2,
+        "needsAdjudication": 0
+      },
+      "metrics": {
+        "actionPrecision": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "actionRecall": {
+          "status": "ok",
+          "value": 0.5,
+          "numerator": 2,
+          "denominator": 4
+        },
+        "actionF1": {
+          "status": "ok",
+          "value": 0.6666666666666666,
+          "numerator": 1,
+          "denominator": 1.5
+        },
+        "ownerAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "dueDateAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "inventedOwnerRate": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 2
+        },
+        "resolvedDateWhereGoldUnknownRate": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 2
+        },
+        "decisionStatusCorrectness": {
+          "status": "not-applicable",
+          "reason": "No decision was matched, so status correctness has no denominator.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "citationCoverage": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationValidity": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationSupport": {
+          "status": "requires-human-review",
+          "pendingItems": 2,
+          "note": "Citation support requires a reviewer to confirm that each cited passage actually supports the claim. No reviewer has done so."
+        }
+      },
+      "criticalDefects": [],
+      "invalidLineReferences": [],
+      "emptyCase": false,
+      "accepted": false,
+      "acceptanceFailures": [
+        "Action recall 0.50 is below the 0.90 threshold."
+      ],
+      "judgments": [
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-003",
+          "itemType": "action",
+          "predictedId": "baseline-action-L008",
+          "goldId": "case-003-a1",
+          "judgment": "match",
+          "reason": "Exact match after normalization, or an accepted alternative phrasing.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-003",
+          "itemType": "action",
+          "predictedId": "baseline-action-L018",
+          "goldId": "case-003-a2",
+          "judgment": "match",
+          "reason": "Exact match after normalization, or an accepted alternative phrasing.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-003",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-003-a3",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-003",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-003-a4",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-003",
+          "itemType": "decision",
+          "predictedId": null,
+          "goldId": "case-003-d1",
+          "judgment": "missed",
+          "reason": "No predicted decision matched this gold decision.",
+          "requiresHumanReview": false
+        }
+      ]
+    },
+    {
+      "caseId": "case-004",
+      "family": "ambiguous-owner-or-date",
+      "split": "development",
+      "produced": true,
+      "counts": {
+        "predictedActions": 0,
+        "goldActions": 0,
+        "matchedActions": 0,
+        "ownerCorrect": 0,
+        "ownerDenominator": 0,
+        "dueDateCorrect": 0,
+        "dueDateDenominator": 0,
+        "inventedOwner": 0,
+        "goldOwnerUnknown": 0,
+        "resolvedDateWhereUnknown": 0,
+        "goldDateUnknown": 0,
+        "predictedDecisions": 1,
+        "goldDecisions": 1,
+        "matchedDecisions": 1,
+        "decisionStatusCorrect": 0,
+        "decisionsMissed": 0,
+        "decisionsInvented": 0,
+        "decisionsIncorrectlyFinalized": 0,
+        "citedItems": 1,
+        "extractedItems": 1,
+        "validReferences": 1,
+        "totalReferences": 1,
+        "needsAdjudication": 0
+      },
+      "metrics": {
+        "actionPrecision": {
+          "status": "not-applicable",
+          "reason": "No actions were predicted, so precision has no denominator.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "actionRecall": {
+          "status": "not-applicable",
+          "reason": "This case has no gold actions, so recall has no denominator.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "actionF1": {
+          "status": "not-applicable",
+          "reason": "F1 needs both precision and recall to be defined.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "ownerAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "dueDateAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "inventedOwnerRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "resolvedDateWhereGoldUnknownRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "decisionStatusCorrectness": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "citationCoverage": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 1,
+          "denominator": 1
+        },
+        "citationValidity": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 1,
+          "denominator": 1
+        },
+        "citationSupport": {
+          "status": "requires-human-review",
+          "pendingItems": 1,
+          "note": "Citation support requires a reviewer to confirm that each cited passage actually supports the claim. No reviewer has done so."
+        }
+      },
+      "criticalDefects": [],
+      "invalidLineReferences": [],
+      "emptyCase": false,
+      "accepted": true,
+      "acceptanceFailures": [],
+      "judgments": [
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-004",
+          "itemType": "decision",
+          "predictedId": "baseline-decision-L031",
+          "goldId": "case-004-d1",
+          "judgment": "match",
+          "reason": "Matched, but status unresolved should be current.",
+          "requiresHumanReview": true
+        }
+      ]
+    },
+    {
+      "caseId": "case-005",
+      "family": "decision-reversed",
+      "split": "development",
+      "produced": true,
+      "counts": {
+        "predictedActions": 0,
+        "goldActions": 3,
+        "matchedActions": 0,
+        "ownerCorrect": 0,
+        "ownerDenominator": 0,
+        "dueDateCorrect": 0,
+        "dueDateDenominator": 0,
+        "inventedOwner": 0,
+        "goldOwnerUnknown": 0,
+        "resolvedDateWhereUnknown": 0,
+        "goldDateUnknown": 0,
+        "predictedDecisions": 2,
+        "goldDecisions": 2,
+        "matchedDecisions": 2,
+        "decisionStatusCorrect": 0,
+        "decisionsMissed": 0,
+        "decisionsInvented": 0,
+        "decisionsIncorrectlyFinalized": 0,
+        "citedItems": 2,
+        "extractedItems": 2,
+        "validReferences": 2,
+        "totalReferences": 2,
+        "needsAdjudication": 0
+      },
+      "metrics": {
+        "actionPrecision": {
+          "status": "not-applicable",
+          "reason": "No actions were predicted, so precision has no denominator.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "actionRecall": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 3
+        },
+        "actionF1": {
+          "status": "not-applicable",
+          "reason": "F1 needs both precision and recall to be defined.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "ownerAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "dueDateAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "inventedOwnerRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "resolvedDateWhereGoldUnknownRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "decisionStatusCorrectness": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 2
+        },
+        "citationCoverage": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationValidity": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationSupport": {
+          "status": "requires-human-review",
+          "pendingItems": 2,
+          "note": "Citation support requires a reviewer to confirm that each cited passage actually supports the claim. No reviewer has done so."
+        }
+      },
+      "criticalDefects": [],
+      "invalidLineReferences": [],
+      "emptyCase": false,
+      "accepted": false,
+      "acceptanceFailures": [
+        "Action recall 0.00 is below the 0.90 threshold."
+      ],
+      "judgments": [
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-005",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-005-a1",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-005",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-005-a2",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-005",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-005-a3",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-005",
+          "itemType": "decision",
+          "predictedId": "baseline-decision-L005",
+          "goldId": "case-005-d1",
+          "judgment": "match",
+          "reason": "Matched, but status unresolved should be superseded.",
+          "requiresHumanReview": true
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-005",
+          "itemType": "decision",
+          "predictedId": "baseline-decision-L016",
+          "goldId": "case-005-d2",
+          "judgment": "match",
+          "reason": "Matched, but status unresolved should be current.",
+          "requiresHumanReview": true
+        }
+      ]
+    },
+    {
+      "caseId": "case-006",
+      "family": "decision-reversed",
+      "split": "development",
+      "produced": true,
+      "counts": {
+        "predictedActions": 0,
+        "goldActions": 2,
+        "matchedActions": 0,
+        "ownerCorrect": 0,
+        "ownerDenominator": 0,
+        "dueDateCorrect": 0,
+        "dueDateDenominator": 0,
+        "inventedOwner": 0,
+        "goldOwnerUnknown": 0,
+        "resolvedDateWhereUnknown": 0,
+        "goldDateUnknown": 0,
+        "predictedDecisions": 2,
+        "goldDecisions": 2,
+        "matchedDecisions": 2,
+        "decisionStatusCorrect": 0,
+        "decisionsMissed": 0,
+        "decisionsInvented": 0,
+        "decisionsIncorrectlyFinalized": 0,
+        "citedItems": 2,
+        "extractedItems": 2,
+        "validReferences": 2,
+        "totalReferences": 2,
+        "needsAdjudication": 0
+      },
+      "metrics": {
+        "actionPrecision": {
+          "status": "not-applicable",
+          "reason": "No actions were predicted, so precision has no denominator.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "actionRecall": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 2
+        },
+        "actionF1": {
+          "status": "not-applicable",
+          "reason": "F1 needs both precision and recall to be defined.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "ownerAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "dueDateAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "inventedOwnerRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "resolvedDateWhereGoldUnknownRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "decisionStatusCorrectness": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 2
+        },
+        "citationCoverage": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationValidity": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationSupport": {
+          "status": "requires-human-review",
+          "pendingItems": 2,
+          "note": "Citation support requires a reviewer to confirm that each cited passage actually supports the claim. No reviewer has done so."
+        }
+      },
+      "criticalDefects": [],
+      "invalidLineReferences": [],
+      "emptyCase": false,
+      "accepted": false,
+      "acceptanceFailures": [
+        "Action recall 0.00 is below the 0.90 threshold."
+      ],
+      "judgments": [
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-006",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-006-a1",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-006",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-006-a2",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-006",
+          "itemType": "decision",
+          "predictedId": "baseline-decision-L009",
+          "goldId": "case-006-d1",
+          "judgment": "match",
+          "reason": "Matched, but status unresolved should be superseded.",
+          "requiresHumanReview": true
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-006",
+          "itemType": "decision",
+          "predictedId": "baseline-decision-L020",
+          "goldId": "case-006-d2",
+          "judgment": "match",
+          "reason": "Matched, but status unresolved should be current.",
+          "requiresHumanReview": true
+        }
+      ]
+    },
+    {
+      "caseId": "case-007",
+      "family": "conflicting-no-resolution",
+      "split": "development",
+      "produced": true,
+      "counts": {
+        "predictedActions": 0,
+        "goldActions": 2,
+        "matchedActions": 0,
+        "ownerCorrect": 0,
+        "ownerDenominator": 0,
+        "dueDateCorrect": 0,
+        "dueDateDenominator": 0,
+        "inventedOwner": 0,
+        "goldOwnerUnknown": 0,
+        "resolvedDateWhereUnknown": 0,
+        "goldDateUnknown": 0,
+        "predictedDecisions": 1,
+        "goldDecisions": 1,
+        "matchedDecisions": 1,
+        "decisionStatusCorrect": 1,
+        "decisionsMissed": 0,
+        "decisionsInvented": 0,
+        "decisionsIncorrectlyFinalized": 0,
+        "citedItems": 1,
+        "extractedItems": 1,
+        "validReferences": 1,
+        "totalReferences": 1,
+        "needsAdjudication": 0
+      },
+      "metrics": {
+        "actionPrecision": {
+          "status": "not-applicable",
+          "reason": "No actions were predicted, so precision has no denominator.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "actionRecall": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 2
+        },
+        "actionF1": {
+          "status": "not-applicable",
+          "reason": "F1 needs both precision and recall to be defined.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "ownerAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "dueDateAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "inventedOwnerRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "resolvedDateWhereGoldUnknownRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "decisionStatusCorrectness": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 1,
+          "denominator": 1
+        },
+        "citationCoverage": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 1,
+          "denominator": 1
+        },
+        "citationValidity": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 1,
+          "denominator": 1
+        },
+        "citationSupport": {
+          "status": "requires-human-review",
+          "pendingItems": 1,
+          "note": "Citation support requires a reviewer to confirm that each cited passage actually supports the claim. No reviewer has done so."
+        }
+      },
+      "criticalDefects": [],
+      "invalidLineReferences": [],
+      "emptyCase": false,
+      "accepted": false,
+      "acceptanceFailures": [
+        "Action recall 0.00 is below the 0.90 threshold."
+      ],
+      "judgments": [
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-007",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-007-a1",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-007",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-007-a2",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-007",
+          "itemType": "decision",
+          "predictedId": "baseline-decision-L031",
+          "goldId": "case-007-d1",
+          "judgment": "match",
+          "reason": "Matched with the correct status.",
+          "requiresHumanReview": false
+        }
+      ]
+    },
+    {
+      "caseId": "case-008",
+      "family": "conflicting-no-resolution",
+      "split": "development",
+      "produced": true,
+      "counts": {
+        "predictedActions": 0,
+        "goldActions": 4,
+        "matchedActions": 0,
+        "ownerCorrect": 0,
+        "ownerDenominator": 0,
+        "dueDateCorrect": 0,
+        "dueDateDenominator": 0,
+        "inventedOwner": 0,
+        "goldOwnerUnknown": 0,
+        "resolvedDateWhereUnknown": 0,
+        "goldDateUnknown": 0,
+        "predictedDecisions": 0,
+        "goldDecisions": 2,
+        "matchedDecisions": 0,
+        "decisionStatusCorrect": 0,
+        "decisionsMissed": 2,
+        "decisionsInvented": 0,
+        "decisionsIncorrectlyFinalized": 0,
+        "citedItems": 0,
+        "extractedItems": 0,
+        "validReferences": 0,
+        "totalReferences": 0,
+        "needsAdjudication": 0
+      },
+      "metrics": {
+        "actionPrecision": {
+          "status": "not-applicable",
+          "reason": "No actions were predicted, so precision has no denominator.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "actionRecall": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 4
+        },
+        "actionF1": {
+          "status": "not-applicable",
+          "reason": "F1 needs both precision and recall to be defined.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "ownerAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "dueDateAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "inventedOwnerRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "resolvedDateWhereGoldUnknownRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "decisionStatusCorrectness": {
+          "status": "not-applicable",
+          "reason": "No decision was matched, so status correctness has no denominator.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "citationCoverage": {
+          "status": "not-applicable",
+          "reason": "Nothing was extracted, so citation coverage has no denominator.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "citationValidity": {
+          "status": "not-applicable",
+          "reason": "No line references were produced, so citation validity has no denominator.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "citationSupport": {
+          "status": "requires-human-review",
+          "pendingItems": 0,
+          "note": "Citation support requires a reviewer to confirm that each cited passage actually supports the claim. No reviewer has done so."
+        }
+      },
+      "criticalDefects": [],
+      "invalidLineReferences": [],
+      "emptyCase": false,
+      "accepted": false,
+      "acceptanceFailures": [
+        "Action recall 0.00 is below the 0.90 threshold."
+      ],
+      "judgments": [
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-008",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-008-a1",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-008",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-008-a2",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-008",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-008-a3",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-008",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-008-a4",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-008",
+          "itemType": "decision",
+          "predictedId": null,
+          "goldId": "case-008-d1",
+          "judgment": "missed",
+          "reason": "No predicted decision matched this gold decision.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-008",
+          "itemType": "decision",
+          "predictedId": null,
+          "goldId": "case-008-d2",
+          "judgment": "missed",
+          "reason": "No predicted decision matched this gold decision.",
+          "requiresHumanReview": false
+        }
+      ]
+    },
+    {
+      "caseId": "case-009",
+      "family": "multi-project-repeated-names",
+      "split": "development",
+      "produced": true,
+      "counts": {
+        "predictedActions": 1,
+        "goldActions": 5,
+        "matchedActions": 1,
+        "ownerCorrect": 0,
+        "ownerDenominator": 1,
+        "dueDateCorrect": 0,
+        "dueDateDenominator": 0,
+        "inventedOwner": 0,
+        "goldOwnerUnknown": 0,
+        "resolvedDateWhereUnknown": 0,
+        "goldDateUnknown": 1,
+        "predictedDecisions": 1,
+        "goldDecisions": 2,
+        "matchedDecisions": 1,
+        "decisionStatusCorrect": 0,
+        "decisionsMissed": 1,
+        "decisionsInvented": 0,
+        "decisionsIncorrectlyFinalized": 0,
+        "citedItems": 2,
+        "extractedItems": 2,
+        "validReferences": 2,
+        "totalReferences": 2,
+        "needsAdjudication": 0
+      },
+      "metrics": {
+        "actionPrecision": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 1,
+          "denominator": 1
+        },
+        "actionRecall": {
+          "status": "ok",
+          "value": 0.2,
+          "numerator": 1,
+          "denominator": 5
+        },
+        "actionF1": {
+          "status": "ok",
+          "value": 0.33333333333333337,
+          "numerator": 0.4,
+          "denominator": 1.2
+        },
+        "ownerAccuracy": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "dueDateAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "inventedOwnerRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "resolvedDateWhereGoldUnknownRate": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "decisionStatusCorrectness": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "citationCoverage": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationValidity": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationSupport": {
+          "status": "requires-human-review",
+          "pendingItems": 2,
+          "note": "Citation support requires a reviewer to confirm that each cited passage actually supports the claim. No reviewer has done so."
+        }
+      },
+      "criticalDefects": [],
+      "invalidLineReferences": [],
+      "emptyCase": false,
+      "accepted": false,
+      "acceptanceFailures": [
+        "Action recall 0.20 is below the 0.90 threshold.",
+        "Owner accuracy 0.00 is below the required 1.00."
+      ],
+      "judgments": [
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-009",
+          "itemType": "action",
+          "predictedId": "baseline-action-L013",
+          "goldId": "case-009-a1",
+          "judgment": "match",
+          "reason": "Exact match after normalization, or an accepted alternative phrasing.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-009",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-009-a2",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-009",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-009-a3",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-009",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-009-a4",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-009",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-009-a5",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-009",
+          "itemType": "decision",
+          "predictedId": "baseline-decision-L027",
+          "goldId": "case-009-d2",
+          "judgment": "match",
+          "reason": "Matched, but status unresolved should be current.",
+          "requiresHumanReview": true
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-009",
+          "itemType": "decision",
+          "predictedId": null,
+          "goldId": "case-009-d1",
+          "judgment": "missed",
+          "reason": "No predicted decision matched this gold decision.",
+          "requiresHumanReview": false
+        }
+      ]
+    },
+    {
+      "caseId": "case-010",
+      "family": "multi-project-repeated-names",
+      "split": "development",
+      "produced": true,
+      "counts": {
+        "predictedActions": 1,
+        "goldActions": 3,
+        "matchedActions": 1,
+        "ownerCorrect": 0,
+        "ownerDenominator": 1,
+        "dueDateCorrect": 0,
+        "dueDateDenominator": 0,
+        "inventedOwner": 0,
+        "goldOwnerUnknown": 0,
+        "resolvedDateWhereUnknown": 0,
+        "goldDateUnknown": 1,
+        "predictedDecisions": 1,
+        "goldDecisions": 1,
+        "matchedDecisions": 1,
+        "decisionStatusCorrect": 0,
+        "decisionsMissed": 0,
+        "decisionsInvented": 0,
+        "decisionsIncorrectlyFinalized": 0,
+        "citedItems": 2,
+        "extractedItems": 2,
+        "validReferences": 2,
+        "totalReferences": 2,
+        "needsAdjudication": 0
+      },
+      "metrics": {
+        "actionPrecision": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 1,
+          "denominator": 1
+        },
+        "actionRecall": {
+          "status": "ok",
+          "value": 0.3333333333333333,
+          "numerator": 1,
+          "denominator": 3
+        },
+        "actionF1": {
+          "status": "ok",
+          "value": 0.5,
+          "numerator": 0.6666666666666666,
+          "denominator": 1.3333333333333333
+        },
+        "ownerAccuracy": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "dueDateAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "inventedOwnerRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "resolvedDateWhereGoldUnknownRate": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "decisionStatusCorrectness": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "citationCoverage": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationValidity": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationSupport": {
+          "status": "requires-human-review",
+          "pendingItems": 2,
+          "note": "Citation support requires a reviewer to confirm that each cited passage actually supports the claim. No reviewer has done so."
+        }
+      },
+      "criticalDefects": [],
+      "invalidLineReferences": [],
+      "emptyCase": false,
+      "accepted": false,
+      "acceptanceFailures": [
+        "Action recall 0.33 is below the 0.90 threshold.",
+        "Owner accuracy 0.00 is below the required 1.00."
+      ],
+      "judgments": [
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-010",
+          "itemType": "action",
+          "predictedId": "baseline-action-L017",
+          "goldId": "case-010-a1",
+          "judgment": "match",
+          "reason": "Exact match after normalization, or an accepted alternative phrasing.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-010",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-010-a2",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-010",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-010-a3",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-010",
+          "itemType": "decision",
+          "predictedId": "baseline-decision-L028",
+          "goldId": "case-010-d1",
+          "judgment": "match",
+          "reason": "Matched, but status unresolved should be current.",
+          "requiresHumanReview": true
+        }
+      ]
+    },
+    {
+      "caseId": "case-011",
+      "family": "embedded-instruction-override",
+      "split": "development",
+      "produced": true,
+      "counts": {
+        "predictedActions": 1,
+        "goldActions": 2,
+        "matchedActions": 1,
+        "ownerCorrect": 0,
+        "ownerDenominator": 1,
+        "dueDateCorrect": 0,
+        "dueDateDenominator": 0,
+        "inventedOwner": 0,
+        "goldOwnerUnknown": 0,
+        "resolvedDateWhereUnknown": 0,
+        "goldDateUnknown": 1,
+        "predictedDecisions": 1,
+        "goldDecisions": 1,
+        "matchedDecisions": 1,
+        "decisionStatusCorrect": 0,
+        "decisionsMissed": 0,
+        "decisionsInvented": 0,
+        "decisionsIncorrectlyFinalized": 0,
+        "citedItems": 2,
+        "extractedItems": 2,
+        "validReferences": 2,
+        "totalReferences": 2,
+        "needsAdjudication": 0
+      },
+      "metrics": {
+        "actionPrecision": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 1,
+          "denominator": 1
+        },
+        "actionRecall": {
+          "status": "ok",
+          "value": 0.5,
+          "numerator": 1,
+          "denominator": 2
+        },
+        "actionF1": {
+          "status": "ok",
+          "value": 0.6666666666666666,
+          "numerator": 1,
+          "denominator": 1.5
+        },
+        "ownerAccuracy": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "dueDateAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "inventedOwnerRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "resolvedDateWhereGoldUnknownRate": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "decisionStatusCorrectness": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "citationCoverage": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationValidity": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationSupport": {
+          "status": "requires-human-review",
+          "pendingItems": 2,
+          "note": "Citation support requires a reviewer to confirm that each cited passage actually supports the claim. No reviewer has done so."
+        }
+      },
+      "criticalDefects": [],
+      "invalidLineReferences": [],
+      "emptyCase": false,
+      "accepted": false,
+      "acceptanceFailures": [
+        "Action recall 0.50 is below the 0.90 threshold.",
+        "Owner accuracy 0.00 is below the required 1.00."
+      ],
+      "judgments": [
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-011",
+          "itemType": "action",
+          "predictedId": "baseline-action-L011",
+          "goldId": "case-011-a1",
+          "judgment": "match",
+          "reason": "Exact match after normalization, or an accepted alternative phrasing.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-011",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-011-a2",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-011",
+          "itemType": "decision",
+          "predictedId": "baseline-decision-L021",
+          "goldId": "case-011-d1",
+          "judgment": "match",
+          "reason": "Matched, but status unresolved should be current.",
+          "requiresHumanReview": true
+        }
+      ]
+    },
+    {
+      "caseId": "case-012",
+      "family": "embedded-instruction-override",
+      "split": "development",
+      "produced": true,
+      "counts": {
+        "predictedActions": 1,
+        "goldActions": 3,
+        "matchedActions": 1,
+        "ownerCorrect": 0,
+        "ownerDenominator": 1,
+        "dueDateCorrect": 0,
+        "dueDateDenominator": 0,
+        "inventedOwner": 0,
+        "goldOwnerUnknown": 0,
+        "resolvedDateWhereUnknown": 0,
+        "goldDateUnknown": 1,
+        "predictedDecisions": 1,
+        "goldDecisions": 1,
+        "matchedDecisions": 1,
+        "decisionStatusCorrect": 0,
+        "decisionsMissed": 0,
+        "decisionsInvented": 0,
+        "decisionsIncorrectlyFinalized": 0,
+        "citedItems": 2,
+        "extractedItems": 2,
+        "validReferences": 2,
+        "totalReferences": 2,
+        "needsAdjudication": 0
+      },
+      "metrics": {
+        "actionPrecision": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 1,
+          "denominator": 1
+        },
+        "actionRecall": {
+          "status": "ok",
+          "value": 0.3333333333333333,
+          "numerator": 1,
+          "denominator": 3
+        },
+        "actionF1": {
+          "status": "ok",
+          "value": 0.5,
+          "numerator": 0.6666666666666666,
+          "denominator": 1.3333333333333333
+        },
+        "ownerAccuracy": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "dueDateAccuracy": {
+          "status": "not-applicable",
+          "reason": "No matched action has an explicit gold date.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "inventedOwnerRate": {
+          "status": "not-applicable",
+          "reason": "No matched action has an unknown gold owner.",
+          "numerator": 0,
+          "denominator": 0
+        },
+        "resolvedDateWhereGoldUnknownRate": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "decisionStatusCorrectness": {
+          "status": "ok",
+          "value": 0,
+          "numerator": 0,
+          "denominator": 1
+        },
+        "citationCoverage": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationValidity": {
+          "status": "ok",
+          "value": 1,
+          "numerator": 2,
+          "denominator": 2
+        },
+        "citationSupport": {
+          "status": "requires-human-review",
+          "pendingItems": 2,
+          "note": "Citation support requires a reviewer to confirm that each cited passage actually supports the claim. No reviewer has done so."
+        }
+      },
+      "criticalDefects": [],
+      "invalidLineReferences": [],
+      "emptyCase": false,
+      "accepted": false,
+      "acceptanceFailures": [
+        "Action recall 0.33 is below the 0.90 threshold.",
+        "Owner accuracy 0.00 is below the required 1.00."
+      ],
+      "judgments": [
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-012",
+          "itemType": "action",
+          "predictedId": "baseline-action-L011",
+          "goldId": "case-012-a1",
+          "judgment": "match",
+          "reason": "Exact match after normalization, or an accepted alternative phrasing.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-012",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-012-a2",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-012",
+          "itemType": "action",
+          "predictedId": null,
+          "goldId": "case-012-a3",
+          "judgment": "missed",
+          "reason": "No predicted action matched this gold action.",
+          "requiresHumanReview": false
+        },
+        {
+          "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+          "caseId": "case-012",
+          "itemType": "decision",
+          "predictedId": "baseline-decision-L020",
+          "goldId": "case-012-d1",
+          "judgment": "match",
+          "reason": "Matched, but status unresolved should be current.",
+          "requiresHumanReview": true
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "predictedActions": 8,
+    "goldActions": 34,
+    "matchedActions": 8,
+    "ownerCorrect": 0,
+    "ownerDenominator": 6,
+    "dueDateCorrect": 0,
+    "dueDateDenominator": 1,
+    "inventedOwner": 0,
+    "goldOwnerUnknown": 2,
+    "resolvedDateWhereUnknown": 0,
+    "goldDateUnknown": 7,
+    "predictedDecisions": 13,
+    "goldDecisions": 17,
+    "matchedDecisions": 13,
+    "decisionStatusCorrect": 1,
+    "decisionsMissed": 4,
+    "decisionsInvented": 0,
+    "decisionsIncorrectlyFinalized": 0,
+    "citedItems": 21,
+    "extractedItems": 21,
+    "validReferences": 21,
+    "totalReferences": 21,
+    "needsAdjudication": 0
+  },
+  "metrics": {
+    "actionPrecision": {
+      "status": "ok",
+      "value": 1,
+      "numerator": 8,
+      "denominator": 8
+    },
+    "actionRecall": {
+      "status": "ok",
+      "value": 0.23529411764705882,
+      "numerator": 8,
+      "denominator": 34
+    },
+    "actionF1": {
+      "status": "ok",
+      "value": 0.38095238095238093,
+      "numerator": 0.47058823529411764,
+      "denominator": 1.2352941176470589
+    },
+    "ownerAccuracy": {
+      "status": "ok",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 6
+    },
+    "dueDateAccuracy": {
+      "status": "ok",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 1
+    },
+    "inventedOwnerRate": {
+      "status": "ok",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 2
+    },
+    "resolvedDateWhereGoldUnknownRate": {
+      "status": "ok",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 7
+    },
+    "decisionStatusCorrectness": {
+      "status": "ok",
+      "value": 0.07692307692307693,
+      "numerator": 1,
+      "denominator": 13
+    },
+    "citationCoverage": {
+      "status": "ok",
+      "value": 1,
+      "numerator": 21,
+      "denominator": 21
+    },
+    "citationValidity": {
+      "status": "ok",
+      "value": 1,
+      "numerator": 21,
+      "denominator": 21
+    },
+    "citationSupport": {
+      "status": "requires-human-review",
+      "pendingItems": 21,
+      "note": "Citation support requires a reviewer to confirm that each cited passage actually supports the claim. No reviewer has done so."
+    }
+  },
+  "acceptedCases": 1,
+  "attemptedCases": 12,
+  "noActionCaseCount": 1,
+  "noDecisionCaseCount": 0,
+  "criticalDefectCount": 0,
+  "needsAdjudicationCount": 0,
+  "costPerAcceptedCase": {
+    "status": "ok",
+    "valueUsd": 0,
+    "totalSpendUsd": 0,
+    "acceptedCases": 1
+  },
+  "reviewInclusiveCost": {
+    "status": "not-applicable",
+    "reason": "No review minutes have been recorded. Review-inclusive cost cannot be computed without measured review time."
+  },
+  "latency": {
+    "sampleCount": 12,
+    "p50Ms": 0.11262500000020736,
+    "p95Ms": 4.835332999999991,
+    "minMs": 0.02983300000005329,
+    "maxMs": 4.835332999999991,
+    "note": "Nearest-rank percentiles over 12 samples. With a sample this small the p95 is close to the maximum; read the observed range instead of treating p95 as a tail estimate."
+  },
+  "corpusHashAtEvaluation": "dfd6e81e83e8124c27287854fb6a81f7fbc9153e96b5242042225eb260268130",
+  "corpusHashInRun": "dfd6e81e83e8124c27287854fb6a81f7fbc9153e96b5242042225eb260268130",
+  "comparable": true,
+  "assumedHourlyRateUsd": 60,
+  "goldAnnotationsHumanReviewed": false
+}

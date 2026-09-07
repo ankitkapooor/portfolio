@@ -1,0 +1,144 @@
+/*
+ * Static header, 64px mobile / 80px desktop. Deliberately not sticky: a fixed
+ * bar would sit over anchored headings and over the keyboard focus ring.
+ */
+.header {
+  position: relative;
+  border-bottom: var(--border-width) solid var(--rule);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: var(--header-height);
+}
+
+/* Plain typographic wordmark. No badge, no mark, no avatar. */
+.wordmark {
+  font-family: var(--family-serif);
+  font-size: 21px;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.wordmark:hover {
+  color: var(--accent);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  list-style: none;
+}
+
+.link {
+  display: inline-block;
+  padding: var(--space-2) 0;
+  font-size: var(--type-ui);
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--accent);
+}
+
+.linkCurrent {
+  color: var(--accent);
+}
+
+.toggle {
+  display: none;
+}
+
+@media (min-width: 641px) {
+  .wordmark {
+    font-size: 24px;
+  }
+
+  .list {
+    gap: var(--space-6);
+  }
+}
+
+/*
+ * Mobile menu.
+ *
+ * The list is always in the markup. Without JavaScript the header stays in
+ * `static` mode and renders all three links inline — the labels are short
+ * enough to fit beside the wordmark down to 360px — so navigation never
+ * depends on script. The client island switches the header to `interactive`
+ * mode after hydration, which reveals the toggle and collapses the panel.
+ */
+@media (max-width: 640px) {
+  .header[data-nav-mode="interactive"] .toggle {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--control-height);
+    padding: 0 var(--space-2);
+    margin-right: calc(var(--space-2) * -1);
+    background: none;
+    border: 0;
+    color: var(--ink);
+    font-family: var(--family-sans);
+    font-size: var(--type-ui);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .header[data-nav-mode="interactive"] .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    background-color: var(--paper);
+    border-bottom: var(--border-width) solid var(--rule);
+  }
+
+  .header[data-nav-mode="interactive"] .nav[data-open="false"] {
+    display: none;
+  }
+
+  .header[data-nav-mode="interactive"] .list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    padding: var(--space-2) var(--page-margin) var(--space-4);
+  }
+
+  .header[data-nav-mode="interactive"] .link {
+    padding: var(--space-3) 0;
+    font-size: 17px;
+    border-top: var(--border-width) solid var(--rule);
+  }
+
+  .header[data-nav-mode="interactive"] .list li:first-child .link {
+    border-top: 0;
+  }
+
+  /*
+   * Default (server-rendered, and permanent without JavaScript): three short
+   * labels inline beside the wordmark.
+   */
+  .header:not([data-nav-mode="interactive"]) .list {
+    gap: var(--space-4);
+  }
+
+  .header:not([data-nav-mode="interactive"]) .link {
+    font-size: var(--type-ui-sm);
+  }
+}

@@ -1,0 +1,139 @@
+/*
+ * Design tokens — single source of truth for the visual system.
+ * Values are fixed by BRD section 9. Do not fork these into component modules.
+ *
+ * Contrast: every foreground/background pair used for text or controls is
+ * asserted in lib/design-tokens.test.ts, which parses this file. If you change
+ * a colour here, run `npm test` — the suite will tell you what stopped passing.
+ */
+
+:root {
+  /* ---- Palette -------------------------------------------------------- */
+  --paper: #f6f3ed;
+  --surface: #fffefa;
+  --ink: #1d2424;
+  --muted-ink: #5e655f;
+  --rule: #d6d0c6;
+  --accent: #a33b24;
+
+  /* Project accents: game / investigation / finance. */
+  --project-accent-01: #315b85;
+  --project-accent-02: #6253a3;
+  --project-accent-03: #236350;
+
+  /*
+   * --rule is 1.38:1 against paper. It is legible as a structural divider but
+   * fails WCAG 1.4.11 for control boundaries, so a control that depends on its
+   * border to be perceived uses --border-control instead.
+   */
+  --border-control: var(--ink);
+  --focus-ring: var(--accent);
+
+  /* Per-page accent. Case-study routes override this on the article root. */
+  --page-accent: var(--accent);
+
+  /* ---- Type ----------------------------------------------------------- */
+  /*
+   * next/font sets --font-serif / --font-sans. The fallback stacks keep a
+   * coherent serif/sans hierarchy if the self-hosted files fail to load.
+   */
+  --family-serif: var(--font-serif), "Iowan Old Style", "Palatino Linotype",
+    Palatino, Georgia, "Times New Roman", serif;
+  --family-sans: var(--font-sans), ui-sans-serif, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --family-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    monospace;
+
+  --type-hero: clamp(48px, 6.5vw, 96px);
+  --type-project-title: clamp(32px, 4.4vw, 64px);
+  --type-display: clamp(30px, 3.4vw, 44px);
+  --type-h2: clamp(30px, 2.6vw, 36px);
+  --type-h3: clamp(20px, 1.7vw, 24px);
+  --type-body: 17px;
+  --type-body-lg: 18px;
+  --type-ui: 15px;
+  --type-ui-sm: 14px;
+  --type-label: 12px;
+
+  --leading-hero: 1.0;
+  --leading-title: 1.06;
+  --leading-heading: 1.15;
+  --leading-body: 1.6;
+  --leading-tight: 1.35;
+
+  --tracking-label: 0.09em;
+  --tracking-hero: -0.015em;
+
+  /* ---- Spacing scale -------------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* Gap between major page sections: 56-72px mobile, 96-128px desktop. */
+  --section-gap: 64px;
+
+  /* ---- Grid and measure ---------------------------------------------- */
+  --content-max: 1240px;
+  --grid-columns: 12;
+  --gutter: 24px;
+  --page-margin: 20px;
+  --article-max: 720px;
+  --rail-width: 200px;
+  --rail-gap: 48px;
+  --header-height: 64px;
+
+  /* ---- Surface detail ------------------------------------------------- */
+  --radius: 2px;
+  --radius-figure: 4px;
+  --border-width: 1px;
+  --control-height: 44px;
+
+  /* ---- Motion --------------------------------------------------------- */
+  --motion-fast: 140ms;
+  --motion: 180ms;
+  --motion-slow: 220ms;
+  --ease: cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+@media (min-width: 641px) {
+  :root {
+    --page-margin: 32px;
+    --type-body: 18px;
+    --section-gap: var(--space-9);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --page-margin: 48px;
+    --header-height: 80px;
+    --section-gap: 112px;
+  }
+}
+
+@media (min-width: 1360px) {
+  :root {
+    --page-margin: 64px;
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --page-margin: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion: 0ms;
+    --motion-slow: 0ms;
+  }
+}

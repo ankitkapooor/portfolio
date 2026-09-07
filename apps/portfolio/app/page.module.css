@@ -1,150 +1,340 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
-}
-
 .main {
+  display: block;
+}
+
+/* ---- Hero ------------------------------------------------------------- */
+
+.hero {
+  padding-block: var(--space-7) 0;
+  align-items: start;
+}
+
+@media (min-width: 641px) {
+  .hero {
+    padding-block: var(--space-8) 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    padding-block: var(--space-9) 0;
+  }
+}
+
+/* Eight of twelve columns on desktop; full width below that. */
+.heroBody {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 1024px) {
+  .heroBody {
+    grid-column: 1 / span 8;
+  }
+}
+
+.heroHeadline {
+  font-size: var(--type-hero);
+  line-height: var(--leading-hero);
+  letter-spacing: var(--tracking-hero);
+  /*
+   * Breaks are authored (lib/hero-headline.ts). Automatic wrapping stays
+   * enabled as a safety net rather than forcing overflow at odd widths.
+   */
+  text-wrap: pretty;
+  margin-bottom: var(--space-6);
+}
+
+.brMobile,
+.brBoth {
+  display: inline;
+}
+
+.brWide {
+  display: none;
+}
+
+@media (min-width: 641px) {
+  .brMobile {
+    display: none;
+  }
+
+  .brWide {
+    display: inline;
+  }
+}
+
+.heroBackground {
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.45;
+  color: var(--ink);
+  max-width: 30ch;
+  padding-bottom: var(--space-4);
+  border-bottom: var(--border-width) solid var(--rule);
+}
+
+.heroIntro {
+  margin-top: var(--space-5);
+  font-size: clamp(17px, 1.35vw, 19px);
+  line-height: 1.55;
+  color: var(--muted-ink);
+  max-width: 46ch;
+}
+
+.heroActions {
   display: flex;
-  flex: 1;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
-}
-
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
-}
-
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
+  gap: var(--space-4) var(--space-6);
+  margin-top: var(--space-6);
+}
+
+.heroSecondary {
+  font-size: var(--type-ui);
   font-weight: 500;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+/* ---- Index of questions ----------------------------------------------- */
+
+.questions {
+  grid-column: 1 / -1;
+  margin-top: var(--space-8);
+  padding-top: var(--space-4);
+  border-top: var(--border-width) solid var(--ink);
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+@media (min-width: 1024px) {
+  .questions {
+    grid-column: 9 / span 4;
+    margin-top: var(--space-2);
   }
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+.questionsHeading {
+  font-family: var(--family-sans);
+  font-size: var(--type-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted-ink);
+}
+
+.questionsList {
+  list-style: none;
+  margin-top: var(--space-4);
+}
+
+.questionsItem {
+  border-top: var(--border-width) solid var(--rule);
+}
+
+.questionsItem:first-child {
+  border-top: 0;
+}
+
+/*
+ * Text with a small project number, not a card: no box, no radius, no shadow.
+ * The whole prompt is the link, so the link name is the question itself.
+ */
+.questionsLink {
+  display: flex;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  font-family: var(--family-serif);
+  font-size: 21px;
+  line-height: 1.2;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.questionsLink:hover {
+  color: var(--accent);
+}
+
+.questionsNumber {
+  flex: none;
+  padding-top: 5px;
+  font-family: var(--family-sans);
+  font-size: var(--type-label);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-label);
+  color: var(--muted-ink);
+}
+
+.questionsLink:hover .questionsNumber {
+  color: var(--accent);
+}
+
+/* ---- Sections --------------------------------------------------------- */
+
+.section {
+  margin-top: var(--section-gap);
+}
+
+.sectionHead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-bottom: var(--space-5);
+  border-bottom: 2px solid var(--ink);
+}
+
+.sectionTitle {
+  font-size: var(--type-display);
+  line-height: 1.05;
+}
+
+.sectionNote {
+  font-size: var(--type-ui-sm);
+  color: var(--muted-ink);
+  max-width: 52ch;
+}
+
+@media (min-width: 768px) {
+  .sectionHead {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-6);
   }
 
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
+  .sectionNote {
+    text-align: right;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
+/* ---- Approach --------------------------------------------------------- */
 
-  .page {
-    --background: #000;
-    --foreground: #000;
+.steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6) var(--gutter);
+  margin-top: var(--space-7);
+  list-style: none;
+  counter-reset: step;
+}
 
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+@media (min-width: 768px) {
+  .steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-7) var(--gutter);
   }
 }
 
-.code {
-  font-family: var(--font-geist-mono);
-  font-size: 0.9em;
-  background: color-mix(in srgb, currentColor 8%, transparent);
-  padding: 0.1em 0.4em;
-  border-radius: 6px;
+.step {
+  padding-top: var(--space-4);
+  border-top: var(--border-width) solid var(--rule);
+}
+
+.stepIndex {
+  font-family: var(--family-sans);
+  font-size: var(--type-label);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-label);
+  color: var(--muted-ink);
+}
+
+.stepTitle {
+  margin-top: var(--space-2);
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+.stepBody {
+  margin-top: var(--space-3);
+  font-size: var(--type-ui);
+  line-height: 1.55;
+  color: var(--muted-ink);
+  max-width: 40ch;
+}
+
+/* ---- About preview ---------------------------------------------------- */
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5) var(--gutter);
+  margin-top: var(--space-7);
+}
+
+@media (min-width: 1024px) {
+  .about {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .aboutLede {
+    grid-column: 1 / span 7;
+  }
+
+  .aboutSide {
+    grid-column: 9 / span 4;
+  }
+}
+
+.aboutLede {
+  font-family: var(--family-serif);
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.28;
+  max-width: 30ch;
+}
+
+.aboutSide {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.aboutText {
+  font-size: var(--type-ui);
+  line-height: 1.55;
+  color: var(--muted-ink);
+}
+
+.educationList {
+  list-style: none;
+  font-size: var(--type-ui-sm);
+  color: var(--muted-ink);
+}
+
+.educationList li {
+  padding-block: var(--space-2);
+  border-top: var(--border-width) solid var(--rule);
+}
+
+.educationList strong {
+  display: block;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ---- Contact ---------------------------------------------------------- */
+
+.contact {
+  margin-top: var(--section-gap);
+  padding-top: var(--space-6);
+  border-top: 2px solid var(--ink);
+}
+
+.contactTitle {
+  font-size: var(--type-h2);
+  line-height: 1.1;
+}
+
+.contactBody {
+  margin-top: var(--space-4);
+  font-size: var(--type-ui);
+  line-height: 1.55;
+  color: var(--muted-ink);
+  max-width: 52ch;
+}
+
+.contactLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  margin-top: var(--space-5);
+  list-style: none;
+  font-size: var(--type-ui);
 }

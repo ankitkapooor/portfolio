@@ -1,0 +1,136 @@
+/*
+ * Full-width project feature.
+ *
+ * Not a card and not part of a uniform grid: each feature spans the container,
+ * is separated from the next by a thin rule, and alternates its text/figure
+ * proportion and side to establish rhythm down the page.
+ *
+ * DOM order is fixed at title, question, preview, summary, actions — which is
+ * exactly the required mobile reading order. On desktop the figure is moved
+ * into its own column by grid placement, so no markup reordering is involved.
+ */
+.feature {
+  display: grid;
+  /*
+   * minmax(0, 1fr), not 1fr: a bare 1fr track floors at min-content, so the
+   * schematic's minimum width on phones would widen the track and scroll the
+   * whole page. The figure viewport has to be the thing that scrolls.
+   */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-5) var(--gutter);
+  padding-top: var(--space-7);
+  margin-top: var(--space-7);
+  border-top: var(--border-width) solid var(--rule);
+}
+
+.feature:first-of-type {
+  padding-top: var(--space-7);
+  margin-top: var(--space-6);
+  border-top: 0;
+}
+
+/* Grid items default to min-width: auto, which would also refuse to shrink. */
+.figure {
+  min-width: 0;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.number {
+  font-family: var(--family-sans);
+  font-size: var(--type-ui-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-label);
+  color: var(--page-accent);
+}
+
+.title {
+  font-size: var(--type-project-title);
+  line-height: var(--leading-title);
+}
+
+.titleLink {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.titleLink:hover {
+  color: var(--page-accent);
+}
+
+.question {
+  font-family: var(--family-serif);
+  font-style: italic;
+  font-size: clamp(20px, 1.9vw, 26px);
+  line-height: 1.25;
+  color: var(--muted-ink);
+  max-width: 26ch;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  align-items: flex-start;
+}
+
+.summary {
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+  color: var(--ink);
+  max-width: 58ch;
+}
+
+.capability {
+  font-size: var(--type-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted-ink);
+}
+
+@media (min-width: 1024px) {
+  .feature {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--space-6) var(--gutter);
+    align-items: start;
+  }
+
+  /* Variant A — text in five columns on the left, figure in seven. */
+  .variantA .head {
+    grid-column: 1 / span 5;
+    grid-row: 1;
+  }
+
+  .variantA .body {
+    grid-column: 1 / span 5;
+    grid-row: 2;
+  }
+
+  .variantA .figure {
+    grid-column: 6 / span 7;
+    grid-row: 1 / span 2;
+  }
+
+  /* Variant B — figure in five columns on the left, text in seven. */
+  .variantB .figure {
+    grid-column: 1 / span 5;
+    grid-row: 1 / span 2;
+  }
+
+  .variantB .head {
+    grid-column: 6 / span 7;
+    grid-row: 1;
+  }
+
+  .variantB .body {
+    grid-column: 6 / span 7;
+    grid-row: 2;
+  }
+}

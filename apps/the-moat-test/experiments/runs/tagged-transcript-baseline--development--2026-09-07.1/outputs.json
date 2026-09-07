@@ -1,0 +1,462 @@
+[
+  {
+    "caseId": "case-001",
+    "output": {
+      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 32 transcript lines: 1 tagged action and 1 tagged decision. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "decisions": [
+        {
+          "id": "baseline-decision-L010",
+          "text": "the onboarding sequence goes out after the domain warm-up completes.",
+          "status": "unresolved",
+          "evidenceLineIds": [
+            "L010"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "id": "baseline-action-L014",
+          "task": "Maya will send the first onboarding email after warm-up completes.",
+          "owner": null,
+          "dueDate": null,
+          "dueDateText": null,
+          "status": "open",
+          "evidenceLineIds": [
+            "L014"
+          ]
+        }
+      ],
+      "openQuestions": [],
+      "uncertainties": [
+        {
+          "id": "baseline-uncertainty-decision-status",
+          "text": "This method does not determine whether a decision is current, superseded, or unresolved. Every tagged decision above is reported as unresolved.",
+          "evidenceLineIds": [
+            "L010"
+          ]
+        }
+      ]
+    },
+    "attemptCount": 1,
+    "elapsedMs": 4.835332999999991,
+    "costUsd": 0,
+    "invalidLineReferences": []
+  },
+  {
+    "caseId": "case-002",
+    "output": {
+      "summary": "Tagged transcript baseline. Extracted 3 tagged lines from 32 transcript lines: 1 tagged action and 2 tagged decisions. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "decisions": [
+        {
+          "id": "baseline-decision-L006",
+          "text": "the returns cage is included in this quarter's stock count.",
+          "status": "unresolved",
+          "evidenceLineIds": [
+            "L006"
+          ]
+        },
+        {
+          "id": "baseline-decision-L026",
+          "text": "the count runs on the day shift only, with no night shift participation.",
+          "status": "unresolved",
+          "evidenceLineIds": [
+            "L026"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "id": "baseline-action-L010",
+          "task": "Owen will publish the revised count schedule by Friday the eleventh.",
+          "owner": null,
+          "dueDate": null,
+          "dueDateText": null,
+          "status": "open",
+          "evidenceLineIds": [
+            "L010"
+          ]
+        }
+      ],
+      "openQuestions": [],
+      "uncertainties": [
+        {
+          "id": "baseline-uncertainty-decision-status",
+          "text": "This method does not determine whether a decision is current, superseded, or unresolved. Every tagged decision above is reported as unresolved.",
+          "evidenceLineIds": [
+            "L006",
+            "L026"
+          ]
+        }
+      ]
+    },
+    "attemptCount": 1,
+    "elapsedMs": 0.2444580000001224,
+    "costUsd": 0,
+    "invalidLineReferences": []
+  },
+  {
+    "caseId": "case-003",
+    "output": {
+      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 32 transcript lines: 2 tagged actions and 0 tagged decisions. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "decisions": [],
+      "actions": [
+        {
+          "id": "baseline-action-L008",
+          "task": "someone should call the vendor about the renewal terms.",
+          "owner": null,
+          "dueDate": null,
+          "dueDateText": null,
+          "status": "open",
+          "evidenceLineIds": [
+            "L008"
+          ]
+        },
+        {
+          "id": "baseline-action-L018",
+          "task": "get the renewal numbers from finance next Friday.",
+          "owner": null,
+          "dueDate": null,
+          "dueDateText": null,
+          "status": "open",
+          "evidenceLineIds": [
+            "L018"
+          ]
+        }
+      ],
+      "openQuestions": [],
+      "uncertainties": []
+    },
+    "attemptCount": 1,
+    "elapsedMs": 0.1720839999998134,
+    "costUsd": 0,
+    "invalidLineReferences": []
+  },
+  {
+    "caseId": "case-004",
+    "output": {
+      "summary": "Tagged transcript baseline. Extracted 1 tagged line from 32 transcript lines: 0 tagged actions and 1 tagged decision. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "decisions": [
+        {
+          "id": "baseline-decision-L031",
+          "text": "this session produces no action items and no commitments.",
+          "status": "unresolved",
+          "evidenceLineIds": [
+            "L031"
+          ]
+        }
+      ],
+      "actions": [],
+      "openQuestions": [],
+      "uncertainties": [
+        {
+          "id": "baseline-uncertainty-decision-status",
+          "text": "This method does not determine whether a decision is current, superseded, or unresolved. Every tagged decision above is reported as unresolved.",
+          "evidenceLineIds": [
+            "L031"
+          ]
+        }
+      ]
+    },
+    "attemptCount": 1,
+    "elapsedMs": 0.1112079999998059,
+    "costUsd": 0,
+    "invalidLineReferences": []
+  },
+  {
+    "caseId": "case-005",
+    "output": {
+      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 32 transcript lines: 0 tagged actions and 2 tagged decisions. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "decisions": [
+        {
+          "id": "baseline-decision-L005",
+          "text": "we ship the pricing page on Friday.",
+          "status": "unresolved",
+          "evidenceLineIds": [
+            "L005"
+          ]
+        },
+        {
+          "id": "baseline-decision-L016",
+          "text": "the pricing page ships only after legal signs off the grandfathering wording.",
+          "status": "unresolved",
+          "evidenceLineIds": [
+            "L016"
+          ]
+        }
+      ],
+      "actions": [],
+      "openQuestions": [],
+      "uncertainties": [
+        {
+          "id": "baseline-uncertainty-decision-status",
+          "text": "This method does not determine whether a decision is current, superseded, or unresolved. Every tagged decision above is reported as unresolved.",
+          "evidenceLineIds": [
+            "L005",
+            "L016"
+          ]
+        }
+      ]
+    },
+    "attemptCount": 1,
+    "elapsedMs": 0.3257499999999709,
+    "costUsd": 0,
+    "invalidLineReferences": []
+  },
+  {
+    "caseId": "case-006",
+    "output": {
+      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 32 transcript lines: 0 tagged actions and 2 tagged decisions. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "decisions": [
+        {
+          "id": "baseline-decision-L009",
+          "text": "we proceed with the pipeline migration to the new provider.",
+          "status": "unresolved",
+          "evidenceLineIds": [
+            "L009"
+          ]
+        },
+        {
+          "id": "baseline-decision-L020",
+          "text": "we stay on the current provider and split the test suite instead.",
+          "status": "unresolved",
+          "evidenceLineIds": [
+            "L020"
+          ]
+        }
+      ],
+      "actions": [],
+      "openQuestions": [],
+      "uncertainties": [
+        {
+          "id": "baseline-uncertainty-decision-status",
+          "text": "This method does not determine whether a decision is current, superseded, or unresolved. Every tagged decision above is reported as unresolved.",
+          "evidenceLineIds": [
+            "L009",
+            "L020"
+          ]
+        }
+      ]
+    },
+    "attemptCount": 1,
+    "elapsedMs": 0.054667000000335975,
+    "costUsd": 0,
+    "invalidLineReferences": []
+  },
+  {
+    "caseId": "case-007",
+    "output": {
+      "summary": "Tagged transcript baseline. Extracted 1 tagged line from 32 transcript lines: 0 tagged actions and 1 tagged decision. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "decisions": [
+        {
+          "id": "baseline-decision-L031",
+          "text": "the reporting database choice remains open pending the cost model and the analyst answer.",
+          "status": "unresolved",
+          "evidenceLineIds": [
+            "L031"
+          ]
+        }
+      ],
+      "actions": [],
+      "openQuestions": [],
+      "uncertainties": [
+        {
+          "id": "baseline-uncertainty-decision-status",
+          "text": "This method does not determine whether a decision is current, superseded, or unresolved. Every tagged decision above is reported as unresolved.",
+          "evidenceLineIds": [
+            "L031"
+          ]
+        }
+      ]
+    },
+    "attemptCount": 1,
+    "elapsedMs": 0.02983300000005329,
+    "costUsd": 0,
+    "invalidLineReferences": []
+  },
+  {
+    "caseId": "case-008",
+    "output": {
+      "summary": "Tagged transcript baseline. Extracted 0 tagged lines from 32 transcript lines: 0 tagged actions and 0 tagged decisions. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "decisions": [],
+      "actions": [],
+      "openQuestions": [],
+      "uncertainties": []
+    },
+    "attemptCount": 1,
+    "elapsedMs": 0.09012500000017099,
+    "costUsd": 0,
+    "invalidLineReferences": []
+  },
+  {
+    "caseId": "case-009",
+    "output": {
+      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 33 transcript lines: 1 tagged action and 1 tagged decision. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "decisions": [
+        {
+          "id": "baseline-decision-L027",
+          "text": "the migration proceeds with a snapshot restore as the rollback plan.",
+          "status": "unresolved",
+          "evidenceLineIds": [
+            "L027"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "id": "baseline-action-L013",
+          "task": "Leila will submit the mobile release to the store.",
+          "owner": null,
+          "dueDate": null,
+          "dueDateText": null,
+          "status": "open",
+          "evidenceLineIds": [
+            "L013"
+          ]
+        }
+      ],
+      "openQuestions": [],
+      "uncertainties": [
+        {
+          "id": "baseline-uncertainty-decision-status",
+          "text": "This method does not determine whether a decision is current, superseded, or unresolved. Every tagged decision above is reported as unresolved.",
+          "evidenceLineIds": [
+            "L027"
+          ]
+        }
+      ]
+    },
+    "attemptCount": 1,
+    "elapsedMs": 0.17670899999984613,
+    "costUsd": 0,
+    "invalidLineReferences": []
+  },
+  {
+    "caseId": "case-010",
+    "output": {
+      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 32 transcript lines: 1 tagged action and 1 tagged decision. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "decisions": [
+        {
+          "id": "baseline-decision-L028",
+          "text": "the shared authentication library is not modified by either project.",
+          "status": "unresolved",
+          "evidenceLineIds": [
+            "L028"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "id": "baseline-action-L017",
+          "task": "migrate the partner login to the new identity service.",
+          "owner": null,
+          "dueDate": null,
+          "dueDateText": null,
+          "status": "open",
+          "evidenceLineIds": [
+            "L017"
+          ]
+        }
+      ],
+      "openQuestions": [],
+      "uncertainties": [
+        {
+          "id": "baseline-uncertainty-decision-status",
+          "text": "This method does not determine whether a decision is current, superseded, or unresolved. Every tagged decision above is reported as unresolved.",
+          "evidenceLineIds": [
+            "L028"
+          ]
+        }
+      ]
+    },
+    "attemptCount": 1,
+    "elapsedMs": 0.14270799999985684,
+    "costUsd": 0,
+    "invalidLineReferences": []
+  },
+  {
+    "caseId": "case-011",
+    "output": {
+      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 32 transcript lines: 1 tagged action and 1 tagged decision. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "decisions": [
+        {
+          "id": "baseline-decision-L021",
+          "text": "the auto-responder is not changed in response to these samples.",
+          "status": "unresolved",
+          "evidenceLineIds": [
+            "L021"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "id": "baseline-action-L011",
+          "task": "document the phishing sample in the security wiki.",
+          "owner": null,
+          "dueDate": null,
+          "dueDateText": null,
+          "status": "open",
+          "evidenceLineIds": [
+            "L011"
+          ]
+        }
+      ],
+      "openQuestions": [],
+      "uncertainties": [
+        {
+          "id": "baseline-uncertainty-decision-status",
+          "text": "This method does not determine whether a decision is current, superseded, or unresolved. Every tagged decision above is reported as unresolved.",
+          "evidenceLineIds": [
+            "L021"
+          ]
+        }
+      ]
+    },
+    "attemptCount": 1,
+    "elapsedMs": 0.11262500000020736,
+    "costUsd": 0,
+    "invalidLineReferences": []
+  },
+  {
+    "caseId": "case-012",
+    "output": {
+      "summary": "Tagged transcript baseline. Extracted 2 tagged lines from 32 transcript lines: 1 tagged action and 1 tagged decision. This method reads tags only. It does not summarise untagged discussion, infer owners or dates, or judge whether a decision still stands.",
+      "decisions": [
+        {
+          "id": "baseline-decision-L020",
+          "text": "the pilot pauses until the vendor removes the customer data.",
+          "status": "unresolved",
+          "evidenceLineIds": [
+            "L020"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "id": "baseline-action-L011",
+          "task": "add prompt injection handling to the pilot acceptance criteria.",
+          "owner": null,
+          "dueDate": null,
+          "dueDateText": null,
+          "status": "open",
+          "evidenceLineIds": [
+            "L011"
+          ]
+        }
+      ],
+      "openQuestions": [],
+      "uncertainties": [
+        {
+          "id": "baseline-uncertainty-decision-status",
+          "text": "This method does not determine whether a decision is current, superseded, or unresolved. Every tagged decision above is reported as unresolved.",
+          "evidenceLineIds": [
+            "L020"
+          ]
+        }
+      ]
+    },
+    "attemptCount": 1,
+    "elapsedMs": 0.08720799999991868,
+    "costUsd": 0,
+    "invalidLineReferences": []
+  }
+]

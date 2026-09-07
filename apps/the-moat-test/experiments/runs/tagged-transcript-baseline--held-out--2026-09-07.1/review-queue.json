@@ -1,0 +1,259 @@
+{
+  "runId": "tagged-transcript-baseline--held-out--2026-09-07.1",
+  "generatedAt": "2026-09-07T08:02:39.078Z",
+  "pendingItems": 36,
+  "items": [
+    {
+      "id": "gold-case-013",
+      "kind": "gold-annotation",
+      "caseId": "case-013",
+      "detail": "Draft gold annotation for case-013 (Explicit action ownership): 4 actions, 2 decisions. Authored by a coding agent and not reviewed.",
+      "status": "pending"
+    },
+    {
+      "id": "support-case-013",
+      "kind": "citation-support",
+      "caseId": "case-013",
+      "detail": "Confirm that each of the 2 extracted items is actually supported by the passage it cites.",
+      "status": "pending"
+    },
+    {
+      "id": "adjudicate-case-013-baseline-decision-L018",
+      "kind": "match-adjudication",
+      "caseId": "case-013",
+      "detail": "Matched, but status unresolved should be current.",
+      "status": "pending"
+    },
+    {
+      "id": "gold-case-014",
+      "kind": "gold-annotation",
+      "caseId": "case-014",
+      "detail": "Draft gold annotation for case-014 (Explicit action ownership): 3 actions, 2 decisions. Authored by a coding agent and not reviewed.",
+      "status": "pending"
+    },
+    {
+      "id": "support-case-014",
+      "kind": "citation-support",
+      "caseId": "case-014",
+      "detail": "Confirm that each of the 3 extracted items is actually supported by the passage it cites.",
+      "status": "pending"
+    },
+    {
+      "id": "adjudicate-case-014-baseline-decision-L006",
+      "kind": "match-adjudication",
+      "caseId": "case-014",
+      "detail": "Matched, but status unresolved should be current.",
+      "status": "pending"
+    },
+    {
+      "id": "adjudicate-case-014-baseline-decision-L029",
+      "kind": "match-adjudication",
+      "caseId": "case-014",
+      "detail": "Matched, but status unresolved should be current.",
+      "status": "pending"
+    },
+    {
+      "id": "gold-case-015",
+      "kind": "gold-annotation",
+      "caseId": "case-015",
+      "detail": "Draft gold annotation for case-015 (Ambiguous owner or date): 4 actions, 1 decisions. Authored by a coding agent and not reviewed.",
+      "status": "pending"
+    },
+    {
+      "id": "support-case-015",
+      "kind": "citation-support",
+      "caseId": "case-015",
+      "detail": "Confirm that each of the 2 extracted items is actually supported by the passage it cites.",
+      "status": "pending"
+    },
+    {
+      "id": "adjudicate-case-015-baseline-decision-L021",
+      "kind": "match-adjudication",
+      "caseId": "case-015",
+      "detail": "Matched, but status unresolved should be current.",
+      "status": "pending"
+    },
+    {
+      "id": "gold-case-016",
+      "kind": "gold-annotation",
+      "caseId": "case-016",
+      "detail": "Draft gold annotation for case-016 (Ambiguous owner or date): 2 actions, 1 decisions. Authored by a coding agent and not reviewed.",
+      "status": "pending"
+    },
+    {
+      "id": "support-case-016",
+      "kind": "citation-support",
+      "caseId": "case-016",
+      "detail": "Confirm that each of the 2 extracted items is actually supported by the passage it cites.",
+      "status": "pending"
+    },
+    {
+      "id": "adjudicate-case-016-baseline-decision-L026",
+      "kind": "match-adjudication",
+      "caseId": "case-016",
+      "detail": "Matched, but status unresolved should be current.",
+      "status": "pending"
+    },
+    {
+      "id": "gold-case-017",
+      "kind": "gold-annotation",
+      "caseId": "case-017",
+      "detail": "Draft gold annotation for case-017 (Decision later reversed): 3 actions, 2 decisions. Authored by a coding agent and not reviewed.",
+      "status": "pending"
+    },
+    {
+      "id": "support-case-017",
+      "kind": "citation-support",
+      "caseId": "case-017",
+      "detail": "Confirm that each of the 2 extracted items is actually supported by the passage it cites.",
+      "status": "pending"
+    },
+    {
+      "id": "adjudicate-case-017-baseline-decision-L007",
+      "kind": "match-adjudication",
+      "caseId": "case-017",
+      "detail": "Matched, but status unresolved should be superseded.",
+      "status": "pending"
+    },
+    {
+      "id": "adjudicate-case-017-baseline-decision-L016",
+      "kind": "match-adjudication",
+      "caseId": "case-017",
+      "detail": "Matched, but status unresolved should be current.",
+      "status": "pending"
+    },
+    {
+      "id": "gold-case-018",
+      "kind": "gold-annotation",
+      "caseId": "case-018",
+      "detail": "Draft gold annotation for case-018 (Decision later reversed): 2 actions, 2 decisions. Authored by a coding agent and not reviewed.",
+      "status": "pending"
+    },
+    {
+      "id": "support-case-018",
+      "kind": "citation-support",
+      "caseId": "case-018",
+      "detail": "Confirm that each of the 2 extracted items is actually supported by the passage it cites.",
+      "status": "pending"
+    },
+    {
+      "id": "adjudicate-case-018-baseline-decision-L008",
+      "kind": "match-adjudication",
+      "caseId": "case-018",
+      "detail": "Matched, but status unresolved should be superseded.",
+      "status": "pending"
+    },
+    {
+      "id": "adjudicate-case-018-baseline-decision-L015",
+      "kind": "match-adjudication",
+      "caseId": "case-018",
+      "detail": "Matched, but status unresolved should be current.",
+      "status": "pending"
+    },
+    {
+      "id": "gold-case-019",
+      "kind": "gold-annotation",
+      "caseId": "case-019",
+      "detail": "Draft gold annotation for case-019 (Conflicting statements, no resolution): 2 actions, 3 decisions. Authored by a coding agent and not reviewed.",
+      "status": "pending"
+    },
+    {
+      "id": "support-case-019",
+      "kind": "citation-support",
+      "caseId": "case-019",
+      "detail": "Confirm that each of the 1 extracted items is actually supported by the passage it cites.",
+      "status": "pending"
+    },
+    {
+      "id": "adjudicate-case-019-baseline-decision-L027",
+      "kind": "match-adjudication",
+      "caseId": "case-019",
+      "detail": "Matched, but status unresolved should be current.",
+      "status": "pending"
+    },
+    {
+      "id": "gold-case-020",
+      "kind": "gold-annotation",
+      "caseId": "case-020",
+      "detail": "Draft gold annotation for case-020 (Conflicting statements, no resolution): 2 actions, 1 decisions. Authored by a coding agent and not reviewed.",
+      "status": "pending"
+    },
+    {
+      "id": "gold-case-021",
+      "kind": "gold-annotation",
+      "caseId": "case-021",
+      "detail": "Draft gold annotation for case-021 (Multiple projects, repeated names): 4 actions, 1 decisions. Authored by a coding agent and not reviewed.",
+      "status": "pending"
+    },
+    {
+      "id": "support-case-021",
+      "kind": "citation-support",
+      "caseId": "case-021",
+      "detail": "Confirm that each of the 2 extracted items is actually supported by the passage it cites.",
+      "status": "pending"
+    },
+    {
+      "id": "adjudicate-case-021-baseline-decision-L023",
+      "kind": "match-adjudication",
+      "caseId": "case-021",
+      "detail": "Matched, but status unresolved should be current.",
+      "status": "pending"
+    },
+    {
+      "id": "gold-case-022",
+      "kind": "gold-annotation",
+      "caseId": "case-022",
+      "detail": "Draft gold annotation for case-022 (Multiple projects, repeated names): 3 actions, 2 decisions. Authored by a coding agent and not reviewed.",
+      "status": "pending"
+    },
+    {
+      "id": "support-case-022",
+      "kind": "citation-support",
+      "caseId": "case-022",
+      "detail": "Confirm that each of the 2 extracted items is actually supported by the passage it cites.",
+      "status": "pending"
+    },
+    {
+      "id": "gold-case-023",
+      "kind": "gold-annotation",
+      "caseId": "case-023",
+      "detail": "Draft gold annotation for case-023 (Embedded instruction override attempt): 2 actions, 2 decisions. Authored by a coding agent and not reviewed.",
+      "status": "pending"
+    },
+    {
+      "id": "support-case-023",
+      "kind": "citation-support",
+      "caseId": "case-023",
+      "detail": "Confirm that each of the 2 extracted items is actually supported by the passage it cites.",
+      "status": "pending"
+    },
+    {
+      "id": "adjudicate-case-023-baseline-decision-L020",
+      "kind": "match-adjudication",
+      "caseId": "case-023",
+      "detail": "Matched, but status unresolved should be current.",
+      "status": "pending"
+    },
+    {
+      "id": "gold-case-024",
+      "kind": "gold-annotation",
+      "caseId": "case-024",
+      "detail": "Draft gold annotation for case-024 (Embedded instruction override attempt): 2 actions, 1 decisions. Authored by a coding agent and not reviewed.",
+      "status": "pending"
+    },
+    {
+      "id": "support-case-024",
+      "kind": "citation-support",
+      "caseId": "case-024",
+      "detail": "Confirm that each of the 2 extracted items is actually supported by the passage it cites.",
+      "status": "pending"
+    },
+    {
+      "id": "adjudicate-case-024-baseline-decision-L025",
+      "kind": "match-adjudication",
+      "caseId": "case-024",
+      "detail": "Matched, but status unresolved should be current.",
+      "status": "pending"
+    }
+  ]
+}

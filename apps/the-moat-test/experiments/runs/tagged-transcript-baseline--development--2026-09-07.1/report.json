@@ -1,0 +1,140 @@
+{
+  "runId": "tagged-transcript-baseline--development--2026-09-07.1",
+  "generatedAt": "2026-09-07T08:02:39.593Z",
+  "corpusVersion": "2026-09-07.1",
+  "corpusIsSynthetic": true,
+  "goldAnnotationsHumanReviewed": false,
+  "comparable": true,
+  "method": {
+    "id": "tagged-transcript-baseline",
+    "name": "Tagged transcript baseline",
+    "version": "1.0.0",
+    "summary": "Extracts only transcript lines that carry an explicit ACTION: or DECISION: tag, records the line id, and leaves owner and date null.",
+    "isNot": "Not a measure of human performance, not a commercial product, and not named after any vendor."
+  },
+  "dataMode": "recorded-experiment",
+  "split": "development",
+  "caseCount": 12,
+  "metrics": {
+    "actionPrecision": {
+      "status": "ok",
+      "value": 1,
+      "numerator": 8,
+      "denominator": 8
+    },
+    "actionRecall": {
+      "status": "ok",
+      "value": 0.23529411764705882,
+      "numerator": 8,
+      "denominator": 34
+    },
+    "actionF1": {
+      "status": "ok",
+      "value": 0.38095238095238093,
+      "numerator": 0.47058823529411764,
+      "denominator": 1.2352941176470589
+    },
+    "ownerAccuracy": {
+      "status": "ok",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 6
+    },
+    "dueDateAccuracy": {
+      "status": "ok",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 1
+    },
+    "inventedOwnerRate": {
+      "status": "ok",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 2
+    },
+    "resolvedDateWhereGoldUnknownRate": {
+      "status": "ok",
+      "value": 0,
+      "numerator": 0,
+      "denominator": 7
+    },
+    "decisionStatusCorrectness": {
+      "status": "ok",
+      "value": 0.07692307692307693,
+      "numerator": 1,
+      "denominator": 13
+    },
+    "citationCoverage": {
+      "status": "ok",
+      "value": 1,
+      "numerator": 21,
+      "denominator": 21
+    },
+    "citationValidity": {
+      "status": "ok",
+      "value": 1,
+      "numerator": 21,
+      "denominator": 21
+    },
+    "citationSupport": {
+      "status": "requires-human-review",
+      "pendingItems": 21,
+      "note": "Citation support requires a reviewer to confirm that each cited passage actually supports the claim. No reviewer has done so."
+    }
+  },
+  "totals": {
+    "predictedActions": 8,
+    "goldActions": 34,
+    "matchedActions": 8,
+    "ownerCorrect": 0,
+    "ownerDenominator": 6,
+    "dueDateCorrect": 0,
+    "dueDateDenominator": 1,
+    "inventedOwner": 0,
+    "goldOwnerUnknown": 2,
+    "resolvedDateWhereUnknown": 0,
+    "goldDateUnknown": 7,
+    "predictedDecisions": 13,
+    "goldDecisions": 17,
+    "matchedDecisions": 13,
+    "decisionStatusCorrect": 1,
+    "decisionsMissed": 4,
+    "decisionsInvented": 0,
+    "decisionsIncorrectlyFinalized": 0,
+    "citedItems": 21,
+    "extractedItems": 21,
+    "validReferences": 21,
+    "totalReferences": 21,
+    "needsAdjudication": 0
+  },
+  "acceptedCases": 1,
+  "attemptedCases": 12,
+  "noActionCaseCount": 1,
+  "criticalDefectCount": 0,
+  "costPerAcceptedCase": {
+    "status": "ok",
+    "valueUsd": 0,
+    "totalSpendUsd": 0,
+    "acceptedCases": 1
+  },
+  "reviewInclusiveCost": {
+    "status": "not-applicable",
+    "reason": "No review minutes have been recorded. Review-inclusive cost cannot be computed without measured review time."
+  },
+  "latency": {
+    "sampleCount": 12,
+    "p50Ms": 0.11262500000020736,
+    "p95Ms": 4.835332999999991,
+    "minMs": 0.02983300000005329,
+    "maxMs": 4.835332999999991,
+    "note": "Nearest-rank percentiles over 12 samples. With a sample this small the p95 is close to the maximum; read the observed range instead of treating p95 as a tail estimate."
+  },
+  "reviewQueueLength": 35,
+  "limitations": [
+    "The corpus is synthetic. It was authored for this benchmark and depicts no real meeting.",
+    "Gold annotations are drafts written by a coding agent. No human has reviewed them.",
+    "Citation support is not measured. It requires a reviewer to read each cited passage.",
+    "Twelve cases per split is a small sample. Read the observed range, not the tail estimate.",
+    "No commercial product was tested, and no result here describes any vendor's performance."
+  ]
+}

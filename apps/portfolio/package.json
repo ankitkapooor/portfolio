@@ -8,7 +8,8 @@
     "start": "next start -p 3000",
     "lint": "eslint",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "validate:content": "tsx scripts/validate-content.ts"
   },
   "dependencies": {
     "next": "16.3.4",
