@@ -1,7 +1,4 @@
-/**
- * The three-step approach, shown as a summary on the homepage and expanded on
- * /method. `body` is deliberately one concrete sentence per step.
- */
+/** The five-step discipline shared across the portfolio. */
 export type ApproachStep = {
   title: string;
   body: string;
@@ -10,28 +7,38 @@ export type ApproachStep = {
 
 export const approachSteps: readonly ApproachStep[] = [
   {
-    title: "Investigate the mechanism",
-    body: "Work out how the money actually moves before deciding whether the technology matters, because most AI arguments are really arguments about a cost structure nobody has written down.",
+    title: "Frame the decision",
+    body: "Start with the decision, not the technology: what choice is being made, what alternatives exist, and what would cause one option to beat another?",
     detail: [
-      "A question like \u201cis this company exposed to AI?\u201d cannot be answered at that level of abstraction. It has to become a question about a specific mechanism: which cost falls, whose willingness to pay changes, which step in the delivery chain stops needing a person.",
-      "So the first pass on every project is structural. In Disrupt This Business that meant writing down how a seat price and a per-outcome price actually compete for the same customer. In Priced In it meant deciding that the model runs backwards from the price, because the requirement is the thing being argued about.",
+      "Strategic questions usually arrive too broad to analyze directly. Convert them into a decision with explicit objectives, alternatives, constraints, and failure conditions before choosing tools or data.",
     ],
   },
   {
-    title: "Test the assumptions",
-    body: "Build the smallest thing that could show an assumption is wrong, then run it against a baseline dull enough that beating it means something.",
+    title: "Structure the ambiguity",
+    body: "Use AI where interpretation is genuinely required, then expose the structured assumptions it produced so they can be corrected rather than trusted implicitly.",
     detail: [
-      "An assumption that cannot fail is not an assumption, it is a preference. The test has to be capable of returning an inconvenient answer, and the comparison has to be against something honest rather than something flattering.",
-      "That is why The Moat Test measures its challenger against a deterministic tagged-line extractor rather than a commercial product: the baseline is unimpressive, legal to publish, and impossible to argue with. It is also why the economic engine in Disrupt This Business is deterministic — a result nobody can reconstruct is not evidence.",
-      "Where a test has not been run, the project says so. All three now run as software, which is a different claim: only The Moat Test has recorded a measured run, and its gold annotations are still unreviewed drafts.",
+      "Examples include translating a business description into target-customer assumptions or extracting strategic priorities from management language. The output of this step should remain inspectable and editable wherever practical.",
     ],
   },
   {
-    title: "Make the trade-off explicit",
-    body: "State what the recommendation costs and what would change it, so the reader is disagreeing with a position rather than with a tone.",
+    title: "Ground it in evidence",
+    body: "Connect the structured question to data, documented assumptions, or explicit economic rules rather than allowing generated language to become evidence.",
     detail: [
-      "Every case page carries a Trade-off and an Uncertainty in its opening brief, before the long-form argument starts. Both are there so a reader can find the weakest part of the position quickly instead of hunting for it.",
-      "The same rule applies to conclusions. Where the evidence does not support one yet, Position reads \u201cInvestigation in progress\u201d and explains the test that would settle it. A confident recommendation with nothing behind it would be the easiest thing to write and the least useful thing to read.",
+      "Evidence may include Census observations, SEC filings, XBRL facts, financial statements, benchmark outputs, or deliberately fictional scenario parameters. The source and data mode must remain visible.",
+    ],
+  },
+  {
+    title: "Make the trade-offs inspectable",
+    body: "Put weights, formulas, thresholds, missing information, and alternatives where the reader can see what is driving the answer.",
+    detail: [
+      "A useful strategic model should make disagreement more precise. If changing one weight flips the recommendation, that is part of the finding rather than an inconvenience to hide.",
+    ],
+  },
+  {
+    title: "Stress-test the answer",
+    body: "Try to break the conclusion by moving the assumptions, reversing the perspective, or searching for the conditions under which the recommendation fails.",
+    detail: [
+      "Across the portfolio this appears in different forms: Monte Carlo sensitivity, role reversal, challenger tests, narrative-versus-financial evidence, and Break My Thesis. A conclusion that survives an explicit attempt to invalidate it is more useful than one that was only optimized to look persuasive.",
     ],
   },
 ];

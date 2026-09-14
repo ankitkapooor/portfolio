@@ -52,6 +52,8 @@ const palette = {
   project01: token("project-accent-01"),
   project02: token("project-accent-02"),
   project03: token("project-accent-03"),
+  project04: token("project-accent-04"),
+  project05: token("project-accent-05"),
 };
 
 describe("palette tokens match the specification", () => {
@@ -63,9 +65,11 @@ describe("palette tokens match the specification", () => {
       mutedInk: "#5e655f",
       rule: "#d6d0c6",
       accent: "#a33b24",
-      project01: "#315b85",
-      project02: "#6253a3",
-      project03: "#236350",
+      project01: "#8a4b21",
+      project02: "#315b85",
+      project03: "#6253a3",
+      project04: "#245f69",
+      project05: "#236350",
     });
   });
 });
@@ -81,9 +85,13 @@ describe("body and secondary text meet 4.5:1", () => {
     ["Project accent 01 on paper", palette.project01, palette.paper],
     ["Project accent 02 on paper", palette.project02, palette.paper],
     ["Project accent 03 on paper", palette.project03, palette.paper],
+    ["Project accent 04 on paper", palette.project04, palette.paper],
+    ["Project accent 05 on paper", palette.project05, palette.paper],
     ["Project accent 01 on surface", palette.project01, palette.surface],
     ["Project accent 02 on surface", palette.project02, palette.surface],
     ["Project accent 03 on surface", palette.project03, palette.surface],
+    ["Project accent 04 on surface", palette.project04, palette.surface],
+    ["Project accent 05 on surface", palette.project05, palette.surface],
   ];
 
   for (const [label, fg, bg] of pairs) {

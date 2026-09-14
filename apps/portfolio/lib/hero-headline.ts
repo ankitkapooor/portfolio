@@ -5,13 +5,12 @@
  * The BRD asks for line breaks chosen per breakpoint rather than one heading
  * shrinking to fit, so the breaks are authored, not emergent:
  *
- *   Desktop (>=641px), 4 lines   Mobile (<=640px), 6 lines
- *   I investigate how AI         I investigate
- *   changes competition,         how AI changes
- *   customer value, and          competition,
- *   business economics.          customer value,
- *                                and business
- *                                economics.
+ *   Desktop (>=641px), 3 lines   Mobile (<=640px), 5 lines
+ *   I build decision systems     I build
+ *   for ambiguous                decision systems
+ *   strategic questions.         for ambiguous
+ *                                strategic
+ *                                questions.
  *
  * `breakAt` says which breakpoints render a break after that unit. Joining the
  * units with single spaces must reproduce profile.positioning exactly;
@@ -26,14 +25,11 @@ export type HeadlineUnit = {
 };
 
 export const heroHeadline: readonly HeadlineUnit[] = [
-  { text: "I investigate", breakAt: "mobile" },
-  { text: "how AI", breakAt: "wide" },
-  { text: "changes", breakAt: "mobile" },
-  { text: "competition,", breakAt: "both" },
-  { text: "customer value,", breakAt: "mobile" },
-  { text: "and", breakAt: "wide" },
-  { text: "business", breakAt: "mobile" },
-  { text: "economics.", breakAt: null },
+  { text: "I build", breakAt: "mobile" },
+  { text: "decision systems", breakAt: "both" },
+  { text: "for ambiguous", breakAt: "both" },
+  { text: "strategic", breakAt: "mobile" },
+  { text: "questions.", breakAt: null },
 ];
 
 export function headlineText(

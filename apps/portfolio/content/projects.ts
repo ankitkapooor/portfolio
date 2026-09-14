@@ -10,7 +10,7 @@ import { z } from "zod";
 /**
  * Project register.
  *
- * All three projects are at `status: "prototype"`: the software genuinely runs.
+ * All five projects are at `status: "prototype"`: the software genuinely runs.
  * Each now carries a `demoUrl` on its own subdomain, because each one is
  * deployed and a visitor can actually reach it. Those remain two separate
  * facts, and the UI treats them that way: `status` describes how mature the
@@ -25,20 +25,239 @@ import { z } from "zod";
  * reviewed. Deploying changed none of that.
  *
  * A successful build is not a reason to move `status`, and a deployed demo is
- * not a reason to move `evidenceStatus`.
+ * not a reason to move `evidenceStatus`. The two featured systems are grouped
+ * separately from the three focused Strategy Lab experiments, but the same
+ * evidence and authorship rules apply to every record.
  *
  * See README.md, "Updating project status".
  */
 const raw: Project[] = [
   /* ------------------------------------------------------------------ 01 */
   {
-    slug: "disrupt-this-business",
+    slug: "market-entry-war-room",
     number: "01",
+    title: "Market Entry War Room",
+    question: "Where should we play?",
+    decisionDomain: "Growth strategy",
+    portfolioGroup: "featured",
+    capability: "Market selection decision system",
+    purpose:
+      "A decision system that turns a business strategy into measurable assumptions, ranks US metropolitan markets using public data, and tests whether the recommendation survives different strategic priorities.",
+    whyItMatters:
+      "Market-entry recommendations are often presented as point answers even though the result depends on assumptions about customer fit, growth, affordability, scale, and cost. The system makes those assumptions visible and lets the user see which ones are actually driving the decision.",
+    workflow: [
+      "Describe the business and target customer.",
+      "Translate the strategy into editable measurable assumptions.",
+      "Score metropolitan markets using public data and explicit factor weights.",
+      "Adjust priorities and compare candidate markets in the War Room.",
+      "Perturb the assumptions through sensitivity analysis.",
+      "Evaluate the ranking together with its robustness.",
+    ],
+    decisionOutput:
+      "A ranked set of metropolitan markets with factor-level explanations, direct comparisons, and evidence showing how robust each ranking is to plausible changes in strategic priorities.",
+
+    status: "prototype",
+    evidenceStatus: "measured-partial",
+
+    summary:
+      "Describe the business, inspect how its strategy becomes measurable assumptions, and rank US metropolitan markets using Census data and an explicit weighted model. The War Room lets priorities change in real time, compares candidates directly, and uses Monte Carlo sensitivity analysis to show whether an apparent winner remains strong when the assumptions move. Every result belongs to the scenario that produced it.",
+
+    recommendation: null,
+
+    brief: {
+      decision:
+        "A business wants to expand into a new US metropolitan market. Where should it open next, given its customer, price positioning, growth priorities, and cost tolerance?",
+      position:
+        "No universal market recommendation. The system is designed to produce a scenario-specific ranking whose assumptions, factor contributions, missing data, and sensitivity can be inspected before anyone acts on it.",
+      evidence:
+        "Measured in part. The running system scores 393 metropolitan areas using configured 2024 and 2019 Census ACS vintages, explicit metric directions, percentile normalization, weighted factor scores, and Monte Carlo perturbation. The ranking is reproducible from the data and settings, but its commercial coverage is deliberately incomplete.",
+      tradeoff:
+        "Transparency and consistency are prioritized over pretending to have perfect market data. Missing factors are dropped and their weights redistributed with a warning instead of being silently scored as zero.",
+      uncertainty:
+        "Competition coverage is absent, residential rent stands in for commercial occupancy cost, and the growth measure is a five-year change rather than a predictive market forecast.",
+    },
+
+    alternatives: [
+      {
+        option: "Ask a language model which city to enter",
+        argument:
+          "It would be fast, flexible, and able to absorb a nuanced description of the business.",
+        objection:
+          "It is rejected as the decision engine because the recommendation would not be reconstructible from explicit evidence and arithmetic.",
+      },
+      {
+        option: "Use one fixed consulting-style scorecard",
+        argument:
+          "A single scorecard is easy to communicate and keeps every market on one consistent scale.",
+        objection:
+          "It is rejected as the only interface because it hides how subjective weighting changes the answer and can make a fragile winner look definitive.",
+      },
+      {
+        option: "Add every possible commercial dataset",
+        argument:
+          "More sources could improve category-specific competition and operating-cost coverage.",
+        objection:
+          "It is rejected for the MVP because inconsistent proprietary coverage can create false precision and make the model harder to audit or reproduce.",
+      },
+    ],
+
+    evidence: [
+      {
+        id: "ev-market-census",
+        label: "Census market dataset",
+        detail:
+          "The running system exposes 393 metro-level observations from the US Census ACS, with 2024 as the current configured vintage and 2019 as the comparison vintage. Each metric retains its source and vintage, and missing prior observations remain missing rather than becoming zero.",
+        status: "measured-partial",
+        sourceRefs: ["src-market-entry-census", "src-market-entry-demo"],
+      },
+      {
+        id: "ev-market-model",
+        label: "Explicit scoring model",
+        detail:
+          "Metric direction, percentile normalization, within-factor aggregation, and user-visible factor weights produce the ranking deterministically. Unavailable factors are excluded and their weight is redistributed across the factors that remain.",
+        status: "measured-partial",
+        sourceRefs: ["src-market-entry-readme", "src-market-entry-demo"],
+      },
+      {
+        id: "ev-market-sensitivity",
+        label: "Sensitivity analysis",
+        detail:
+          "Monte Carlo runs perturb the effective factor weights within a disclosed band, renormalize them, and report rank stability so the apparent leader is evaluated across plausible changes in priorities rather than at one point estimate.",
+        status: "measured-partial",
+        sourceRefs: ["src-market-entry-readme"],
+      },
+    ],
+
+    tradeoffs: [
+      {
+        label: "Transparent coverage over false completeness",
+        detail:
+          "The MVP drops competition when no comparable public measure exists. That narrows the answer, but it keeps the missing evidence visible instead of filling the gap with an opaque estimate.",
+      },
+      {
+        label: "Relative ranks over absolute truth",
+        detail:
+          "A percentile says where one metro stands against the others in this run. It does not say that a high-scoring market is intrinsically good or that the business will succeed there.",
+      },
+      {
+        label: "Editable priorities over one official answer",
+        detail:
+          "Allowing weights to move makes the judgment inspectable, but it also means the model cannot offer a context-free winner. The output is useful only with the scenario attached.",
+      },
+    ],
+
+    uncertainties: [
+      {
+        label: "Category-specific competition",
+        detail:
+          "No broad public source covers competing establishments consistently across every business category, so competition is currently absent from the ranking and its weight is redistributed.",
+      },
+      {
+        label: "Operating-cost proxy",
+        detail:
+          "Median residential gross rent is available consistently, but it is only a proxy for commercial occupancy cost and may point in a different direction for a particular format.",
+      },
+      {
+        label: "Growth is historical",
+        detail:
+          "The growth factor is the change between the 2019 and 2024 ACS vintages. It is not annualized and it is not a forecast of the next five years.",
+      },
+    ],
+
+    sections: {
+      context: [
+        "Market-entry advice often arrives as a city name backed by a polished scorecard. The recommendation looks objective even when its result depends on unspoken judgments about who the customer is, how much they can pay, whether scale or growth matters more, and which costs the business can tolerate.",
+        "The War Room starts one level earlier. A user describes the business and target customer, then inspects the structured assumptions the parser produced before the model runs. That separation matters: AI helps interpret the description, while public data and deterministic scoring decide how each metro ranks.",
+        "The decision is not whether one metropolitan area is universally best. It is whether a candidate is attractive for this business under these priorities, why it reached that position, and whether the position survives a reasonable change in the assumptions.",
+      ],
+      methodAndModel: [
+        "The running system uses the US Census American Community Survey at the metropolitan level. Its current configuration compares the 2024 ACS 1-year vintage with 2019, producing observations for market size, affluence, growth, customer fit, and a residential-rent proxy for cost.",
+        "Raw metrics are converted to percentiles across the metros in the run. Metrics whose lower values are preferable are inverted, metrics roll into factor scores, and the final attractiveness score is a weighted sum. The requested weights must sum to one; when a factor is unavailable, its weight is redistributed proportionally and the interface states that explicitly.",
+        "Sensitivity analysis perturbs the effective weights within a configured band, renormalizes them, and recomputes the ranking across repeated runs. This turns the finding from a single rank into a distribution: which markets stay near the top when the user's priorities move?",
+      ],
+      evidenceAndResults: [
+        "The system is deployed and the full path from business description to assumptions, ranking, comparison, and sensitivity can be inspected. A built-in premium-fitness example currently scores all 393 loaded metros and exposes every factor contribution and raw observation behind the ordering.",
+        "That example is evidence that the workflow and arithmetic run, not a universal market conclusion. Changing the business, customer, or weights can change the ordering, which is the behavior the product is built to reveal rather than suppress.",
+        "The strongest current evidence is the sourced metro dataset, the deterministic score calculation, and the sensitivity mechanism. Evidence about category-level competition, actual commercial occupancy costs, or realized market-entry outcomes remains outside the MVP.",
+      ],
+      interpretation: [
+        "The most useful output is not 'Market X ranks first.' It is 'Market X ranks first under these assumptions, for these reasons, and remains near the top across this range of plausible assumption changes.'",
+        "That framing changes the conversation from defending one answer to examining what drives it. A weight that flips the ranking is not a nuisance; it identifies the strategic judgment the team actually needs to debate.",
+      ],
+      limitations: [
+        "Competition is unmeasured in the current MVP because no public source covers every business category consistently. The factor is dropped and its weight redistributed rather than scored as zero.",
+        "Median residential gross rent is used as a proxy for operating cost. It is not commercial lease data and should not be presented as such.",
+        "Growth is a multi-year historical delta between configured Census vintages, not a predictive market forecast. A high rank establishes fit under the model, not the probability of a successful launch.",
+      ],
+      nextTest: [
+        "Add a bounded, category-specific competition source for one business type and test whether its inclusion materially changes the top tier without making coverage inconsistent across markets.",
+        "Run structured decision reviews with strategy practitioners: ask them to state a recommendation before and after sensitivity analysis, then record which assumption changes their conclusion and why.",
+      ],
+    },
+
+    ownerContribution:
+      "I framed the market-selection decision, specified how a business description becomes editable assumptions, designed the scoring and sensitivity workflow, and set the evidence and limitation rules that keep a scenario-specific result from being presented as a universal answer.",
+    implementationDisclosure:
+      "The application was implemented with AI coding assistance against an owner-authored specification. AI interprets the business description; Census observations, normalization, factor aggregation, ranking, and sensitivity are produced by deterministic code that can be inspected and tested.",
+    humanReviewStatus:
+      "No external review is claimed. This case is grounded in the public repository documentation and the running production workflow, and it preserves the limitations those sources disclose.",
+
+    demoUrl: "https://market-entry-war-room-production.up.railway.app/ui/",
+    demoTarget: "external",
+    demoLabel: "Open the War Room",
+    repositoryUrl: "https://github.com/ankitkapooor/market-entry-war-room",
+
+    coverAsset: "schematic-market-entry-war-room",
+
+    sourceRefs: [
+      {
+        id: "src-market-entry-readme",
+        label: "Market Entry War Room — public repository documentation",
+        detail:
+          "Public repository documentation describing the strategy parser, scoring model, Census integration, factor weighting, missing-data handling, comparison workflow, and Monte Carlo sensitivity analysis.",
+      },
+      {
+        id: "src-market-entry-census",
+        label: "US Census American Community Survey",
+        detail:
+          "Metro-level ACS observations used by the running system. The inspected application and repository are configured for the 2024 ACS 1-year vintage with 2019 as the prior comparison vintage.",
+      },
+      {
+        id: "src-market-entry-demo",
+        label: "Market Entry War Room — production deployment",
+        detail:
+          "Running production deployment inspected on 14 September 2026 to verify the end-to-end workflow and the representative premium-fitness scenario used by the product schematic.",
+      },
+    ],
+
+    publishedAt: "2026-09-14",
+    updatedAt: "2026-09-14",
+    accentVar: "--project-accent-01",
+  },
+
+  /* ------------------------------------------------------------------ 02 */
+  {
+    slug: "disrupt-this-business",
+    number: "02",
     title: "Disrupt This Business",
-    question: "How does AI change competition?",
+    question: "How should we win?",
+    decisionDomain: "Competitive strategy",
+    portfolioGroup: "lab",
     capability: "Competitive strategy scenario",
     purpose:
       "A four-round scenario that makes a competitive response to AI inspectable from both sides of the market.",
+    whyItMatters:
+      "When AI changes the cost structure behind the same customer outcome, an incumbent has to decide which parts of its existing position are worth defending and which advantages have become liabilities.",
+    workflow: [
+      "Choose the incumbent or challenger position.",
+      "Commit to one strategic move each quarter.",
+      "Resolve customer allocation and economics through deterministic rules.",
+      "Inspect the arithmetic behind the outcome.",
+      "Switch sides and attack the strategy previously chosen.",
+      "Compare whether the original position survives the reversal.",
+    ],
+    decisionOutput:
+      "A reconstructible resolution ledger showing how strategic commitments change customers, revenue, delivery cost, investment, and cash under the stated market rules.",
 
     status: "prototype",
     evidenceStatus: "illustrative",
@@ -209,19 +428,33 @@ const raw: Project[] = [
     ],
 
     publishedAt: "2026-09-07",
-    updatedAt: "2026-09-07",
-    accentVar: "--project-accent-01",
+    updatedAt: "2026-09-14",
+    accentVar: "--project-accent-02",
   },
 
-  /* ------------------------------------------------------------------ 02 */
+  /* ------------------------------------------------------------------ 03 */
   {
     slug: "the-moat-test",
-    number: "02",
+    number: "03",
     title: "The Moat Test",
-    question: "What remains worth paying for?",
+    question: "What remains defensible?",
+    decisionDomain: "Product strategy",
+    portfolioGroup: "lab",
     capability: "Product investigation with a working challenger",
     purpose:
       "An investigation into which parts of an AI product's value survive once its core capability becomes easy to reproduce.",
+    whyItMatters:
+      "When the visible AI capability becomes easy to reproduce, the strategic question shifts from whether the feature can be built to which surrounding advantages still justify customer willingness to pay.",
+    workflow: [
+      "Reproduce a narrow version of the visible capability.",
+      "Run an explicit baseline and challenger.",
+      "Compare outputs without relying only on presentation quality.",
+      "Trace claims back to supporting evidence.",
+      "Inspect failure cases rather than hiding them.",
+      "Separate reproducible capability from workflow, trust, distribution, and capture advantages.",
+    ],
+    decisionOutput:
+      "An evidence-backed view of which parts of an AI product's value appear reproducible and which candidate moats remain unresolved and require further testing.",
 
     status: "prototype",
     evidenceStatus: "measured-partial",
@@ -409,19 +642,236 @@ const raw: Project[] = [
     ],
 
     publishedAt: "2026-09-07",
-    updatedAt: "2026-09-07",
-    accentVar: "--project-accent-02",
+    updatedAt: "2026-09-14",
+    accentVar: "--project-accent-03",
   },
 
-  /* ------------------------------------------------------------------ 03 */
+  /* ------------------------------------------------------------------ 04 */
+  {
+    slug: "narrative-vs-numbers",
+    number: "04",
+    title: "Narrative vs. Numbers",
+    question: "Are we executing the strategy?",
+    decisionDomain: "Corporate strategy / execution",
+    portfolioGroup: "featured",
+    capability: "Strategy-to-execution evidence system",
+    purpose:
+      "A system that compares what management says is strategically important with the capital allocation and operating results visible in the company's filings.",
+    whyItMatters:
+      "Corporate strategy is easy to describe and harder to verify. A company's filings make it possible to ask whether management's stated priorities are visible in actual capital allocation and operating performance rather than accepting the narrative on its own.",
+    workflow: [
+      "Resolve a public-company ticker and retrieve the latest 10-K.",
+      "Extract management's stated strategic priorities.",
+      "Categorize each priority into an explicit evidence framework.",
+      "Retrieve and normalize relevant SEC XBRL financial facts.",
+      "Score action evidence, outcome evidence, and persistence deterministically.",
+      "Show the claim beside the financial evidence supporting or contradicting it.",
+    ],
+    decisionOutput:
+      "A claim-by-claim strategy alignment analysis showing what management said, what the financial record did, the arithmetic behind the score, the available evidence, and the analytical confidence.",
+
+    status: "prototype",
+    evidenceStatus: "measured-partial",
+
+    summary:
+      "Enter a public-company ticker and the system reads management's current priorities from the latest 10-K, retrieves the corresponding SEC XBRL financial history, and tests whether spending and operating results support those claims. Language models identify and categorize the stated priorities; financial metrics, thresholds, alignment scores, contradiction checks, and confidence calculations are produced through deterministic code.",
+
+    recommendation: null,
+
+    brief: {
+      decision:
+        "Management has described a set of strategic priorities. Does the financial record indicate that the company is actually allocating capital and producing results consistent with those priorities?",
+      position:
+        "No universal judgment. The tool evaluates one company and filing at a time, keeps interpretation separate from arithmetic, and exposes the evidence and confidence behind every claim-specific score.",
+      evidence:
+        "Measured in part. The running deployment reads the latest 10-K for current strategy, maps extracted claims to an explicit taxonomy, retrieves SEC XBRL facts, and scores action evidence, outcome evidence, and persistence through deterministic code. Results remain constrained by the available mapping and filing data.",
+      tradeoff:
+        "A constrained taxonomy and deterministic evidence model are less semantically flexible than asking a language model whether strategy and financials seem aligned. The constraint is intentional because the resulting score can be reconstructed.",
+      uncertainty:
+        "Extraction can be imperfect, category-to-metric mappings can omit relevant evidence, and some components may be missing. Analytical confidence therefore remains separate from alignment and missing data is never silently treated as zero.",
+    },
+
+    alternatives: [
+      {
+        option: "Summarize the 10-K with a language model",
+        argument:
+          "A generated summary would make a long filing easier to understand and could surface management's current themes quickly.",
+        objection:
+          "Comprehension alone does not test whether spending and operating results support the stated priorities.",
+      },
+      {
+        option: "Build a conventional financial-ratio dashboard",
+        argument:
+          "A ratio dashboard would stay grounded in reported numbers and be familiar to a financial reader.",
+        objection:
+          "It would not connect those numbers to the strategic claims management asked investors and operators to believe.",
+      },
+      {
+        option: "Ask a language model to judge alignment directly",
+        argument:
+          "A model could consider more context and handle unusual language without a fixed evidence taxonomy.",
+        objection:
+          "It is rejected as the scoring engine because the financial judgment would be difficult to audit, reproduce, and distinguish from persuasive language.",
+      },
+    ],
+
+    evidence: [
+      {
+        id: "ev-narrative-filings",
+        label: "SEC filing and XBRL record",
+        detail:
+          "The system resolves a public-company ticker, reads the latest 10-K for current strategic priorities, and retrieves normalized annual facts from the SEC company-facts record for the requested history.",
+        status: "measured-partial",
+        sourceRefs: ["src-narrative-sec", "src-narrative-demo"],
+      },
+      {
+        id: "ev-narrative-model",
+        label: "Deterministic alignment model",
+        detail:
+          "Alignment is computed as 0.50 action evidence, 0.30 outcome evidence, and 0.20 persistence when all components are present. Missing components have their weight redistributed and are listed as limitations rather than scored as zero.",
+        status: "measured-partial",
+        sourceRefs: ["src-narrative-readme"],
+      },
+      {
+        id: "ev-narrative-confidence",
+        label: "Separate analytical confidence",
+        detail:
+          "Extraction confidence, mapped-metric coverage, and available history produce an analytical-confidence measure that is displayed separately from alignment, preventing a strong score on thin evidence from reading as certainty.",
+        status: "measured-partial",
+        sourceRefs: ["src-narrative-readme", "src-narrative-demo"],
+      },
+    ],
+
+    tradeoffs: [
+      {
+        label: "Reconstructible scoring over semantic freedom",
+        detail:
+          "A fixed taxonomy cannot capture every possible strategic nuance, but it keeps the financial judgment tied to approved metrics, directions, thresholds, and arithmetic.",
+      },
+      {
+        label: "Current strategy over historical narrative drift",
+        detail:
+          "The latest 10-K supplies the current priorities while earlier periods supply financial history. The MVP does not yet test how management's stated strategy changed across filings.",
+      },
+      {
+        label: "Visible gaps over complete-looking scores",
+        detail:
+          "Missing evidence lowers coverage and may redistribute component weights. The report is messier because it states the gap, and more honest because it does not quietly turn absence into a neutral observation.",
+      },
+    ],
+
+    uncertainties: [
+      {
+        label: "Extraction quality",
+        detail:
+          "A language model identifies and categorizes strategic priorities from Item 1 and Item 7. It can miss, overstate, or misclassify a claim even though its source quote and extraction confidence remain visible.",
+      },
+      {
+        label: "Evidence-map coverage",
+        detail:
+          "A strategic claim can matter without mapping cleanly to the metrics allowed for its category. The system can only score the evidence framework it has been given.",
+      },
+      {
+        label: "Alignment is not causality",
+        detail:
+          "Movement in spending or outcomes consistent with a claim does not prove that the stated strategy caused it or that the strategy is economically attractive.",
+      },
+    ],
+
+    sections: {
+      context: [
+        "Corporate strategy is easy to describe and much harder to verify. Annual filings contain carefully framed priorities, while the evidence of execution is spread across capital expenditure, operating metrics, margins, and several years of reported facts.",
+        "Narrative vs. Numbers brings those two records together. It asks what management said was strategically important, which financial signals ought to move if the claim is being acted on, and whether the observed history supports, weakens, or leaves that claim unresolved.",
+        "The decision is company- and filing-specific. The system does not label management generally credible or incredible, and it does not claim that alignment makes the strategy good. It tests whether stated priorities and visible execution point in the same direction.",
+      ],
+      methodAndModel: [
+        "The latest 10-K supplies the current strategy. A language model is limited to returning a priority label, one category from a fixed taxonomy, the source quote, and extraction confidence. Categories outside the taxonomy are discarded rather than improvised.",
+        "Each accepted category maps to approved financial signals with a required direction and threshold. SEC XBRL facts are normalized into annual metrics, then action evidence, outcome evidence, and persistence are calculated. With all components present, alignment equals 0.50 times action evidence, 0.30 times outcome evidence, and 0.20 times persistence.",
+        "A component with no data is not scored as zero. Its weight is redistributed across available components and the gap is carried into the limitations. Analytical confidence is calculated separately from extraction certainty, evidence coverage, and available history.",
+      ],
+      evidenceAndResults: [
+        "The system is deployed and can analyze one public company and filing at a time. The live page includes a Microsoft example drawn from its 10-K for the year ended 30 June 2026, placing a capacity-expansion claim beside changes in capital expenditure, property and equipment, and capital-expenditure intensity.",
+        "That example demonstrates the product's claim-by-claim structure and the distinction between management language and computed evidence. It is not a general recommendation about Microsoft, and the tool's overall judgment depends on every extracted priority, available metric, limitation, and confidence value in the run.",
+        "The current evidence establishes that the ingestion, normalization, mapping, scoring, contradiction, and confidence paths run over SEC data. It does not establish that the taxonomy captures every strategically relevant signal or that the score predicts performance.",
+      ],
+      interpretation: [
+        "The central distinction is deliberate: AI interprets the filing; data grounds the claim; code performs the financial judgment. A model swap can change which priorities are extracted, but it cannot silently change the arithmetic used to score them.",
+        "The most useful disagreement is therefore specific. A reader can challenge the extracted claim, its category, the approved metric, the direction, the threshold, the observed value, or the confidence instead of accepting or rejecting one opaque verdict.",
+      ],
+      limitations: [
+        "Current strategy is read from the most recent 10-K. Historical years primarily provide financial persistence and do not yet show how the strategy narrative itself changed over time.",
+        "Evidence depends on the configured strategy-category-to-metric mapping. Relevant qualitative execution or unmapped operational signals may be absent from the score.",
+        "Missing components are shown and their weights redistributed, language-model extraction can be imperfect, and analytical confidence must remain distinct from alignment. Alignment is not proof of causality or strategic quality.",
+      ],
+      nextTest: [
+        "Create a human-reviewed set of strategic-priority extractions across several industries and report category-level misses and disagreements before broadening the taxonomy.",
+        "Have strategy and finance reviewers inspect the same claim-level reports, record which part of the evidence chain they dispute, and test whether the exposed arithmetic makes those disagreements more precise.",
+      ],
+    },
+
+    ownerContribution:
+      "I framed the strategy-execution question, defined the division of labor between language interpretation and financial judgment, specified the evidence taxonomy and scoring logic, and designed the report so every claim can be traced to its filing language and supporting metrics.",
+    implementationDisclosure:
+      "The application was implemented with AI coding assistance against an owner-authored specification. The language model is constrained to priority extraction and categorization; XBRL normalization, metric calculations, alignment, contradictions, and analytical confidence are deterministic.",
+    humanReviewStatus:
+      "No external review is claimed. This case is grounded in the public repository documentation, inspected implementation, and running production workflow, with known data and extraction limitations left visible.",
+
+    demoUrl: "https://narrative-vs-numbers-production.up.railway.app/",
+    demoTarget: "external",
+    demoLabel: "Run an analysis",
+    repositoryUrl: "https://github.com/ankitkapooor/narrative-vs-numbers",
+
+    coverAsset: "schematic-narrative-vs-numbers",
+
+    sourceRefs: [
+      {
+        id: "src-narrative-readme",
+        label: "Narrative vs. Numbers — public repository documentation",
+        detail:
+          "Public repository documentation describing 10-K ingestion, strategy extraction, SEC XBRL normalization, deterministic alignment scoring, confidence, caching, and known limitations. The alignment formula shown on this site was verified against the implementation.",
+      },
+      {
+        id: "src-narrative-sec",
+        label: "US Securities and Exchange Commission filings and XBRL data",
+        detail:
+          "Public 10-K filing text and company-facts XBRL records used by the application to connect management's stated priorities with normalized annual financial evidence.",
+      },
+      {
+        id: "src-narrative-demo",
+        label: "Narrative vs. Numbers — production deployment",
+        detail:
+          "Running production deployment inspected on 14 September 2026 to verify the end-to-end workflow and the Microsoft example represented by the product schematic.",
+      },
+    ],
+
+    publishedAt: "2026-09-14",
+    updatedAt: "2026-09-14",
+    accentVar: "--project-accent-04",
+  },
+
+  /* ------------------------------------------------------------------ 05 */
   {
     slug: "priced-in",
-    number: "03",
+    number: "05",
     title: "Priced In",
-    question: "What do the economics require?",
+    question: "What has to be true economically?",
+    decisionDomain: "Finance / valuation",
+    portfolioGroup: "lab",
     capability: "Reverse-valuation workbench",
     purpose:
       "A workbench that turns a valuation into the operating performance a business would have to deliver to justify it.",
+    whyItMatters:
+      "Strategic narratives eventually imply financial requirements. Running valuation logic backwards makes those requirements explicit and allows a decision-maker to ask whether the growth, margin, customer, or efficiency assumptions embedded in the case are actually plausible.",
+    workflow: [
+      "Review and normalize the financial inputs.",
+      "Run the valuation model backwards from a target value.",
+      "Map the growth and margin combinations consistent with that value.",
+      "Select a scenario and translate it into operating requirements where possible.",
+      "Overlay the contribution an AI initiative would need to make.",
+      "Use Break My Thesis to search for assumptions that invalidate the case.",
+    ],
+    decisionOutput:
+      "An expectations map showing the operating performance consistent with a valuation, plus the assumptions and failure conditions that determine whether the case holds.",
 
     status: "prototype",
     evidenceStatus: "illustrative",
@@ -595,8 +1045,8 @@ const raw: Project[] = [
     ],
 
     publishedAt: "2026-09-07",
-    updatedAt: "2026-09-07",
-    accentVar: "--project-accent-03",
+    updatedAt: "2026-09-14",
+    accentVar: "--project-accent-05",
   },
 ];
 

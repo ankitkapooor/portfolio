@@ -4,7 +4,7 @@ import { projects } from "@/content/projects";
 import { headlineText } from "@/lib/hero-headline";
 
 export const alt =
-  "Ankit Kapoor — I investigate how AI changes competition, customer value, and business economics. Former machine learning engineer, MBA candidate at USC Marshall.";
+  "Ankit Kapoor — I build decision systems for ambiguous strategic questions. Former machine learning engineer, MBA candidate at USC Marshall.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -13,7 +13,7 @@ export const dynamic = "force-static";
 
 /*
  * Original graphics only: the site's own palette, its own copy, a rule, and
- * the three project numbers. No photograph, no logo, no borrowed imagery.
+ * the five project numbers. No photograph, no logo, no borrowed imagery.
  *
  * ImageResponse renders with its bundled default sans face rather than the
  * site's Instrument Serif, because next/font keeps its downloaded files inside

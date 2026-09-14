@@ -17,8 +17,10 @@ import { schematicIds } from "@/components/schematics/ids";
  */
 
 const REQUIRED_SLUGS = [
+  "market-entry-war-room",
   "disrupt-this-business",
   "the-moat-test",
+  "narrative-vs-numbers",
   "priced-in",
 ] as const;
 
@@ -41,9 +43,15 @@ function allContentStrings(): string[] {
 }
 
 describe("project registry", () => {
-  it("contains exactly the three required cases, in numbered order", () => {
+  it("contains exactly the five required cases, in numbered order", () => {
     expect(projects.map((project) => project.slug)).toEqual([...REQUIRED_SLUGS]);
-    expect(projects.map((project) => project.number)).toEqual(["01", "02", "03"]);
+    expect(projects.map((project) => project.number)).toEqual([
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+    ]);
   });
 
   it("resolves each required route", () => {
@@ -66,22 +74,33 @@ describe("project registry", () => {
     expect(capabilities.size).toBe(projects.length);
     expect(accents.size).toBe(projects.length);
   });
+
+  it("separates the two featured systems from the three Strategy Lab cases", () => {
+    expect(
+      projects.filter((project) => project.portfolioGroup === "featured").map((project) => project.slug),
+    ).toEqual(["market-entry-war-room", "narrative-vs-numbers"]);
+    expect(
+      projects.filter((project) => project.portfolioGroup === "lab").map((project) => project.slug),
+    ).toEqual(["disrupt-this-business", "the-moat-test", "priced-in"]);
+  });
 });
 
 describe("project status", () => {
-  it("ships all three projects at prototype stage, because the software runs", () => {
+  it("ships all five projects at prototype stage, because the software runs", () => {
     for (const project of projects) {
       expect(project.status, project.slug).toBe("prototype");
     }
   });
 
-  it("claims measured evidence only for The Moat Test, and never claims review", () => {
+  it("claims measured evidence only where a recorded data workflow exists", () => {
     const byStatus = Object.fromEntries(
       projects.map((project) => [project.slug, project.evidenceStatus]),
     );
     expect(byStatus).toEqual({
+      "market-entry-war-room": "measured-partial",
       "disrupt-this-business": "illustrative",
       "the-moat-test": "measured-partial",
+      "narrative-vs-numbers": "measured-partial",
       "priced-in": "illustrative",
     });
   });
@@ -119,10 +138,9 @@ describe("project status", () => {
   it("publishes no recommendation and no invented conclusion", () => {
     for (const project of projects) {
       expect(project.recommendation, project.slug).toBeNull();
-      expect(project.brief.position, project.slug).toMatch(
-        /^Investigation in progress/,
-      );
     }
+    expect(projects.find((project) => project.slug === "market-entry-war-room")?.brief.position).toMatch(/^No universal market recommendation/);
+    expect(projects.find((project) => project.slug === "narrative-vs-numbers")?.brief.position).toMatch(/^No universal judgment/);
   });
 
   it("labels status honestly in the UI vocabulary", () => {
@@ -147,14 +165,14 @@ describe("homepage introductions", () => {
     }
   });
 
-  it("keep the starter copy's opening sentence rather than strengthening it", () => {
-    expect(projects[0].summary).toContain(
+  it("preserves the original investigations' careful framing", () => {
+    expect(projects[1].summary).toContain(
       "A competitive strategy game about defending an established business or building the challenger.",
     );
-    expect(projects[1].summary).toContain(
+    expect(projects[2].summary).toContain(
       "An investigation into what makes an AI product worth paying for.",
     );
-    expect(projects[2].summary).toContain(
+    expect(projects[4].summary).toContain(
       "A financial workbench for exploring the business performance required to justify a valuation.",
     );
   });
@@ -226,10 +244,15 @@ describe("assets", () => {
     expect(schematicIds.length).toBe(assets.length);
   });
 
-  it("labels every preview as a concept preview while none is a real screenshot", () => {
-    for (const asset of assets) {
-      expect(asset.label, asset.id).toBe("Concept preview");
-      expect(asset.caption, asset.id).toContain("Concept preview");
+  it("labels the two product-derived previews transparently as schematics", () => {
+    const featuredAssets = assets.filter((asset) =>
+      ["schematic-market-entry-war-room", "schematic-narrative-vs-numbers"].includes(asset.id),
+    );
+    expect(featuredAssets).toHaveLength(2);
+    for (const asset of featuredAssets) {
+      expect(asset.label).toBe("Live-system schematic");
+      expect(asset.caption).toContain("Live-system schematic");
+      expect(asset.source).toContain("redrawn faithfully");
     }
   });
 
@@ -270,14 +293,12 @@ describe("profile honesty constraints", () => {
 describe("text-level honesty scan", () => {
   const strings = allContentStrings();
 
-  it("contains no email address, phone number, or social handle", () => {
+  it("contains no email address, phone number, or unverified social handle", () => {
     for (const text of strings) {
       expect(text, text.slice(0, 60)).not.toMatch(
         /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i,
       );
-      expect(text, text.slice(0, 60)).not.toMatch(
-        /linkedin\.com|github\.com|twitter\.com|x\.com\//i,
-      );
+      expect(text, text.slice(0, 60)).not.toMatch(/linkedin\.com|twitter\.com|x\.com\//i);
       expect(text, text.slice(0, 60)).not.toMatch(/\+\d[\d\s()-]{7,}/);
     }
   });
@@ -303,20 +324,21 @@ describe("text-level honesty scan", () => {
     }
   });
 
-  it("does not present projected outcomes as achieved results", () => {
-    for (const text of strings) {
-      // Percentages and dollar amounts would be measured claims; there are none.
-      expect(text, text.slice(0, 60)).not.toMatch(/\b\d+(\.\d+)?%/);
-      expect(text, text.slice(0, 60)).not.toMatch(/\$\s?\d/);
-    }
+  it("qualifies the new measured examples as scenario- or filing-specific", () => {
+    const market = projects.find((project) => project.slug === "market-entry-war-room");
+    const narrative = projects.find((project) => project.slug === "narrative-vs-numbers");
+    expect(market?.recommendation).toBeNull();
+    expect(market?.brief.position).toContain("scenario-specific");
+    expect(narrative?.recommendation).toBeNull();
+    expect(narrative?.brief.position).toContain("one company and filing at a time");
   });
 });
 
 describe("approach", () => {
-  it("has exactly three steps, each with one concrete sentence", () => {
-    expect(approachSteps).toHaveLength(3);
+  it("has exactly five steps, each with one concrete sentence", () => {
+    expect(approachSteps).toHaveLength(5);
     for (const step of approachSteps) {
-      expect(step.body.trim().endsWith(".")).toBe(true);
+      expect(step.body.trim()).toMatch(/[.?!]$/);
       expect(step.body.split(". ").length).toBe(1);
       expect(step.detail.length).toBeGreaterThan(0);
     }

@@ -77,12 +77,16 @@
  * Mobile menu.
  *
  * The list is always in the markup. Without JavaScript the header stays in
- * `static` mode and renders all three links inline — the labels are short
- * enough to fit beside the wordmark down to 360px — so navigation never
- * depends on script. The client island switches the header to `interactive`
- * mode after hydration, which reveals the toggle and collapses the panel.
+ * `static` mode and renders the links on a second row, so navigation remains
+ * complete even at 320px. The client island switches the header to
+ * `interactive` mode after hydration, which reveals the toggle and collapses
+ * the panel.
  */
 @media (max-width: 640px) {
+  .inner {
+    flex-wrap: wrap;
+  }
+
   .header[data-nav-mode="interactive"] .toggle {
     display: inline-flex;
     align-items: center;
@@ -131,11 +135,19 @@
   }
 
   /*
-   * Default (server-rendered, and permanent without JavaScript): three short
-   * labels inline beside the wordmark.
+   * Default (server-rendered, and permanent without JavaScript): all links on
+   * a compact second row beneath the wordmark.
    */
+  .header:not([data-nav-mode="interactive"]) .nav {
+    flex: 1 0 100%;
+    margin-top: calc(var(--space-2) * -1);
+  }
+
   .header:not([data-nav-mode="interactive"]) .list {
-    gap: var(--space-4);
+    justify-content: space-between;
+    gap: var(--space-2);
+    width: 100%;
+    padding-bottom: var(--space-2);
   }
 
   .header:not([data-nav-mode="interactive"]) .link {

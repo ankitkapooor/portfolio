@@ -52,6 +52,8 @@ export const evidenceStatusSchema = z.enum([
   "reviewed",
 ]);
 
+export const portfolioGroupSchema = z.enum(["featured", "lab"]);
+
 export const assetSchema = z.object({
   id: nonEmpty,
   /** `svg-schematic` is drawn in code; `file` lives under public/. */
@@ -119,9 +121,14 @@ export const projectSchema = z.object({
   number: nonEmpty.regex(/^\d{2}$/, "number must be two digits"),
   title: nonEmpty,
   question: nonEmpty,
+  decisionDomain: nonEmpty,
+  portfolioGroup: portfolioGroupSchema,
   capability: nonEmpty,
   /** One sentence. Rendered directly under the case title. */
   purpose: nonEmpty,
+  whyItMatters: nonEmpty,
+  workflow: z.array(nonEmpty).min(3).max(7),
+  decisionOutput: nonEmpty,
   status: projectStatusSchema,
   evidenceStatus: evidenceStatusSchema,
   /** Homepage feature introduction. BRD requires 50-80 words. */
@@ -183,6 +190,7 @@ export type Profile = z.infer<typeof profileSchema>;
 export type Project = z.infer<typeof projectSchema>;
 export type ProjectStatus = z.infer<typeof projectStatusSchema>;
 export type EvidenceStatus = z.infer<typeof evidenceStatusSchema>;
+export type PortfolioGroup = z.infer<typeof portfolioGroupSchema>;
 
 /* ---------------------------------------------------------------------- */
 /* Presentation rules derived from content                                */
@@ -423,14 +431,16 @@ export function validateContent(bundle: ContentBundle): ValidationIssue[] {
           });
         }
       }
-      if (
-        project.evidenceStatus === "illustrative" &&
-        item.status !== "illustrative"
-      ) {
+      const evidenceRank: Record<EvidenceStatus, number> = {
+        illustrative: 0,
+        "measured-partial": 1,
+        reviewed: 2,
+      };
+      if (evidenceRank[item.status] > evidenceRank[project.evidenceStatus]) {
         issues.push({
           severity: "error",
           where: `${where}.evidence "${item.id}"`,
-          message: `project evidenceStatus is "illustrative" but this item claims "${item.status}"`,
+          message: `project evidenceStatus is "${project.evidenceStatus}" but this item claims "${item.status}"`,
         });
       }
     }

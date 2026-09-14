@@ -53,42 +53,51 @@ export function ProjectActions({
   project,
   /** The case link is redundant on the case page itself. */
   showCaseLink = true,
+  /** Featured systems lead with the live product rather than the case. */
+  primaryLaunch = false,
 }: {
   project: Project;
   showCaseLink?: boolean;
+  primaryLaunch?: boolean;
 }) {
   const launch = hasLaunchAction(project);
   const external = project.demoTarget === "external";
 
+  const launchAction = launch && project.demoUrl ? (
+    <a
+      className={!showCaseLink || primaryLaunch ? "button" : "buttonQuiet"}
+      href={project.demoUrl}
+      {...(external
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {})}
+    >
+      {project.demoLabel}
+      {external ? (
+        <span className="visuallyHidden"> (opens in a new tab)</span>
+      ) : null}
+    </a>
+  ) : null;
+
   return (
     <div className={styles.actions}>
+      {primaryLaunch ? launchAction : null}
+
       {showCaseLink ? (
-        <Link className="button" href={projectPath(project)}>
+        <Link
+          className={primaryLaunch ? "buttonQuiet" : "button"}
+          href={projectPath(project)}
+        >
           Read the case
           <span className="visuallyHidden">: {project.title}</span>
         </Link>
       ) : null}
 
-      {launch && project.demoUrl ? (
-        <>
-          <a
-            className={showCaseLink ? "buttonQuiet" : "button"}
-            href={project.demoUrl}
-            {...(external
-              ? { target: "_blank", rel: "noopener noreferrer" }
-              : {})}
-          >
-            {project.demoLabel}
-            {external ? (
-              <span className="visuallyHidden"> (opens in a new tab)</span>
-            ) : null}
-          </a>
-          {external ? (
-            <span className={styles.externalHint} aria-hidden="true">
-              Opens in a new tab
-            </span>
-          ) : null}
-        </>
+      {!primaryLaunch ? launchAction : null}
+
+      {launch && external ? (
+        <span className={styles.externalHint} aria-hidden="true">
+          Opens in a new tab
+        </span>
       ) : null}
     </div>
   );

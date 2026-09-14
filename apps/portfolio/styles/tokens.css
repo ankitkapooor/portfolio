@@ -16,10 +16,12 @@
   --rule: #d6d0c6;
   --accent: #a33b24;
 
-  /* Project accents: game / investigation / finance. */
-  --project-accent-01: #315b85;
-  --project-accent-02: #6253a3;
-  --project-accent-03: #236350;
+  /* Project accents: growth / competition / defensibility / execution / finance. */
+  --project-accent-01: #8a4b21;
+  --project-accent-02: #315b85;
+  --project-accent-03: #6253a3;
+  --project-accent-04: #245f69;
+  --project-accent-05: #236350;
 
   /*
    * --rule is 1.38:1 against paper. It is legible as a structural divider but

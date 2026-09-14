@@ -33,27 +33,25 @@ export const siteOrigin: string | null = readOrigin();
 /** Origin used for the sitemap, which requires absolute URLs. */
 export const sitemapOrigin = siteOrigin ?? "http://localhost:3000";
 
-export const siteName = "Ankit Kapoor — AI strategy";
+export const siteName = "Ankit Kapoor — AI Strategy & Decision Systems";
 
 export const siteDescription =
-  "An editorial portfolio of three investigations into how AI changes competition, customer value, and business economics.";
+  "Strategic decision systems by Ankit Kapoor: interactive work across growth, competition, defensibility, execution, and business economics.";
 
 export type NavItem = {
   label: string;
   href: string;
 };
 
-/** Primary navigation. Three items, per BRD section 4. */
+/** Primary navigation. Method is central to the portfolio thesis. */
 export const primaryNav: readonly NavItem[] = [
   { label: "Work", href: "/#work" },
+  { label: "Method", href: "/method" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/#contact" },
 ] as const;
 
-/** Method is a quiet footer link, not a competing primary item. */
-export const footerNav: readonly NavItem[] = [
-  { label: "Method", href: "/method" },
-] as const;
+export const footerNav: readonly NavItem[] = [] as const;
 
 /** Routes the sitemap should list. Project routes are appended from content. */
 export const staticRoutes = ["/", "/about", "/method"] as const;

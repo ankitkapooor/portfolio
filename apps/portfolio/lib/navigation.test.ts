@@ -26,9 +26,10 @@ const ROUTES = [
 ];
 
 describe("primary navigation", () => {
-  it("is exactly Work, About, Contact", () => {
+  it("is exactly Work, Method, About, Contact", () => {
     expect(primaryNav.map((item) => item.label)).toEqual([
       "Work",
+      "Method",
       "About",
       "Contact",
     ]);
@@ -41,9 +42,9 @@ describe("primary navigation", () => {
     );
   });
 
-  it("keeps Method as a quiet footer link, not a primary item", () => {
-    expect(primaryNav.map((item) => item.label)).not.toContain("Method");
-    expect(footerNav.map((item) => item.label)).toContain("Method");
+  it("promotes Method to the primary navigation", () => {
+    expect(primaryNav.map((item) => item.label)).toContain("Method");
+    expect(footerNav).toEqual([]);
   });
 
   it("resolves every navigation href to a real route", () => {

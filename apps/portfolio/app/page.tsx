@@ -1,8 +1,10 @@
 import { Fragment } from "react";
 import Link from "next/link";
-import { projects, projectPath } from "@/content/projects";
+import { projects } from "@/content/projects";
 import { contactPlaceholder, profile } from "@/content/profile";
-import { ProjectFeature } from "@/components/project-feature";
+import { DecisionIndex } from "@/components/decision-index";
+import { FeaturedSystem } from "@/components/featured-system";
+import { LabProjectCard } from "@/components/lab-project-card";
 import { heroHeadline } from "@/lib/hero-headline";
 import { approachSteps } from "@/content/approach";
 import styles from "./page.module.css";
@@ -13,10 +15,18 @@ const breakClass = {
   both: styles.brBoth,
 } as const;
 
+const featuredProjects = projects.filter(
+  (project) => project.portfolioGroup === "featured",
+);
+
+const labProjects = projects.filter(
+  (project) => project.portfolioGroup === "lab",
+);
+
 export default function HomePage() {
   return (
     <main id="main" className={styles.main}>
-      {/* ---- Hero and index of questions ---------------------------- */}
+      {/* ---- Hero and editorial decision index ---------------------- */}
       <section className={`container grid ${styles.hero}`} aria-labelledby="hero-heading">
         <div className={styles.heroBody}>
           <h1 id="hero-heading" className={styles.heroHeadline}>
@@ -32,15 +42,15 @@ export default function HomePage() {
           <p className={styles.heroBackground}>{profile.shortBio}</p>
 
           <p className={styles.heroIntro}>
-            I build experiments and decision tools to make strategic
-            assumptions easier to question. This portfolio follows three
-            questions: how businesses respond to AI, where their advantage
-            survives, and what the financial results need to be.
+            I use AI to structure messy problems, data to ground them, and
+            explicit models to make assumptions, trade-offs, and uncertainty
+            inspectable. The work spans growth, competition, defensibility,
+            execution, and economics.
           </p>
 
           <div className={styles.heroActions}>
             <Link className="button" href="/#work">
-              View the work
+              Explore the work
             </Link>
             <Link className={styles.heroSecondary} href="/about">
               About me
@@ -48,29 +58,10 @@ export default function HomePage() {
           </div>
         </div>
 
-        <nav className={styles.questions} aria-labelledby="questions-heading">
-          <h2 id="questions-heading" className={styles.questionsHeading}>
-            Index of questions
-          </h2>
-          <ul className={styles.questionsList}>
-            {projects.map((project) => (
-              <li key={project.slug} className={styles.questionsItem}>
-                <Link
-                  className={styles.questionsLink}
-                  href={projectPath(project)}
-                >
-                  <span className={styles.questionsNumber} aria-hidden="true">
-                    {project.number}
-                  </span>
-                  <span>{project.question}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <DecisionIndex projects={projects} />
       </section>
 
-      {/* ---- Selected work ----------------------------------------- */}
+      {/* ---- Featured systems -------------------------------------- */}
       <section
         id="work"
         className={`container ${styles.section}`}
@@ -78,22 +69,43 @@ export default function HomePage() {
       >
         <div className={styles.sectionHead}>
           <h2 id="work-heading" className={styles.sectionTitle}>
-            Selected work
+            Featured Decision Systems
           </h2>
           <p className={styles.sectionNote}>
-            Three independent projects. Each states its status plainly: all
-            three run as software you can open and use, and only one has
-            recorded a measured result.
+            Interactive systems for turning ambiguous strategic questions into
+            explicit assumptions, evidence, trade-offs, and decisions.
           </p>
         </div>
 
-        <div>
-          {projects.map((project, index) => (
-            <ProjectFeature
+        <div className={styles.featuredSystems}>
+          {featuredProjects.map((project, index) => (
+            <FeaturedSystem
               key={project.slug}
               project={project}
-              index={index}
+              priority={index === 0}
             />
+          ))}
+        </div>
+      </section>
+
+      {/* ---- Strategy Lab ------------------------------------------ */}
+      <section
+        className={`container ${styles.section}`}
+        aria-labelledby="lab-heading"
+      >
+        <div className={styles.sectionHead}>
+          <h2 id="lab-heading" className={styles.sectionTitle}>
+            The Strategy Lab
+          </h2>
+          <p className={styles.sectionNote}>
+            Focused experiments into competitive response, product
+            defensibility, and business economics.
+          </p>
+        </div>
+
+        <div className={styles.labGrid}>
+          {labProjects.map((project) => (
+            <LabProjectCard key={project.slug} project={project} />
           ))}
         </div>
       </section>
@@ -108,7 +120,8 @@ export default function HomePage() {
             How I approach a question
           </h2>
           <p className={styles.sectionNote}>
-            The same three moves, in the same order, on every project.
+            One shared discipline, adapted to five different classes of
+            strategic decision.
           </p>
         </div>
 

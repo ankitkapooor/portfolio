@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getProject, projectPath, projects } from "@/content/projects";
 import { siteOrigin } from "@/content/site";
 import { EvidenceFigure } from "@/components/evidence-figure";
+import { ProjectOverview } from "@/components/project-overview";
 import { ProjectActions, ProjectStatus } from "@/components/project-meta";
 import {
   evidenceStatusLabels,
@@ -42,7 +43,8 @@ export async function generateMetadata({
 
 /** Contents rail entries. Order matches the document order below. */
 const SECTIONS = [
-  { id: "brief", label: "30-second brief" },
+  { id: "overview", label: "System at a glance" },
+  { id: "brief", label: "Decision record" },
   { id: "context", label: "Context and decision" },
   { id: "alternatives", label: "Alternatives considered" },
   { id: "method", label: "Method and model" },
@@ -96,6 +98,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
           </Link>
 
           <p className={styles.number}>Project {project.number}</p>
+          <p className={styles.domain}>{project.decisionDomain}</p>
           <p className={styles.question}>{project.question}</p>
           <h1 className={styles.title}>{project.title}</h1>
           <p className={styles.purpose}>{project.purpose}</p>
@@ -120,7 +123,9 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
         <EvidenceFigure assetId={project.coverAsset} showSource />
       </div>
 
-      {/* ---- 30-second brief --------------------------------------- */}
+      <ProjectOverview project={project} />
+
+      {/* ---- Decision record --------------------------------------- */}
       <section
         id="brief"
         className={`container ${styles.brief}`}
@@ -128,7 +133,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
       >
         <div className={styles.briefHead}>
           <h2 id="brief-heading" className={styles.briefTitle}>
-            The 30-second brief
+            Decision record
           </h2>
           <p className={styles.briefNote}>
             Evidence: {evidenceStatusLabels[project.evidenceStatus]}

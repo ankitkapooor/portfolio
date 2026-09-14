@@ -42,9 +42,16 @@ export default function MethodPage() {
           <p className={styles.eyebrow}>Method</p>
           <h1 className={styles.title}>How I approach a question</h1>
           <p className={styles.standfirst}>
-            Three moves, in the same order, on every project — plus a plain
-            statement of what the status and evidence labels on this site are
-            allowed to mean.
+            <strong>
+              AI interprets. Data grounds. Models expose trade-offs. Humans
+              decide.
+            </strong>
+          </p>
+          <p className={styles.principleNote}>
+            This is not a rule against language models. It is a rule about
+            where judgment comes from: use models for interpretation and
+            unstructured information, without allowing generated language to
+            replace arithmetic, evidence, or accountable strategic judgment.
           </p>
         </div>
       </header>
@@ -122,11 +129,12 @@ export default function MethodPage() {
           </div>
 
           <p className={styles.labelsIntro}>
-            All three projects are currently Prototype: the software runs and
-            each one is deployed where you can reach it, so every project shows
-            a launch button. Two carry Illustrative evidence; The Moat Test
-            carries Measured, partial. No case publishes a recommendation,
-            because software that runs is not a finding.
+            All five projects are currently Prototype: the software runs and
+            each one is deployed where you can reach it. Market Entry War Room,
+            Narrative vs. Numbers, and The Moat Test carry Measured, partial
+            evidence; Disrupt This Business and Priced In remain Illustrative.
+            No case publishes a universal recommendation, because software that
+            runs is not a finding.
           </p>
         </section>
       </div>

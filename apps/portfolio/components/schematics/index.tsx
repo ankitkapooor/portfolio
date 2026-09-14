@@ -1,5 +1,7 @@
+import { MarketEntryWarRoomSchematic } from "./market-entry-war-room";
 import { DisruptThisBusinessSchematic } from "./disrupt-this-business";
 import { TheMoatTestSchematic } from "./the-moat-test";
+import { NarrativeVsNumbersSchematic } from "./narrative-vs-numbers";
 import { PricedInSchematic } from "./priced-in";
 import type { SchematicId } from "./ids";
 
@@ -11,10 +13,14 @@ import type { SchematicId } from "./ids";
  */
 export function Schematic({ id }: { id: SchematicId }) {
   switch (id) {
+    case "schematic-market-entry-war-room":
+      return <MarketEntryWarRoomSchematic />;
     case "schematic-disrupt-this-business":
       return <DisruptThisBusinessSchematic />;
     case "schematic-the-moat-test":
       return <TheMoatTestSchematic />;
+    case "schematic-narrative-vs-numbers":
+      return <NarrativeVsNumbersSchematic />;
     case "schematic-priced-in":
       return <PricedInSchematic />;
   }

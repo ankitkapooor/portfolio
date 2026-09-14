@@ -12,6 +12,22 @@ import { z } from "zod";
  */
 const raw: Asset[] = [
   {
+    id: "schematic-market-entry-war-room",
+    kind: "svg-schematic",
+    label: "Live-system schematic",
+    alt: "Faithful schematic of the Market Entry War Room after running its built-in premium fitness example. An assumptions rail shows the factor weights and a warning that competition data is unavailable. A ranked market table shows Austin, Raleigh, and Dallas at the top for this scenario, beside factor contributions and sourced Census observations for the selected market.",
+    caption:
+      "Live-system schematic — the War Room after its built-in premium-fitness example was run on 14 September 2026. The visible ranking belongs only to that scenario and those weights; it is not a universal market recommendation.",
+    dataAlternative: [
+      "The left rail shows editable assumptions for market size, affluence, growth, customer fit, competition, and cost. Competition carries an entered weight but has no data, so the system redistributes that weight and shows a warning.",
+      "The main area states that Austin–Round Rock ranks first for this premium-fitness scenario, 0.3 points ahead of Raleigh–Cary. Dallas–Fort Worth appears third. These are the actual results of the built-in example inspected on 14 September 2026, not a general recommendation.",
+      "The selected market shows an attractiveness score of 90.5 and factor contributions from customer fit, market size, affluence, and growth. Cost is scored but unweighted in this scenario.",
+      "The raw-evidence area cites US Census ACS 2024 observations and explains that growth compares the 2024 and 2019 vintages, while residential gross rent is only a proxy for operating cost.",
+    ],
+    source:
+      "Original SVG redrawn faithfully from the running Market Entry War Room deployment and its public repository on 14 September 2026. It is labelled as a schematic, preserves the inspected scenario context, and is not a manipulated dashboard screenshot.",
+  },
+  {
     id: "schematic-disrupt-this-business",
     kind: "svg-schematic",
     label: "Concept preview",
@@ -45,6 +61,22 @@ const raw: Asset[] = [
     ],
     source:
       "Original SVG drawn for this repository from The Moat Test brief (docs/02_The_Moat_Test_BRD.md, section 5). No third-party imagery.",
+  },
+  {
+    id: "schematic-narrative-vs-numbers",
+    kind: "svg-schematic",
+    label: "Live-system schematic",
+    alt: "Faithful schematic of Narrative vs. Numbers showing a management claim on the left and the financial record on the right. The example pairs a Microsoft data-center capacity statement with changes in capital expenditure, property and equipment, and capital-expenditure share of revenue, then distinguishes the claim-level alignment score from analytical confidence.",
+    caption:
+      "Live-system schematic — the public Microsoft example shown by Narrative vs. Numbers on 14 September 2026. It illustrates the separation between management language and deterministic financial evidence; it is not a recommendation about the company.",
+    dataAlternative: [
+      "The management side quotes Microsoft describing plans to expand data-center locations and server capacity to meet demand for AI services, sourced to the 10-K for the year ended 30 June 2026.",
+      "The financial side shows the live example's reported changes: capital expenditure plus 79.6 percent, property and equipment plus 52.7 percent, and capital-expenditure share of revenue plus 12.03 percentage points.",
+      "The claim-level example scores 100 because all three signals moved in the implied direction beyond the configured threshold. The live page also states that two other claims in the filing score 48.6, demonstrating that one supported claim is not the whole company judgment.",
+      "The language model is limited to extracting a label, category, source quote, and confidence. Alignment, confidence, metrics, thresholds, and contradiction checks are calculated from SEC XBRL facts by deterministic code.",
+    ],
+    source:
+      "Original SVG redrawn faithfully from the running Narrative vs. Numbers deployment, its public repository, and the cited SEC filing example on 14 September 2026. It is labelled as a schematic and does not fabricate an analysis result.",
   },
   {
     id: "schematic-priced-in",

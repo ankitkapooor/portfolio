@@ -14,15 +14,14 @@ import { profileSchema, type Profile } from "@/lib/content-validation";
 const raw: Profile = {
   name: "Ankit Kapoor",
 
-  positioning:
-    "I investigate how AI changes competition, customer value, and business economics.",
+  positioning: "I build decision systems for ambiguous strategic questions.",
 
   shortBio:
     "Ankit Kapoor. Former machine learning engineer. MBA candidate at USC Marshall.",
 
   longBio: [
-    "My background is in machine learning engineering, and I am now pursuing an MBA at USC Marshall. I am interested in the decisions around AI: where it creates value, what makes that value defensible, and how to judge whether an investment is worthwhile.",
-    "These projects are a way to investigate those questions in public, with assumptions and limitations open to inspection.",
+    "My background is in machine learning engineering, and I am now pursuing an MBA at USC Marshall. I am interested in the decisions around technology: where it creates value, what makes that value defensible, how organizations should act on it, and what would have to be true for the economics to work.",
+    "The projects here turn those questions into working systems. Some use public data, some use financial filings, and some deliberately use simplified scenarios. The common rule is that assumptions, trade-offs, and limitations should be visible enough for someone else to disagree with them precisely.",
     "Working on models taught me how quickly a capability can be reproduced, and how little that fact settles on its own. A demonstration is not a product, a product is not an advantage, and an advantage is not a return. Each of those steps needs a separate argument, and each one is where most AI cases seem to break.",
     "So the work here is deliberately unfinished in public. Each project states the question first, the method second, and the conclusion only when there is something behind it. Where a project has not produced evidence yet, it says so.",
   ],

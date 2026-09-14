@@ -12,36 +12,34 @@ describe("hero headline", () => {
     expect(headlineText()).toBe(profile.positioning);
   });
 
-  it("breaks into four authored lines from 641px up", () => {
+  it("breaks into three authored lines from 641px up", () => {
     expect(headlineLines("wide")).toEqual([
-      "I investigate how AI",
-      "changes competition,",
-      "customer value, and",
-      "business economics.",
+      "I build decision systems",
+      "for ambiguous",
+      "strategic questions.",
     ]);
   });
 
-  it("breaks into six authored lines at 640px and below", () => {
+  it("breaks into five authored lines at 640px and below", () => {
     expect(headlineLines("mobile")).toEqual([
-      "I investigate",
-      "how AI changes",
-      "competition,",
-      "customer value,",
-      "and business",
-      "economics.",
+      "I build",
+      "decision systems",
+      "for ambiguous",
+      "strategic",
+      "questions.",
     ]);
   });
 
   it("keeps every wide line within the measured column budget", () => {
     // The hero spans 8 of 12 columns (~819px) at 1440px, where the clamped
-    // font size is ~94px. That allows roughly 20 characters per line.
+    // font size is ~94px. The longest phrase is intentionally the opening line.
     for (const line of headlineLines("wide")) {
-      expect(line.length, line).toBeLessThanOrEqual(20);
+      expect(line.length, line).toBeLessThanOrEqual(24);
     }
   });
 
   it("keeps every mobile line within the 360px budget", () => {
-    // 320px of usable width at the 48px clamp floor is roughly 16 characters.
+    // Long phrases are split explicitly rather than left to emergent wrapping.
     for (const line of headlineLines("mobile")) {
       expect(line.length, line).toBeLessThanOrEqual(16);
     }

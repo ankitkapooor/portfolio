@@ -7,8 +7,10 @@
  * listed here — is a TypeScript error at build time.
  */
 export const schematicIds = [
+  "schematic-market-entry-war-room",
   "schematic-disrupt-this-business",
   "schematic-the-moat-test",
+  "schematic-narrative-vs-numbers",
   "schematic-priced-in",
 ] as const;
 
