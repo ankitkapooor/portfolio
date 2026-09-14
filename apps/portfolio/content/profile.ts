@@ -31,9 +31,20 @@ const raw: Profile = {
     { institution: "BITS Pilani Dubai", credential: "Computer science" },
   ],
 
-  // Add entries only for destinations the owner has verified, e.g.
-  // { label: "LinkedIn", href: "https://www.linkedin.com/in/<slug>" }
-  verifiedLinks: [],
+  verifiedLinks: [
+    {
+      label: "Email",
+      href: "mailto:ankit.kapoor.2028@marshall.usc.edu",
+    },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/ankitkapooor/",
+    },
+    {
+      label: "GitHub",
+      href: "https://github.com/ankitkapooor",
+    },
+  ],
 
   // Asset IDs from content/assets.ts, or null while no real file exists.
   resumeAsset: null,

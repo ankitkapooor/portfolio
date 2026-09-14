@@ -75,7 +75,17 @@ export const assetSchema = z.object({
 
 export const verifiedLinkSchema = z.object({
   label: nonEmpty,
-  href: httpsUrl,
+  href: nonEmpty.refine(
+    (value) => {
+      try {
+        const url = new URL(value);
+        return url.protocol === "https:" || url.protocol === "mailto:";
+      } catch {
+        return false;
+      }
+    },
+    { message: "must be an absolute https or mailto URL" },
+  ),
 });
 
 export const profileSchema = z.object({

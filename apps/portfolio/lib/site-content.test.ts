@@ -276,8 +276,21 @@ describe("profile honesty constraints", () => {
     ]);
   });
 
-  it("has no invented contact details, resume, portrait or location", () => {
-    expect(profile.verifiedLinks).toEqual([]);
+  it("records the owner-supplied contact details and no invented profile assets", () => {
+    expect(profile.verifiedLinks).toEqual([
+      {
+        label: "Email",
+        href: "mailto:ankit.kapoor.2028@marshall.usc.edu",
+      },
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/ankitkapooor/",
+      },
+      {
+        label: "GitHub",
+        href: "https://github.com/ankitkapooor",
+      },
+    ]);
     expect(profile.resumeAsset).toBeNull();
     expect(profile.portraitAsset).toBeNull();
     expect(profile.locationOptional).toBeNull();
@@ -293,12 +306,20 @@ describe("profile honesty constraints", () => {
 describe("text-level honesty scan", () => {
   const strings = allContentStrings();
 
-  it("contains no email address, phone number, or unverified social handle", () => {
+  it("contains no unverified email address, phone number, or social handle", () => {
     for (const text of strings) {
-      expect(text, text.slice(0, 60)).not.toMatch(
-        /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i,
-      );
-      expect(text, text.slice(0, 60)).not.toMatch(/linkedin\.com|twitter\.com|x\.com\//i);
+      const contactValue =
+        text === "mailto:ankit.kapoor.2028@marshall.usc.edu" ||
+        text === "https://www.linkedin.com/in/ankitkapooor/" ||
+        text === "https://github.com/ankitkapooor";
+      if (!contactValue) {
+        expect(text, text.slice(0, 60)).not.toMatch(
+          /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i,
+        );
+        expect(text, text.slice(0, 60)).not.toMatch(
+          /linkedin\.com|twitter\.com|x\.com\//i,
+        );
+      }
       expect(text, text.slice(0, 60)).not.toMatch(/\+\d[\d\s()-]{7,}/);
     }
   });
