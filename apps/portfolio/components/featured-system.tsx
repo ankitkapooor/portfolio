@@ -18,25 +18,26 @@ export function FeaturedSystem({
       className={`${styles.system} ${priority ? styles.priority : ""}`}
       style={{ "--page-accent": `var(${project.accentVar})` } as CSSProperties}
     >
-      <div className={styles.intro}>
-        <p className={styles.kicker}>
-          <span>System {project.number}</span>
-          <span>{project.decisionDomain}</span>
-        </p>
-        <h3 className={styles.title}>
-          <Link href={projectPath(project)}>{project.title}</Link>
-        </h3>
-        <p className={styles.question}>{project.question}</p>
-      </div>
+      <div className={styles.content}>
+        <div className={styles.intro}>
+          <p className={styles.kicker}>
+            <span>System {project.number}</span>
+            <span>{project.decisionDomain}</span>
+          </p>
+          <h3 className={styles.title}>
+            <Link href={projectPath(project)}>{project.title}</Link>
+          </h3>
+          <p className={styles.question}>{project.question}</p>
+        </div>
 
+        <div className={styles.body}>
+          <p className={styles.summary}>{project.summary}</p>
+          <ProjectStatus project={project} />
+          <ProjectActions project={project} primaryLaunch />
+        </div>
+      </div>
       <div className={styles.figure}>
         <EvidenceFigure assetId={project.coverAsset} />
-      </div>
-
-      <div className={styles.body}>
-        <p className={styles.summary}>{project.summary}</p>
-        <ProjectStatus project={project} />
-        <ProjectActions project={project} primaryLaunch />
       </div>
     </article>
   );

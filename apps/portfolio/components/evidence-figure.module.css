@@ -6,6 +6,7 @@
   position: relative;
   padding: var(--space-6) var(--space-5) var(--space-5);
   background-color: var(--surface);
+  box-shadow: 0 24px 64px -40px #000000;
   border: var(--border-width) solid var(--rule);
   border-radius: var(--radius-figure);
 }

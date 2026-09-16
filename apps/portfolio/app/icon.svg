@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <title>Index mark</title>
-  <rect width="32" height="32" fill="#F6F3ED"/>
-  <rect x="6" y="9" width="20" height="2.5" fill="#A33B24"/>
-  <rect x="6" y="15" width="20" height="2.5" fill="#1D2424"/>
-  <rect x="6" y="21" width="13" height="2.5" fill="#1D2424"/>
+  <rect width="32" height="32" fill="#021526"/>
+  <rect x="6" y="9" width="20" height="2.5" fill="#6EACDA"/>
+  <rect x="6" y="15" width="20" height="2.5" fill="#E2E2B6"/>
+  <rect x="6" y="21" width="13" height="2.5" fill="#E2E2B6"/>
 </svg>

@@ -1,9 +1,11 @@
 /*
- * Static header, 64px mobile / 80px desktop. Deliberately not sticky: a fixed
- * bar would sit over anchored headings and over the keyboard focus ring.
+ * Sticky navigation. Global scroll padding keeps anchored headings visible.
  */
 .header {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--paper);
   border-bottom: var(--border-width) solid var(--rule);
 }
 
@@ -17,8 +19,8 @@
 
 /* Plain typographic wordmark. No badge, no mark, no avatar. */
 .wordmark {
-  font-family: var(--family-serif);
-  font-size: 21px;
+  font-family: var(--family-mono);
+  font-size: 17px;
   line-height: 1;
   letter-spacing: 0.005em;
   color: var(--ink);
@@ -65,7 +67,7 @@
 
 @media (min-width: 641px) {
   .wordmark {
-    font-size: 24px;
+    font-size: 19px;
   }
 
   .list {
@@ -153,4 +155,16 @@
   .header:not([data-nav-mode="interactive"]) .link {
     font-size: var(--type-ui-sm);
   }
+}
+
+.wordmarkDot { color: var(--accent); }
+.navNumber { color: var(--muted-ink); font-family: var(--family-mono); font-size: 10px; margin-right: 8px; }
+.link { min-height: 44px; display: inline-flex; align-items: center; }
+.list li:last-child .link { border: 1px solid var(--rule); border-radius: 4px; padding-inline: 18px; }
+.list li:last-child .link::after { content: "↗"; margin-left: 18px; }
+@media (max-width: 640px) {
+ .header[data-nav-mode="interactive"] .link { display: flex; width: 100%; }
+ .header:not([data-nav-mode="interactive"]) .navNumber { display: none; }
+ .header:not([data-nav-mode="interactive"]) .list li:last-child .link { padding-inline: 8px; }
+ .header:not([data-nav-mode="interactive"]) .list li:last-child .link::after { display: none; }
 }

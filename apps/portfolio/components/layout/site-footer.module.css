@@ -11,7 +11,7 @@
 }
 
 .name {
-  font-family: var(--family-serif);
+  font-family: var(--family-mono);
   font-size: 19px;
   line-height: 1;
   color: var(--ink);

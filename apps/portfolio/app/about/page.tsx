@@ -50,10 +50,6 @@ export default function AboutPage() {
                 Prior work before the MBA.
               </li>
             </ul>
-            <p className={styles.sideNote}>
-              Employers, titles, and dates are omitted until they are supplied
-              and verified.
-            </p>
           </div>
 
           <div className={styles.sideBlock}>

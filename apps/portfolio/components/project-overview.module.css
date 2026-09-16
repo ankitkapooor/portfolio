@@ -137,3 +137,8 @@
     grid-template-columns: minmax(0, 2fr) minmax(220px, 1fr);
   }
 }
+
+.overview { border-top: 1px solid var(--rule); }
+.summaryRow dd { color: var(--muted-ink); font-size: 17px; line-height: 1.8; }
+.step { padding-block: 18px; }
+.output { border-color: var(--rule); }

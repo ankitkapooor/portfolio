@@ -37,8 +37,7 @@ export function SiteFooter() {
             ))}
           </ul>
           <p className={styles.meta}>
-            &copy; {year} {profile.name}. Built as a personal research
-            publication.
+            &copy; {year} {profile.name}. Strategy, grounded in evidence.
           </p>
         </div>
       </div>

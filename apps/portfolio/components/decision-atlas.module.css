@@ -1,0 +1,26 @@
+.atlas { min-width: 0; padding-top: 14px; }
+.topline { display: flex; justify-content: space-between; font: 10px var(--family-mono); letter-spacing: .13em; color: var(--muted-ink); }
+.drawing { margin: 10px -16px 0; }
+.drawing svg { width: 100%; overflow: visible; }
+.grid { fill: none; stroke: var(--accent); stroke-opacity: .16; stroke-width: 1; }
+.orbits { fill: none; stroke: var(--accent); stroke-opacity: .5; stroke-width: .8; transform-origin: 280px 220px; animation: arrive 1.6s ease-out both; }
+.centerText { fill: var(--ink); font: 21px var(--family-sans); text-anchor: middle; letter-spacing: -.7px; }
+.centerItalic { fill: var(--ink); font: italic 34px var(--family-serif); text-anchor: middle; }
+.node circle:first-child, .activeNode circle:first-child { fill: var(--paper); stroke: var(--accent); stroke-opacity: .6; }
+.node circle:nth-child(2) { fill: var(--accent); }
+.activeNode circle:first-child { fill: var(--ink); stroke: var(--ink); }
+.activeNode circle:nth-child(2) { fill: var(--paper); }
+.node text, .activeNode text { text-anchor: middle; fill: var(--muted-ink); font: 9px var(--family-mono); letter-spacing: 1.5px; }
+.activeNode text { fill: var(--ink); }
+.controls { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-block: 1px solid var(--rule); }
+.controls button { min-width: 0; min-height: 58px; padding: 10px 0; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--muted-ink); font: 11px var(--family-mono); cursor: pointer; transition: color var(--motion), background var(--motion); }
+.controls button span { display: block; font: 10px var(--family-sans); margin-top: 4px; }
+.controls button:hover { background: var(--surface); color: var(--ink); }
+.controls button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+.readout { padding-top: 20px; min-height: 104px; }
+.readout p { font-size: 18px; letter-spacing: -.025em; }
+.readout a { display: flex; align-items: center; justify-content: space-between; font: 11px var(--family-mono); margin-top: 12px; text-decoration: none; min-height: 28px; }
+.readout a span { font-size: 20px; }
+@keyframes arrive { from { opacity: 0; transform: rotate(-12deg) scale(.92); } to { opacity: 1; transform: rotate(0deg) scale(1); } }
+@media (prefers-reduced-motion: reduce) { .orbits { animation: none; } }
+@media (max-width: 640px) { .atlas { padding-top: 0; } .drawing { max-width: 440px; margin-inline: auto; } }

@@ -209,3 +209,13 @@
 .tableWrap {
   overflow-x: auto;
 }
+
+.header { padding-top: 72px; }
+.headerBody { grid-column: 1 / -1; }
+.eyebrow { font-family: var(--family-mono); font-weight: 400; color: var(--accent); }
+.title { margin-top: 24px; max-width: 20ch; font-size: clamp(40px, 5vw, 68px); letter-spacing: -.05em; }
+.standfirst { margin-top: 32px; }
+.step, .labels { border-top: 1px solid var(--rule); }
+.stepIndex { font-family: var(--family-mono); font-weight: 400; }
+.stepBody p { font-size: 17px; line-height: 1.85; color: var(--muted-ink); }
+@media (max-width: 767px) { .header { padding-top: 48px; } }

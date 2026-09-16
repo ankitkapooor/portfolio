@@ -57,19 +57,19 @@ const palette = {
 };
 
 describe("palette tokens match the specification", () => {
-  it("uses the exact BRD values", () => {
+  it("uses the requested navy, blue, sky, and cream palette", () => {
     expect(palette).toEqual({
-      paper: "#f6f3ed",
-      surface: "#fffefa",
-      ink: "#1d2424",
-      mutedInk: "#5e655f",
-      rule: "#d6d0c6",
-      accent: "#a33b24",
-      project01: "#8a4b21",
-      project02: "#315b85",
-      project03: "#6253a3",
-      project04: "#245f69",
-      project05: "#236350",
+      paper: "#021526",
+      surface: "#03346e",
+      ink: "#e2e2b6",
+      mutedInk: "#a9bfd0",
+      rule: "#25445d",
+      accent: "#6eacda",
+      project01: "#6eacda",
+      project02: "#e2e2b6",
+      project03: "#6eacda",
+      project04: "#e2e2b6",
+      project05: "#6eacda",
     });
   });
 });
@@ -103,12 +103,12 @@ describe("body and secondary text meet 4.5:1", () => {
 });
 
 describe("button surfaces meet 4.5:1", () => {
-  it("surface text on the ink button", () => {
-    expect(contrast(palette.surface, palette.ink)).toBeGreaterThanOrEqual(4.5);
+  it("paper text on the ink button", () => {
+    expect(contrast(palette.paper, palette.ink)).toBeGreaterThanOrEqual(4.5);
   });
 
-  it("surface text on the accent hover state", () => {
-    expect(contrast(palette.surface, palette.accent)).toBeGreaterThanOrEqual(4.5);
+  it("paper text on the accent hover state", () => {
+    expect(contrast(palette.paper, palette.accent)).toBeGreaterThanOrEqual(4.5);
   });
 });
 

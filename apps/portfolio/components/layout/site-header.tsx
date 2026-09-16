@@ -8,19 +8,9 @@ import { profile } from "@/content/profile";
 import styles from "./site-header.module.css";
 
 /**
- * Site header: typographic wordmark left, three navigation items right.
- *
- * This is the site's only client island, and it exists for one reason: the
- * mobile menu needs to close on navigation and on Escape, and to hand focus
- * back to its trigger.
- *
- * Progressive enhancement: the server renders no `data-nav-mode` attribute at
- * all, and the stylesheet's default is the static layout — all three links
- * inline at every width, which fits beside the wordmark down to 360px. The
- * effect below adds `data-nav-mode="interactive"` once, which is what reveals
- * the toggle and collapses the panel on small screens. React never owns that
- * attribute, so with JavaScript unavailable the header simply stays static and
- * fully navigable.
+ * Sticky navigation with a progressively enhanced mobile menu. Before
+ * hydration (and without JavaScript), all four links remain visible.
+ * Escape closes the menu and returns keyboard focus to its trigger.
  */
 export function SiteHeader() {
   const pathname = usePathname();
@@ -46,7 +36,8 @@ export function SiteHeader() {
     >
       <div className={`container ${styles.inner}`}>
         <Link className={styles.wordmark} href="/">
-          {profile.name}
+          {profile.name.toLowerCase().replace(" ", ".")}
+          <span className={styles.wordmarkDot}> /</span>
         </Link>
 
         <button
@@ -70,7 +61,7 @@ export function SiteHeader() {
           onClick={() => setOpen(false)}
         >
           <ul className={styles.list}>
-            {primaryNav.map((item) => {
+            {primaryNav.map((item, index) => {
               const current = item.href === pathname;
               return (
                 <li key={item.href}>
@@ -79,6 +70,9 @@ export function SiteHeader() {
                     href={item.href}
                     aria-current={current ? "page" : undefined}
                   >
+                    <span className={styles.navNumber} aria-hidden="true">
+                      0{index + 1}
+                    </span>
                     {item.label}
                   </Link>
                 </li>

@@ -1,21 +1,22 @@
 # Ankit Kapoor — AI strategy portfolio
 
-An editorial personal publication built around three independent projects:
-**Disrupt This Business**, **The Moat Test**, and **Priced In**.
+A personal portfolio built around five independent decision systems:
+**Market Entry War Room**, **Disrupt This Business**, **The Moat Test**,
+**Narrative vs. Numbers**, and **Priced In**.
 
 Next.js 16 App Router, React 19, TypeScript, plain CSS (CSS Modules plus a
 central token file). No Tailwind, no CMS, no database, no API keys. Every page
 is statically prerendered and all case content is readable with JavaScript
 disabled.
 
-The authoritative specification is `docs/04_Portfolio_Website_BRD.md` in the
-repository root. Design decisions and the reference notes are in
+The original content specification is `docs/04_Portfolio_Website_BRD.md` in the
+repository root. The September 2026 visual overhaul supersedes its original
+palette and homepage layout; see `UI_REDESIGN.md`. Design decisions and the reference notes are in
 `DESIGN_NOTES.md`. Asset licences are in `ASSET_LICENCES.md`. The
 pre-launch checklist is in `HANDOVER.md`.
 
-> **Status: not deployed.** No hosting, domain, or analytics is configured, and
-> `robots.txt` currently disallows all crawling until a real site origin is
-> set. See "Configuring the site origin".
+> The configured site origin is `https://ankitkapoor.me`. The visual overhaul
+> is a local code change; building or previewing does not publish it.
 
 ---
 
@@ -53,26 +54,28 @@ broken page.
 ```
 app/                     routes, metadata routes, generated OG images
   page.tsx               homepage
-  work/[slug]/           case-study template (one file for all three cases)
+  work/[slug]/           case-study template (one file for all five cases)
   about/  method/        biography and methodology
   not-found.tsx          404
   robots.ts  sitemap.ts  metadata routes, driven by the configured origin
   opengraph-image.tsx    site OG card (original text and graphics)
 components/
-  layout/                header (the only client island) and footer
-  schematics/            the three original SVG concept previews
-  project-feature.tsx    homepage feature, alternating 5/7 and 7/5
+  layout/                mobile navigation and footer
+  schematics/            the five original SVG system previews
+  featured-system.tsx   alternating featured project stories
+  decision-atlas.tsx     interactive homepage project explorer
+  lab-project-card.tsx   remaining three projects
   evidence-figure.tsx    figure chrome: label, caption, data alternative
   project-meta.tsx       status labels and launch actions
 content/
   profile.ts             biography, education, verified links, assets
   projects.ts            the project register
   assets.ts              asset provenance, alt text, captions
-  approach.ts            the three-step method
+  approach.ts            the five-step method
   site.ts                site origin, navigation, route list
 lib/
   content-validation.ts  zod schemas and cross-record integrity rules
-  hero-headline.ts       the authored hero line breaks
+  hero-headline.ts       shared positioning copy for the social card
 scripts/
   validate-content.ts    the runnable validator
 styles/tokens.css        every design token, in one place

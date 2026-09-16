@@ -54,10 +54,10 @@ body {
 h1,
 h2,
 h3 {
-  font-family: var(--family-serif);
-  font-weight: 400;
+  font-family: var(--family-sans);
+  font-weight: 600;
   line-height: var(--leading-heading);
-  letter-spacing: -0.005em;
+  letter-spacing: -0.04em;
   text-wrap: pretty;
 }
 
@@ -75,7 +75,7 @@ a:hover {
 
 /*
  * A single visible focus style for everything, distinct from hover.
- * --focus-ring is 5.9:1 against paper, comfortably over the 3:1 minimum.
+ * The focus ring is tested against both page and panel surfaces.
  */
 :focus-visible {
   outline: 2px solid var(--focus-ring);
@@ -224,4 +224,21 @@ hr {
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 104px; color-scheme: dark; }
+::selection { background: var(--accent); color: var(--paper); }
+main { animation: page-enter 600ms ease-out both; }
+.button, .buttonQuiet { gap: 18px; min-height: 48px; border-radius: 4px; }
+.button { color: var(--paper); }
+.button:hover { color: var(--paper); }
+.buttonQuiet { border-color: var(--accent); }
+.buttonQuiet:hover { color: var(--paper); }
+.button::after { content: "↗"; font-size: 18px; font-weight: 400; }
+.buttonQuiet::after { content: "→"; font-size: 18px; font-weight: 400; }
+.label { font-family: var(--family-mono); font-weight: 400; }
+@keyframes page-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  main { animation: none; }
 }

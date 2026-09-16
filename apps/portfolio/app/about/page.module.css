@@ -168,3 +168,15 @@
   letter-spacing: var(--tracking-label);
   color: var(--muted-ink);
 }
+
+.header { padding-top: 72px; }
+.eyebrow { font-family: var(--family-mono); font-weight: 400; color: var(--accent); }
+.title { margin-top: 28px; }
+.body { margin-top: 64px; }
+.prose p { color: var(--muted-ink); font-size: 17px; line-height: 1.85; }
+.prose p:first-child { font-size: clamp(28px, 3.1vw, 42px); line-height: 1.25; margin-bottom: 40px; }
+.side { top: 112px; }
+.sideBlock { border-color: var(--rule); }
+.workList a { font-family: var(--family-sans); font-size: 17px; letter-spacing: -.02em; }
+.workNumber { margin-bottom: 8px; font: 10px var(--family-mono); }
+@media (max-width: 767px) { .header { padding-top: 48px; } .body { margin-top: 40px; } }

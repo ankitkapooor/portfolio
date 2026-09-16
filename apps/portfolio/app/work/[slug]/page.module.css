@@ -430,3 +430,30 @@
   text-transform: uppercase;
   color: var(--muted-ink);
 }
+
+/* Case studies share the portfolio's bold type and restrained blue surfaces. */
+.header { padding-top: 64px; }
+.headerBody { grid-column: 1 / -1; }
+.backLink { font: 12px var(--family-mono); text-decoration: none; min-height: 44px; }
+.number { display: inline-block; margin-top: 24px; margin-right: 20px; font: 11px var(--family-mono); letter-spacing: .1em; text-transform: uppercase; }
+.backLink { display: block; }
+.domain { display: inline-block; font: 11px var(--family-mono); }
+.title { max-width: 18ch; margin-top: 28px; font-size: clamp(44px, 6.2vw, 86px); letter-spacing: -.055em; line-height: 1.06; }
+.question { max-width: none; color: var(--accent); margin-top: 24px; font-size: clamp(26px, 3vw, 38px); }
+.purpose { color: var(--muted-ink); max-width: 62ch; font-size: 17px; line-height: 1.8; }
+.metaBlock { max-width: 780px; gap: 20px; }
+.figureBlock { max-width: 1120px; margin-top: 64px; }
+.brief, .caseFooter { border-top: 1px solid var(--rule); }
+.rail { top: 112px; }
+.railTitle { border-color: var(--rule); font-family: var(--family-mono); font-weight: 400; }
+.railList a { color: var(--muted-ink); padding-block: 9px; font-size: 12px; }
+.sectionTitle { font-size: 32px; }
+.sectionBody p { color: var(--muted-ink); font-size: 17px; line-height: 1.85; }
+.authorship { padding: 32px; background: color-mix(in srgb, var(--surface) 30%, var(--paper)); }
+.caseFooterLink { font-family: var(--family-sans); letter-spacing: -.03em; padding-block: 24px; }
+.caseFooterMeta { margin-bottom: 12px; font: 10px var(--family-mono); letter-spacing: .1em; }
+@media (max-width: 767px) {
+ .header { padding-top: 40px; } .figureBlock { margin-top: 40px; }
+ .title { font-size: clamp(40px, 8vw, 60px); } .question { font-size: 27px; }
+ .authorship { padding: 24px; }
+}

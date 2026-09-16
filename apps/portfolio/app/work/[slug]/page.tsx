@@ -94,13 +94,13 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
       <header className={`container grid ${styles.header}`}>
         <div className={styles.headerBody}>
           <Link className={styles.backLink} href="/#work">
-            All work
+            ← All work
           </Link>
 
           <p className={styles.number}>Project {project.number}</p>
           <p className={styles.domain}>{project.decisionDomain}</p>
-          <p className={styles.question}>{project.question}</p>
           <h1 className={styles.title}>{project.title}</h1>
+          <p className={styles.question}>{project.question}</p>
           <p className={styles.purpose}>{project.purpose}</p>
 
           <div className={styles.metaBlock}>
