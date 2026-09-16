@@ -1,33 +1,33 @@
 /* =================================================================
    Disrupt This Business - composed boardroom dossier
-   Warm neutral paper, deep ink, blue for the incumbent, rust for the
+   Portfolio navy and cream, sky for the incumbent, cream for the
    challenger. Colour is never the only carrier of meaning: every chart
    series also has a distinct stroke pattern, marker and text label.
    ================================================================= */
 
 :root {
-  --paper: #f3eee4;
-  --surface: #fbf7ef;
-  --surface-sunk: #ece4d5;
-  --rule: #d7cdb9;
-  --rule-strong: #b9ad94;
+  --paper: #021526;
+  --surface: #08243b;
+  --surface-sunk: #03346e;
+  --rule: #25445d;
+  --rule-strong: #607d96;
 
-  --ink: #191712;
-  --ink-2: #4a443a;
-  --ink-3: #5f594c;
+  --ink: #e2e2b6;
+  --ink-2: #c1d0dc;
+  --ink-3: #a9bfd0;
 
-  --incumbent: #1d4e77;
-  --incumbent-soft: #dde8f1;
-  --challenger: #9c3f19;
-  --challenger-soft: #f4e2d7;
-  --outside: #5f594c;
-  --outside-soft: #e6e0d3;
+  --incumbent: #6eacda;
+  --incumbent-soft: #0c304c;
+  --challenger: #e2e2b6;
+  --challenger-soft: #263637;
+  --outside: #93aabd;
+  --outside-soft: #16374e;
 
-  --danger: #8c2b1f;
-  --danger-soft: #f7e3df;
-  --positive: #2c5b38;
+  --danger: #ffaa9c;
+  --danger-soft: #362c38;
+  --positive: #a4d4bc;
 
-  --focus: #9c3f19;
+  --focus: #6eacda;
 
   --shadow-card: 0 1px 0 var(--rule), 0 8px 20px -18px rgba(25, 23, 18, 0.5);
 
@@ -95,7 +95,7 @@ h3,
 h4 {
   margin: 0 0 0.4em;
   line-height: 1.15;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.035em;
   font-weight: 650;
 }
 
@@ -952,4 +952,50 @@ legend {
   gap: 0.4rem 0.8rem;
   align-items: baseline;
   justify-content: space-between;
+}
+
+/* Portfolio family: shared type, navigation and accessible dark controls. */
+html { color-scheme: dark; scroll-padding-top: 24px; }
+::selection { background: #6eacda; color: #021526; }
+.project-family { border-bottom: 1px solid #25445d; background: #021526; }
+.project-family-inner { max-width: 1360px; margin: auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: #a9bfd0; font: 10px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
+.project-family a { color: #e2e2b6; text-decoration: none; font-size: 13px; padding-block: 4px; }
+.project-family a:hover { color: #6eacda; }
+.project-family a span { color: #6eacda; margin-left: 8px; }
+button, input, textarea, select { accent-color: #6eacda; }
+input::placeholder, textarea::placeholder { color: #a9bfd0; opacity: 1; }
+@media (max-width: 640px) { .project-family-inner { padding-inline: 20px; } }
+
+.site-header, .site-footer { background: var(--paper); }
+.site-header__inner { padding-block: 20px; align-items: center; }
+.site-header__mark { font-size: 19px; letter-spacing: -.04em; }
+.site-nav a { text-decoration: none; min-height: 36px; display: inline-flex; align-items: center; }
+main { padding-top: 40px; }
+.hero { gap: 56px; padding-block: 24px; }
+.hero h1 { font-size: clamp(38px, 4.3vw, 64px); line-height: 1.06; letter-spacing: -.055em; max-width: 17ch; margin-block: 20px 24px; }
+.hero .lede { font-size: 17px; line-height: 1.8; }
+.hero > .card { border-top: 2px solid var(--incumbent); }
+.card { padding: 24px; box-shadow: none; border-radius: 4px; }
+.card h2 { letter-spacing: -.035em; }
+.eyebrow { color: var(--incumbent); font-size: 10px; }
+.btn { min-height: 44px; color: var(--paper); }
+.btn:hover:not(:disabled), .btn--secondary:hover:not(:disabled) { color: var(--paper); background: var(--incumbent); border-color: var(--incumbent); }
+.btn--secondary, .btn--quiet { color: var(--ink); }
+.btn--quiet:hover:not(:disabled) { color: var(--ink); background: var(--surface-sunk); }
+.action-card { color: var(--ink); min-height: 104px; padding: 16px; }
+.action-card[aria-pressed="true"] { padding: 15px; border-color: var(--incumbent); }
+.action-card__meta { color: var(--ink-3); }
+.action-card__selected { color: var(--incumbent); }
+.round-chip { min-height: 54px; }
+.round-chip[data-state="current"] { border-left-color: var(--incumbent); }
+textarea, input[type="text"], select { min-height: 44px; }
+.section { margin-top: 48px; }
+.site-footer { margin-top: 64px; padding-top: 28px; }
+@media (max-width: 640px) {
+  main { padding-top: 24px; }
+  .hero { gap: 28px; padding-block: 0; }
+  .card { padding: 18px; }
+  .site-header__inner { gap: 12px; padding-block: 16px; }
+  .site-nav { width: 100%; justify-content: space-between; gap: 12px; }
+  .hero h1 { font-size: 40px; }
 }

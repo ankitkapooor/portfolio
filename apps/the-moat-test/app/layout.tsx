@@ -1,6 +1,10 @@
+import { Manrope, Instrument_Serif } from "next/font/google";
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
+
+const sans = Manrope({ variable: "--font-ui-sans", subsets: ["latin"], display: "swap" });
+const serif = Instrument_Serif({ variable: "--font-ui-serif", subsets: ["latin"], weight: "400", style: ["normal", "italic"], display: "swap" });
 
 export const metadata: Metadata = {
   title: {
@@ -13,11 +17,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
       <body>
         <a className="skipLink" href="#main">
           Skip to content
         </a>
+        <div className="project-family">
+          <div className="project-family-inner">
+            <a href="https://ankitkapoor.me/#work">
+              ankit.kapoor <span aria-hidden="true">↗</span>
+            </a>
+            <span>03 / DEFENSIBILITY</span>
+          </div>
+        </div>
         <header className="siteHeader">
           <div className="page siteHeaderInner">
             <Link href="/" className="siteMark">

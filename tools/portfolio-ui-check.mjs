@@ -7,10 +7,10 @@ import { mkdirSync } from 'node:fs';
 const base = process.env.PORTFOLIO_URL || 'http://127.0.0.1:3100';
 const output = process.env.PORTFOLIO_SCREENSHOTS || '/tmp/portfolio-ui-review';
 const demos = {
-  'market-entry-war-room': 'https://market-entry-war-room-production.up.railway.app/ui/',
+  'market-entry-war-room': 'https://warroom.ankitkapoor.me/ui/',
   'disrupt-this-business': 'https://disrupt.ankitkapoor.me',
   'the-moat-test': 'https://moat.ankitkapoor.me',
-  'narrative-vs-numbers': 'https://narrative-vs-numbers-production.up.railway.app/',
+  'narrative-vs-numbers': 'https://narrative.ankitkapoor.me',
   'priced-in': 'https://priced.ankitkapoor.me',
 };
 const routes = ['/', '/about', '/method', ...Object.keys(demos).map(slug => `/work/${slug}`)];

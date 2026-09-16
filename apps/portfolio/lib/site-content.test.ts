@@ -86,6 +86,11 @@ describe("project registry", () => {
 });
 
 describe("project status", () => {
+  it("launches the featured apps through their assigned public domains", () => {
+    expect(getProject("market-entry-war-room")?.demoUrl).toBe("https://warroom.ankitkapoor.me/ui/");
+    expect(getProject("narrative-vs-numbers")?.demoUrl).toBe("https://narrative.ankitkapoor.me");
+  });
+
   it("ships all five projects at prototype stage, because the software runs", () => {
     for (const project of projects) {
       expect(project.status, project.slug).toBe("prototype");

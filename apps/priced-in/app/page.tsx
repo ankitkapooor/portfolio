@@ -17,7 +17,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="page stack">
+      <main className="page stack landing">
         <section>
           <p className="eyebrow">Reverse discounted cash flow</p>
           <h1>What has to be true?</h1>

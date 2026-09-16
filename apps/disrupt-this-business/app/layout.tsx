@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Manrope, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { defaultScenario } from "@/content/scenarios";
 import "./globals.css";
 
-const geistSans = Geist({
+const geistSans = Manrope({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+
+const serif = Instrument_Serif({ variable: "--font-ui-serif", subsets: ["latin"], weight: "400", style: ["normal", "italic"] });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -28,11 +30,19 @@ const portfolioUrl = process.env.NEXT_PUBLIC_PORTFOLIO_URL;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${serif.variable}`}>
       <body>
         <a className="skip-link" href="#main">
           Skip to main content
         </a>
+        <div className="project-family">
+          <div className="project-family-inner">
+            <a href="https://ankitkapoor.me/#work">
+              ankit.kapoor <span aria-hidden="true">↗</span>
+            </a>
+            <span>02 / COMPETITION</span>
+          </div>
+        </div>
         <header className="site-header">
           <div className="site-header__inner">
             <Link className="site-header__mark" href="/">

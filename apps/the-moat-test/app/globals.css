@@ -1,26 +1,26 @@
 /*
- * Investigative publication (BRD section 13): serif headlines, neutral sans body,
- * a restrained violet accent, generous reading measure, visible section numbers.
- * Local font stacks only, so the page renders identically offline.
+ * Investigative publication (BRD section 13): sans headlines, selective serif accents,
+ * the portfolio navy, cream and sky palette, generous reading measure, visible section numbers.
+ * Fonts are bundled at build time, with local fallback stacks.
  */
 
 :root {
-  --paper: #fbfaf8;
-  --panel: #ffffff;
-  --ink: #17161c;
-  --ink-soft: #3c3945;
-  --muted: #5f5c6b;
-  --rule: #e0dde6;
-  --rule-strong: #c8c4d2;
-  --violet: #5b3bd6;
-  --violet-soft: #f1edfd;
-  --violet-ink: #3c249c;
-  --amber-soft: #fdf6e7;
-  --amber-rule: #e6d3a3;
+  --paper: #021526;
+  --panel: #08243b;
+  --ink: #e2e2b6;
+  --ink-soft: #c1d0dc;
+  --muted: #a9bfd0;
+  --rule: #25445d;
+  --rule-strong: #607d96;
+  --violet: #6eacda;
+  --violet-soft: #03346e;
+  --violet-ink: #6eacda;
+  --amber-soft: #263637;
+  --amber-rule: #a3a57d;
 
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia,
+  --serif: var(--font-ui-serif), "Iowan Old Style", "Palatino Linotype", Palatino, Georgia,
     "Times New Roman", serif;
-  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+  --sans: var(--font-ui-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
     Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
@@ -62,7 +62,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-weight: 600;
   line-height: 1.18;
   letter-spacing: -0.01em;
@@ -118,14 +118,14 @@ hr {
   left: -9999px;
   top: 0;
   background: var(--violet);
-  color: #fff;
+  color: var(--paper);
   padding: 0.75rem 1rem;
   z-index: 50;
 }
 
 .skipLink:focus {
   left: 0;
-  color: #fff;
+  color: var(--paper);
 }
 
 /* ---------- site chrome ---------- */
@@ -146,7 +146,7 @@ hr {
 }
 
 .siteMark {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: var(--step-1);
   font-weight: 600;
   color: var(--ink);
@@ -215,12 +215,12 @@ main {
 .pillIllustrative {
   background: var(--amber-soft);
   border-color: var(--amber-rule);
-  color: #6b4d05;
+  color: var(--ink);
 }
 
 .pillMeasured {
   background: var(--violet-soft);
-  border-color: #cfc0f5;
+  border-color: var(--violet);
   color: var(--violet-ink);
 }
 
@@ -280,7 +280,7 @@ main {
   gap: 0.5rem;
   border: 1px solid var(--violet);
   background: var(--violet);
-  color: #fff;
+  color: var(--paper);
   border-radius: 4px;
   padding: 0.55rem 1rem;
   font-size: 0.9375rem;
@@ -292,7 +292,7 @@ main {
 .button:hover {
   background: var(--violet-ink);
   border-color: var(--violet-ink);
-  color: #fff;
+  color: var(--paper);
 }
 
 .buttonSecondary {
@@ -396,8 +396,8 @@ main {
 }
 
 .specBlock {
-  background: #16151a;
-  color: #f2f0ee;
+  background: var(--panel);
+  color: var(--ink);
   padding: 1rem 1.25rem;
   border-radius: 4px;
   overflow-x: auto;
@@ -482,7 +482,7 @@ main {
 }
 
 .homeFacts dd {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: var(--step-3);
   margin-top: 0.15rem;
 }
@@ -540,7 +540,7 @@ main {
 
 .articleQuestion {
   font-size: var(--step-2);
-  font-family: var(--serif);
+  font-family: var(--sans);
   color: var(--ink-soft);
   margin-bottom: 2rem;
 }
@@ -643,7 +643,7 @@ main {
 }
 
 .sectionStatus-complete {
-  border-color: #cfc0f5;
+  border-color: var(--violet);
   background: var(--violet-soft);
   color: var(--violet-ink);
 }
@@ -652,7 +652,7 @@ main {
 .sectionStatus-draft {
   border-color: var(--amber-rule);
   background: var(--amber-soft);
-  color: #6b4d05;
+  color: var(--ink);
 }
 
 .articleSection {
@@ -671,7 +671,7 @@ main {
 }
 
 .articleSectionNumber {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: var(--step-3);
   color: var(--violet);
   line-height: 1;
@@ -686,7 +686,7 @@ main {
 
 .articleStandfirst {
   font-size: var(--step-1);
-  font-family: var(--serif);
+  font-family: var(--sans);
   color: var(--ink-soft);
   margin-bottom: 1.25rem;
 }
@@ -762,7 +762,7 @@ main {
 }
 
 .evidenceRefBroken {
-  color: #a11;
+  color: #ffaa9c;
   font-weight: 700;
 }
 
@@ -1067,7 +1067,7 @@ main {
 
 .citationsEmpty {
   font-size: 0.75rem;
-  color: #8a5a00;
+  color: var(--ink);
 }
 
 .lineRef {
@@ -1353,14 +1353,14 @@ main {
 .inputIssues {
   list-style: none;
   margin-top: 0.9rem;
-  border: 1px solid #d99;
-  background: #fdf1f1;
+  border: 1px solid #ffaa9c;
+  background: #362c38;
   border-radius: 4px;
   padding: 0.75rem 0.9rem;
   display: grid;
   gap: 0.35rem;
   font-size: 0.875rem;
-  color: #7d1d1d;
+  color: #ffaa9c;
 }
 
 .inputWarning {
@@ -1514,4 +1514,51 @@ main {
   .articleSectionHeader {
     gap: 0.5rem;
   }
+}
+
+/* Portfolio family: shared type, navigation and accessible dark controls. */
+html { color-scheme: dark; scroll-padding-top: 24px; }
+::selection { background: #6eacda; color: #021526; }
+.project-family { border-bottom: 1px solid #25445d; background: #021526; }
+.project-family-inner { max-width: 1360px; margin: auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: #a9bfd0; font: 10px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
+.project-family a { color: #e2e2b6; text-decoration: none; font-size: 13px; padding-block: 4px; }
+.project-family a:hover { color: #6eacda; }
+.project-family a span { color: #6eacda; margin-left: 8px; }
+button, input, textarea, select { accent-color: #6eacda; }
+input::placeholder, textarea::placeholder { color: #a9bfd0; opacity: 1; }
+@media (max-width: 640px) { .project-family-inner { padding-inline: 20px; } }
+
+.siteHeader, .siteFooter { background: var(--paper); }
+.siteHeaderInner { padding-block: 20px; align-items: center; }
+.siteMark { font-family: var(--sans); font-size: 19px; letter-spacing: -.04em; }
+.siteNav a { display: inline-flex; align-items: center; min-height: 36px; }
+.home, .article, .prose { padding-top: 48px; }
+.homeTitle { font-family: var(--sans); font-size: clamp(40px, 5.4vw, 72px); line-height: 1.07; letter-spacing: -.055em; max-width: 19ch; }
+.homeStandfirst { font-size: 18px; line-height: 1.8; max-width: 58ch; margin-top: 24px; }
+.homeFeature { margin-top: 48px; padding: 32px; border: 1px solid var(--rule); background: var(--panel); border-top: 2px solid var(--violet); border-radius: 4px; }
+.homeFeatureTitle { font-size: 36px; letter-spacing: -.04em; }
+.homeFeatureSummary { line-height: 1.8; }
+.articleTitle { font-size: clamp(42px, 5.4vw, 72px); line-height: 1.08; letter-spacing: -.05em; }
+.articleQuestion { font-family: var(--serif); font-size: clamp(26px, 3vw, 36px); font-style: italic; color: var(--violet); }
+.articleKicker, .fieldLabel, .panelHeading, .pageSectionTitle, .sectionIndexHeading { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: .09em; }
+.articleParagraph { color: var(--ink-soft); line-height: 1.8; }
+.pageTitle, .labTitle { letter-spacing: -.04em; }
+.pageStandfirst { line-height: 1.8; }
+.button { background: var(--ink); border-color: var(--ink); color: var(--paper); min-height: 44px; border-radius: 4px; }
+.button:hover { background: var(--violet); border-color: var(--violet); color: var(--paper); }
+.buttonSecondary { background: transparent; color: var(--ink); border-color: var(--rule-strong); }
+.buttonSecondary:hover { background: var(--violet-soft); color: var(--ink); }
+.pill, .sectionStatus { border-radius: 3px; }
+.sampleButton[aria-pressed="true"], .lensOption:has(input:checked) { border-color: var(--violet); background: var(--violet-soft); }
+.sampleButton, .lensOption { border-radius: 4px; }
+.examplePanel, .comparisonPanel { border-radius: 4px; }
+.comparisonPanelHeader, .panelHeading { color: var(--violet); }
+.textInput, .transcriptTextarea, .reasonTextarea { border-color: var(--rule-strong); color: var(--ink); background: var(--panel); }
+.textInput { min-height: 44px; }
+@media (max-width: 640px) {
+  .home, .article, .prose { padding-top: 32px; }
+  .siteHeaderInner { padding-block: 16px; }
+  .siteNav { width: 100%; gap: 12px; justify-content: space-between; font-size: 13px; }
+  .homeFeature { padding: 20px; }
+  .homeFeatureTitle { font-size: 30px; }
 }

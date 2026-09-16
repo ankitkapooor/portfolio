@@ -202,7 +202,7 @@ const raw: Project[] = [
     humanReviewStatus:
       "No external review is claimed. This case is grounded in the public repository documentation and the running production workflow, and it preserves the limitations those sources disclose.",
 
-    demoUrl: "https://market-entry-war-room-production.up.railway.app/ui/",
+    demoUrl: "https://warroom.ankitkapoor.me/ui/",
     demoTarget: "external",
     demoLabel: "Open the War Room",
     repositoryUrl: "https://github.com/ankitkapooor/market-entry-war-room",
@@ -816,7 +816,7 @@ const raw: Project[] = [
     humanReviewStatus:
       "No external review is claimed. This case is grounded in the public repository documentation, inspected implementation, and running production workflow, with known data and extraction limitations left visible.",
 
-    demoUrl: "https://narrative-vs-numbers-production.up.railway.app/",
+    demoUrl: "https://narrative.ankitkapoor.me",
     demoTarget: "external",
     demoLabel: "Run an analysis",
     repositoryUrl: "https://github.com/ankitkapooor/narrative-vs-numbers",
