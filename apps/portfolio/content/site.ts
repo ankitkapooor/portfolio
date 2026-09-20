@@ -46,12 +46,15 @@ export type NavItem = {
 /** Primary navigation. Method is central to the portfolio thesis. */
 export const primaryNav: readonly NavItem[] = [
   { label: "Work", href: "/#work" },
+  { label: "More Projects", href: "/more-projects" },
   { label: "Method", href: "/method" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/#contact" },
 ] as const;
 
-export const footerNav: readonly NavItem[] = [] as const;
+export const footerNav: readonly NavItem[] = [
+  { label: "More Projects", href: "/more-projects" },
+] as const;
 
 /** Routes the sitemap should list. Project routes are appended from content. */
-export const staticRoutes = ["/", "/about", "/method"] as const;
+export const staticRoutes = ["/", "/about", "/method", "/more-projects"] as const;

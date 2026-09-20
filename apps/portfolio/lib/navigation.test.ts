@@ -22,13 +22,15 @@ const ROUTES = [
   "/",
   "/about",
   "/method",
+  "/more-projects",
   ...projects.map((project) => projectPath(project)),
 ];
 
 describe("primary navigation", () => {
-  it("is exactly Work, Method, About, Contact", () => {
+  it("is exactly Work, More Projects, Method, About, Contact", () => {
     expect(primaryNav.map((item) => item.label)).toEqual([
       "Work",
+      "More Projects",
       "Method",
       "About",
       "Contact",
@@ -44,7 +46,7 @@ describe("primary navigation", () => {
 
   it("promotes Method to the primary navigation", () => {
     expect(primaryNav.map((item) => item.label)).toContain("Method");
-    expect(footerNav).toEqual([]);
+    expect(footerNav.map((item) => item.label)).toEqual(["More Projects"]);
   });
 
   it("resolves every navigation href to a real route", () => {
@@ -54,10 +56,10 @@ describe("primary navigation", () => {
     }
   });
 
-  it("uses a single /work taxonomy with no /projects duplicate", () => {
+  it("uses a single /work taxonomy for case studies with no /projects duplicate", () => {
     const hrefs = [...primaryNav, ...footerNav].map((item) => item.href);
     for (const href of [...hrefs, ...ROUTES]) {
-      expect(href).not.toContain("/projects");
+      expect(href).not.toMatch(/^\/projects(\/|$)/);
     }
     for (const project of projects) {
       expect(projectPath(project).startsWith("/work/")).toBe(true);
@@ -116,6 +118,11 @@ describe("robots policy", () => {
 
 describe("static route list", () => {
   it("matches the non-project routes the app builds", () => {
-    expect([...staticRoutes]).toEqual(["/", "/about", "/method"]);
+    expect([...staticRoutes]).toEqual([
+      "/",
+      "/about",
+      "/method",
+      "/more-projects",
+    ]);
   });
 });

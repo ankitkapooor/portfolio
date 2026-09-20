@@ -19,6 +19,7 @@
 .sectionNote { color: var(--muted-ink); font-size: 12px; line-height: 1.8; max-width: 38ch; text-align: right; }
 .featuredSystems { display: grid; gap: 64px; min-width: 0; }
 .labGrid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 32px; }
+.labFoot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--rule); color: var(--muted-ink); font: 10px var(--family-mono); letter-spacing: .1em; }
 .steps { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 28px; list-style: none; }
 .step { border-top: 1px solid var(--rule); padding-top: 22px; }
 .stepIndex { color: var(--accent); font: 12px var(--family-mono); }

@@ -46,6 +46,12 @@ export default function HomePage() {
           <p className={styles.sectionNote}>Competitive moves. Product moats. Business value.<br />Three experiments to think with.</p>
         </div>
         <div className={styles.labGrid}>{labProjects.map((project) => <LabProjectCard key={project.slug} project={project} />)}</div>
+        <div className={styles.labFoot}>
+          <span>TECHNICAL SYSTEMS &amp; DOMAIN ENGINES</span>
+          <Link className={styles.textLink} href="/more-projects">
+            Explore More Projects <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
       </section>
 
       <section className={`container ${styles.section}`} aria-labelledby="approach-heading">

@@ -21,3 +21,4 @@ blob-report/
 next-env.d.ts
 .vercel
 *.tsbuildinfo
+autocode/
