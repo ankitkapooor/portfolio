@@ -91,6 +91,82 @@ export const moreProjects: readonly MoreProject[] = [
       "YouTube Data API",
     ],
   },
+  {
+    slug: "valuelens",
+    title: "ValueLens",
+    question: "What is a stock price betting on?",
+    domain: "Equity Research · Company Valuation",
+    demoUrl: "https://valuelens.ankitkapoor.me",
+    repositoryUrl: "https://github.com/ankitkapooor/smart-invest",
+    statusLabel: "Live Prototype · Open Source",
+    summary:
+      "A filing-based valuation workbench that rebuilds a company's cash flows from its SEC filings and reads today's share price three ways—the growth the price requires, what analysts expect, and what the fundamentals support.",
+    highlights: [
+      "Sourced filing extraction: Revenue, operating income, R&D, capex, cash, debt, and shares pulled from 10-K and 10-Q filings with provenance on every figure; lines a company does not report are labeled rather than estimated.",
+      "Three readings of every price: Market-implied five-year revenue growth, an analyst-consensus case net of buybacks or dilution, and a fundamental FCFF DCF with R&D capitalized as investment.",
+      "Measured value ranges: 1,000 scenarios drawn from measured forecast errors produce an 80% value range, calibrated on held-out data at 80.8% for revenue and 78.7% for margin.",
+      "Backtested, not asserted: Default rules tested point-in-time on a 155-issuer SEC archive cut five-year revenue forecast error from 40% to 30%, while return backtests showing no demonstrated edge are reported openly.",
+    ],
+    technologies: [
+      "JavaScript",
+      "Cloudflare Workers",
+      "SEC EDGAR / XBRL",
+      "FCFF DCF",
+      "Monte Carlo Simulation",
+      "OpenAI API",
+    ],
+  },
+  {
+    slug: "bill-buster",
+    title: "Bill Buster",
+    question: "Which hospital charges are worth questioning, and how do you ask?",
+    domain: "Healthcare Billing · Price Transparency",
+    demoUrl: "https://billbuster.ankitkapoor.me",
+    repositoryUrl: "https://github.com/ankitkapooor/bill-buster",
+    statusLabel: "Live Prototype · Open Source",
+    summary:
+      "Turns a coded outpatient facility bill into an evidence-backed inquiry letter and phone checklist. PDF reading, billing checks, and letter generation all run in the browser, and findings are framed as questions to ask rather than conclusions.",
+    highlights: [
+      "Deterministic billing checks: Possible duplicates, CMS outpatient MUE unit limits, and Q3 2026 hospital NCCI procedure-to-procedure edits, applied with indicator, modifier, provider, and effective-date logic.",
+      "Hospital price context: Charges compared against Keck Hospital of USC's published price file, with a field-specific reason given whenever a price cannot be matched.",
+      "Cited inquiry packet: A first-person letter and phone checklist exported as PDF, with every citation linked to its source record and a conditional reduced-bill scenario labeled as not approved.",
+      "Private by design: Bills stay on the device; optional AI drafting via a Cloudflare Worker sends only confirmed findings, and figures and citations are always inserted by code.",
+    ],
+    technologies: [
+      "JavaScript",
+      "PDF.js (unpdf)",
+      "pdf-lib",
+      "Cloudflare Workers",
+      "OpenAI Responses API",
+      "CMS NCCI & MUE Data",
+    ],
+  },
+  {
+    slug: "ideology-inventory",
+    title: "Ideology Inventory",
+    question: "Where do your political views actually sit?",
+    domain: "Political Psychology · Survey Measurement",
+    demoUrl: "https://polskew.ankitkapoor.me",
+    repositoryUrl: "https://github.com/ankitkapooor/pol-skew",
+    statusLabel: "Live Prototype · Open Source",
+    summary:
+      "A research-informed political-orientation inventory that places respondents on separate economic, social, and state-authority scales, adds short climate, trade, and populism scales, profiles six moral foundations, and checks how far to trust the answers.",
+    highlights: [
+      "Multidimensional measurement: Three 12-item core scales grounded in the political-psychology literature, plus six MFQ-2 moral foundations scored relative to the respondent's own average.",
+      "Noise controls: Every ideology statement is matched with an opposite-keyed partner so acquiescence cancels out, and \"no opinion\" widens the uncertainty band instead of pulling scores to zero.",
+      "Response-quality grading: Seven checks—attention, implausible statement, contradictory pairs, agreement tendency, response variety, reading speed, and no-opinion count—combine into a High, Moderate, or Low grade.",
+      "Honest benchmarking: Only questions copied word for word from ANES 2024 and CES 2024 are compared with weighted U.S. distributions; consented anonymous responses feed a reliability, IRT, and test–retest pipeline in R.",
+    ],
+    technologies: [
+      "TypeScript",
+      "Vite",
+      "Cloudflare Workers",
+      "Cloudflare D1",
+      "Turnstile",
+      "R (IRT / CFA)",
+      "Python",
+    ],
+  },
 ];
 
 export const githubProfile = {
