@@ -33,10 +33,10 @@ export const siteOrigin: string | null = readOrigin();
 /** Origin used for the sitemap, which requires absolute URLs. */
 export const sitemapOrigin = siteOrigin ?? "http://localhost:3000";
 
-export const siteName = "Ankit Kapoor — AI Strategy & Decision Systems";
+export const siteName = "Ankit Kapoor";
 
 export const siteDescription =
-  "Strategic decision systems by Ankit Kapoor: interactive work across growth, competition, defensibility, execution, and business economics.";
+  "Former ML team lead and MBA candidate at USC Marshall. I build working products for hard business questions, and the strategy behind them.";
 
 export type NavItem = {
   label: string;
