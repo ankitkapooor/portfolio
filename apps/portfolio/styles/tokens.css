@@ -9,19 +9,43 @@
 
 :root {
   /* ---- Palette -------------------------------------------------------- */
-  --paper: #021526;
-  --surface: #03346e;
-  --ink: #e2e2b6;
-  --muted-ink: #a9bfd0;
-  --rule: #25445d;
-  --accent: #6eacda;
+  /*
+   * Neutral canvas, one warm accent. The product screenshots and demos carry
+   * the colour; the site stays out of their way. Raw values for both themes
+   * live here so lib/design-tokens.test.ts can check every pairing.
+   */
+  --dark-paper: #0b0b0c;
+  --dark-surface: #141416;
+  --dark-raised: #1c1c1f;
+  --dark-ink: #f2f1ee;
+  --dark-muted-ink: #a3a3a8;
+  --dark-rule: #27272a;
+  --dark-accent: #ff7a45;
 
-  /* Project accents: growth / competition / defensibility / execution / finance. */
-  --project-accent-01: #6eacda;
-  --project-accent-02: #e2e2b6;
-  --project-accent-03: #6eacda;
-  --project-accent-04: #e2e2b6;
-  --project-accent-05: #6eacda;
+  --light-paper: #fafaf8;
+  --light-surface: #ffffff;
+  --light-raised: #f1f0ec;
+  --light-ink: #111111;
+  --light-muted-ink: #5c5c63;
+  --light-rule: #e4e3df;
+  --light-accent: #c2410c;
+
+  /* Active theme (dark by default; light via system or toggle, below). */
+  --paper: var(--dark-paper);
+  --surface: var(--dark-surface);
+  --raised: var(--dark-raised);
+  --ink: var(--dark-ink);
+  --muted-ink: var(--dark-muted-ink);
+  --rule: var(--dark-rule);
+  --accent: var(--dark-accent);
+  --accent-soft: color-mix(in srgb, var(--accent) 14%, transparent);
+
+  /* Kept for the case pages and OG cards: one accent across every project. */
+  --project-accent-01: var(--accent);
+  --project-accent-02: var(--accent);
+  --project-accent-03: var(--accent);
+  --project-accent-04: var(--accent);
+  --project-accent-05: var(--accent);
 
   /*
    * Rules are quiet structural dividers. Controls use the higher-contrast
@@ -42,10 +66,10 @@
     Palatino, Georgia, "Times New Roman", serif;
   --family-sans: var(--font-sans), ui-sans-serif, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --family-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
-    monospace;
+  --family-mono: var(--font-mono), ui-monospace, SFMono-Regular, "SF Mono",
+    Menlo, Consolas, monospace;
 
-  --type-hero: clamp(48px, 6.5vw, 96px);
+  --type-hero: clamp(56px, 8vw, 128px);
   --type-project-title: clamp(32px, 4.4vw, 64px);
   --type-display: clamp(30px, 3.4vw, 44px);
   --type-h2: clamp(30px, 2.6vw, 36px);
@@ -62,7 +86,7 @@
   --leading-body: 1.6;
   --leading-tight: 1.35;
 
-  --tracking-label: 0.09em;
+  --tracking-label: 0.08em;
   --tracking-hero: -0.055em;
 
   /* ---- Spacing scale -------------------------------------------------- */
@@ -91,8 +115,8 @@
   --header-height: 64px;
 
   /* ---- Surface detail ------------------------------------------------- */
-  --radius: 2px;
-  --radius-figure: 4px;
+  --radius: 6px;
+  --radius-figure: 8px;
   --border-width: 1px;
   --control-height: 44px;
 
@@ -137,4 +161,27 @@
     --motion: 0ms;
     --motion-slow: 0ms;
   }
+}
+
+/* ---- Light theme: follows the system unless the visitor picked one. ---- */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --paper: var(--light-paper);
+    --surface: var(--light-surface);
+    --raised: var(--light-raised);
+    --ink: var(--light-ink);
+    --muted-ink: var(--light-muted-ink);
+    --rule: var(--light-rule);
+    --accent: var(--light-accent);
+  }
+}
+
+:root[data-theme="light"] {
+  --paper: var(--light-paper);
+  --surface: var(--light-surface);
+  --raised: var(--light-raised);
+  --ink: var(--light-ink);
+  --muted-ink: var(--light-muted-ink);
+  --rule: var(--light-rule);
+  --accent: var(--light-accent);
 }

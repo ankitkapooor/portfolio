@@ -4,8 +4,10 @@
  * One list replaces the old Featured / Strategy Lab / More Projects tiers.
  * Each entry answers the three things a visitor scans for: what it is
  * (`tagline`), why it matters (`why`), and how to see it (`demoUrl`,
- * `repositoryUrl`, `casePath`). Screenshots live in public/work/<slug>.jpg and
- * were captured from the live demos on 23 October 2026.
+ * `repositoryUrl`, `casePath`). Each project has a screenshot poster at
+ * public/work/<slug>.jpg and a short recorded walkthrough at
+ * public/work/<slug>.webm, both captured from the live demos on 23 October
+ * 2026 (see tools/demo-recorder).
  */
 
 export const workCategories = ["Strategy", "Finance", "Healthcare", "Research"] as const;
@@ -55,7 +57,7 @@ export const work: readonly WorkItem[] = [
     category: "Healthcare",
     tagline:
       "Medical coding for orthopedic surgery. Every proposed code links back to the chart page that justifies it, and CMS rules are checked in code.",
-    why: "Autonomous coding took off first in radiology and the ER. In surgery, codes that survive an audit matter more than speed.",
+    why: "At Ascent, my team cut coding time per chart 10× by targeting surgical charts instead of radiology. OrthoCode rebuilds that bet so every code can survive an audit.",
     stack: ["Python", "FastAPI", "Next.js", "PostgreSQL", "OpenAI Structured Outputs"],
     demoUrl: "https://orthocode.ankitkapoor.me",
     repositoryUrl: "https://github.com/ankitkapooor/autocode",
@@ -138,7 +140,7 @@ export const work: readonly WorkItem[] = [
     title: "FlyCast",
     category: "Research",
     tagline:
-      "Uses the fruit-fly connectome (166,483 real neurons) as a fixed recurrent network and tests whether it can forecast time series.",
+      "Uses the fruit-fly connectome (166,691 real neurons) as a fixed recurrent network and tests whether it can forecast time series.",
     why: "Asks whether evolved wiring computes better than random wiring, using shuffled-weight controls and no data leakage.",
     stack: ["Python", "NumPy", "SciPy sparse", "scikit-learn", "Next.js"],
     demoUrl: "https://flycast.ankitkapoor.me",
@@ -160,3 +162,4 @@ export const work: readonly WorkItem[] = [
 ];
 
 export const workImage = (slug: string) => `/work/${slug}.jpg`;
+export const workVideo = (slug: string) => `/work/${slug}.webm`;

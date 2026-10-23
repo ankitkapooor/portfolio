@@ -14,11 +14,11 @@ export const dynamic = "force-static";
 
 /** Hex values matching styles/tokens.css, since ImageResponse has no CSS vars. */
 const ACCENTS: Record<string, string> = {
-  "--project-accent-01": "#6EACDA",
-  "--project-accent-02": "#E2E2B6",
-  "--project-accent-03": "#6EACDA",
-  "--project-accent-04": "#E2E2B6",
-  "--project-accent-05": "#6EACDA",
+  "--project-accent-01": "#FF7A45",
+  "--project-accent-02": "#F2F1EE",
+  "--project-accent-03": "#FF7A45",
+  "--project-accent-04": "#F2F1EE",
+  "--project-accent-05": "#FF7A45",
 };
 
 export function generateStaticParams() {
@@ -44,7 +44,7 @@ export default async function Image({
             width: "100%",
             height: "100%",
             display: "flex",
-            backgroundColor: "#021526",
+            backgroundColor: "#0B0B0C",
           }}
         />
       ),
@@ -52,7 +52,7 @@ export default async function Image({
     );
   }
 
-  const accent = ACCENTS[project.accentVar] ?? "#6EACDA";
+  const accent = ACCENTS[project.accentVar] ?? "#FF7A45";
 
   return new ImageResponse(
     (
@@ -63,8 +63,8 @@ export default async function Image({
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#021526",
-          color: "#E2E2B6",
+          backgroundColor: "#0B0B0C",
+          color: "#F2F1EE",
           padding: "64px 72px",
           borderTop: `10px solid ${accent}`,
         }}
@@ -85,7 +85,7 @@ export default async function Image({
             style={{
               display: "flex",
               fontSize: 30,
-              color: "#A9BFD0",
+              color: "#A3A3A8",
               marginTop: 24,
               maxWidth: 780,
             }}
@@ -111,11 +111,11 @@ export default async function Image({
             display: "flex",
             alignItems: "flex-end",
             justifyContent: "space-between",
-            borderTop: "1px solid #25445D",
+            borderTop: "1px solid #27272A",
             paddingTop: 24,
           }}
         >
-          <div style={{ display: "flex", fontSize: 22, color: "#A9BFD0" }}>
+          <div style={{ display: "flex", fontSize: 22, color: "#A3A3A8" }}>
             {`Status: ${statusLabels[project.status]} · Evidence: ${
               evidenceStatusLabels[project.evidenceStatus]
             }`}
@@ -125,7 +125,7 @@ export default async function Image({
               fontSize: 20,
               letterSpacing: 3,
               textTransform: "uppercase",
-              color: "#A9BFD0",
+              color: "#A3A3A8",
             }}
           >
             {profile.name}

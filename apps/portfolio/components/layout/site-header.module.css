@@ -1,11 +1,14 @@
 /*
- * Sticky navigation. Global scroll padding keeps anchored headings visible.
+ * Sticky, translucent header. Global scroll padding keeps anchored headings
+ * clear of it.
  */
 .header {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: var(--paper);
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter: saturate(1.4) blur(14px);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
   border-bottom: var(--border-width) solid var(--rule);
 }
 
@@ -17,154 +20,129 @@
   min-height: var(--header-height);
 }
 
-/* Plain typographic wordmark. No badge, no mark, no avatar. */
 .wordmark {
-  font-family: var(--family-mono);
-  font-size: 17px;
-  line-height: 1;
-  letter-spacing: 0.005em;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 44px;
   color: var(--ink);
   text-decoration: none;
-  white-space: nowrap;
 }
 
-.wordmark:hover {
-  color: var(--accent);
+.mark {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--family-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background-color var(--motion) var(--ease);
+}
+
+.wordmark:hover .mark {
+  background: var(--accent);
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .nav {
   display: flex;
   align-items: center;
+  gap: var(--space-2);
 }
 
 .list {
   display: flex;
   align-items: center;
-  gap: var(--space-5);
+  gap: var(--space-1);
   list-style: none;
 }
 
 .link {
-  display: inline-block;
-  padding: var(--space-2) 0;
-  font-size: var(--type-ui);
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 var(--space-3);
+  border-radius: 999px;
+  font-size: var(--type-ui-sm);
   font-weight: 500;
-  color: var(--ink);
+  color: var(--muted-ink);
   text-decoration: none;
+  transition:
+    color var(--motion) var(--ease),
+    background-color var(--motion) var(--ease);
 }
 
 .link:hover {
-  color: var(--accent);
+  color: var(--ink);
+  background: var(--raised);
 }
 
-.linkCurrent {
-  color: var(--accent);
+.themeToggle {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-left: var(--space-1);
+  border: var(--border-width) solid var(--rule);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    border-color var(--motion) var(--ease),
+    background-color var(--motion) var(--ease);
 }
 
-.toggle {
-  display: none;
+.themeToggle:hover {
+  border-color: var(--muted-ink);
+  background: var(--raised);
 }
 
-@media (min-width: 641px) {
-  .wordmark {
-    font-size: 19px;
-  }
-
-  .list {
-    gap: var(--space-6);
-  }
+/* Sun in light mode, moon in dark: the cut-out circle hides part of the core. */
+.moonCut {
+  fill: var(--paper);
+  transform-origin: 17px 8px;
+  transform: scale(1);
+  transition: transform 300ms var(--ease);
 }
 
-/*
- * Mobile menu.
- *
- * The list is always in the markup. Without JavaScript the header stays in
- * `static` mode and renders the links on a second row, so navigation remains
- * complete even at 320px. The client island switches the header to
- * `interactive` mode after hydration, which reveals the toggle and collapses
- * the panel.
- */
-@media (max-width: 640px) {
-  .inner {
-    flex-wrap: wrap;
-  }
+.sunRays {
+  opacity: 0;
+  transition: opacity 300ms var(--ease);
+}
 
-  .header[data-nav-mode="interactive"] .toggle {
-    display: inline-flex;
-    align-items: center;
-    min-height: var(--control-height);
-    padding: 0 var(--space-2);
-    margin-right: calc(var(--space-2) * -1);
-    background: none;
-    border: 0;
-    color: var(--ink);
-    font-family: var(--family-sans);
-    font-size: var(--type-ui);
-    font-weight: 600;
-    cursor: pointer;
-  }
+.sunCore {
+  transform-origin: 12px 12px;
+  transform: scale(1.55);
+  transition: transform 300ms var(--ease);
+}
 
-  .header[data-nav-mode="interactive"] .nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 5;
-    background-color: var(--paper);
-    border-bottom: var(--border-width) solid var(--rule);
-  }
+:global(html[data-theme="light"]) .moonCut { transform: scale(0); }
+:global(html[data-theme="light"]) .sunRays { opacity: 1; }
+:global(html[data-theme="light"]) .sunCore { transform: scale(1); }
 
-  .header[data-nav-mode="interactive"] .nav[data-open="false"] {
+@media (prefers-color-scheme: light) {
+  :global(html:not([data-theme="dark"])) .moonCut { transform: scale(0); }
+  :global(html:not([data-theme="dark"])) .sunRays { opacity: 1; }
+  :global(html:not([data-theme="dark"])) .sunCore { transform: scale(1); }
+}
+
+@media (max-width: 520px) {
+  .name {
     display: none;
   }
 
-  .header[data-nav-mode="interactive"] .list {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    width: 100%;
-    padding: var(--space-2) var(--page-margin) var(--space-4);
+  .link {
+    padding: 0 var(--space-2);
   }
-
-  .header[data-nav-mode="interactive"] .link {
-    padding: var(--space-3) 0;
-    font-size: 17px;
-    border-top: var(--border-width) solid var(--rule);
-  }
-
-  .header[data-nav-mode="interactive"] .list li:first-child .link {
-    border-top: 0;
-  }
-
-  /*
-   * Default (server-rendered, and permanent without JavaScript): all links on
-   * a compact second row beneath the wordmark.
-   */
-  .header:not([data-nav-mode="interactive"]) .nav {
-    flex: 1 0 100%;
-    margin-top: calc(var(--space-2) * -1);
-  }
-
-  .header:not([data-nav-mode="interactive"]) .list {
-    justify-content: space-between;
-    gap: var(--space-2);
-    width: 100%;
-    padding-bottom: var(--space-2);
-  }
-
-  .header:not([data-nav-mode="interactive"]) .link {
-    font-size: var(--type-ui-sm);
-  }
-}
-
-.wordmarkDot { color: var(--accent); }
-.navNumber { color: var(--muted-ink); font-family: var(--family-mono); font-size: 10px; margin-right: 8px; }
-.link { min-height: 44px; display: inline-flex; align-items: center; }
-.list li:last-child .link { border: 1px solid var(--rule); border-radius: 4px; padding-inline: 18px; }
-.list li:last-child .link::after { content: "↗"; margin-left: 18px; }
-@media (max-width: 640px) {
- .header[data-nav-mode="interactive"] .link { display: flex; width: 100%; }
- .header:not([data-nav-mode="interactive"]) .navNumber { display: none; }
- .header:not([data-nav-mode="interactive"]) .list li:last-child .link { padding-inline: 8px; }
- .header:not([data-nav-mode="interactive"]) .list li:last-child .link::after { display: none; }
 }

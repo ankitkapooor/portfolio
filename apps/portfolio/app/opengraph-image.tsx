@@ -27,8 +27,8 @@ export default function Image() {
           width: "100%",
           height: "100%",
           display: "flex",
-          backgroundColor: "#021526",
-          color: "#E2E2B6",
+          backgroundColor: "#0B0B0C",
+          color: "#F2F1EE",
           padding: "64px 72px",
         }}
       >
@@ -46,7 +46,7 @@ export default function Image() {
               style={{
                 width: 132,
                 height: 6,
-                backgroundColor: "#6EACDA",
+                backgroundColor: "#FF7A45",
                 marginBottom: 34,
               }}
             />
@@ -55,7 +55,7 @@ export default function Image() {
                 fontSize: 22,
                 letterSpacing: 4,
                 textTransform: "uppercase",
-                color: "#A9BFD0",
+                color: "#A3A3A8",
               }}
             >
               {profile.name}
@@ -74,7 +74,7 @@ export default function Image() {
             {headlineText()}
           </div>
 
-          <div style={{ display: "flex", fontSize: 24, color: "#A9BFD0" }}>
+          <div style={{ display: "flex", fontSize: 24, color: "#A3A3A8" }}>
             Former machine learning engineer · MBA candidate at USC Marshall
           </div>
         </div>
@@ -85,7 +85,7 @@ export default function Image() {
             flexDirection: "column",
             justifyContent: "flex-end",
             width: 300,
-            borderLeft: "1px solid #25445D",
+            borderLeft: "1px solid #27272A",
             paddingLeft: 40,
           }}
         >
@@ -95,7 +95,7 @@ export default function Image() {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                borderTop: "1px solid #25445D",
+                borderTop: "1px solid #27272A",
                 paddingTop: 16,
                 paddingBottom: 22,
               }}
@@ -104,7 +104,7 @@ export default function Image() {
                 style={{
                   fontSize: 18,
                   letterSpacing: 3,
-                  color: "#A9BFD0",
+                  color: "#A3A3A8",
                   marginBottom: 8,
                 }}
               >

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Manrope } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { siteDescription, siteName, siteOrigin } from "@/content/site";
@@ -21,12 +21,26 @@ const serif = Instrument_Serif({
   fallback: ["Iowan Old Style", "Palatino", "Georgia", "serif"],
 });
 
-const sans = Manrope({
+const sans = Geist({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
   fallback: ["-apple-system", "Segoe UI", "Roboto", "Helvetica Neue", "Arial"],
 });
+
+const mono = Geist_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+});
+
+/*
+ * Applies a saved theme choice before first paint, so a visitor who picked
+ * light or dark never sees the other one flash. With no saved choice the
+ * stylesheet follows prefers-color-scheme on its own.
+ */
+const themeScript = `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`;
 
 /*
  * `metadataBase` and canonical URLs stay unset until a real origin is
@@ -55,7 +69,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <a className="skipLink" href="#main">
           Skip to main content

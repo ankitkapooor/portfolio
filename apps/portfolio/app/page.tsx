@@ -1,21 +1,23 @@
+import type { CSSProperties } from "react";
 import { profile } from "@/content/profile";
-import { work, workCategories, workImage } from "@/content/work";
+import { work, workImage } from "@/content/work";
+import {
+  education,
+  experience,
+  headline,
+  highlights,
+  interests,
+  intro,
+  languages,
+  publication,
+  skills,
+} from "@/content/about";
 import { WorkGrid } from "@/components/work-grid";
 import styles from "./page.module.css";
 
 const email = profile.verifiedLinks.find((link) => link.href.startsWith("mailto:"));
 const socials = profile.verifiedLinks.filter((link) => !link.href.startsWith("mailto:"));
-const repoCount = work.filter((item) => item.repositoryUrl).length;
 const heroShots = ["market-entry-war-room", "valuelens", "orthocode-ai"];
-
-const skills = [
-  { label: "Build", items: ["Python", "TypeScript", "React / Next.js", "FastAPI", "PostgreSQL", "Cloudflare Workers"] },
-  {
-    label: "Analyze",
-    items: ["Machine learning", "LLM pipelines", "Monte Carlo simulation", "DCF valuation", "Survey measurement (IRT)"],
-  },
-  { label: "Data", items: ["Census ACS", "SEC EDGAR / XBRL", "CMS NCCI & MUE", "ANES / CES"] },
-];
 
 export default function HomePage() {
   return (
@@ -23,18 +25,20 @@ export default function HomePage() {
       {/* ---- Hero -------------------------------------------------------- */}
       <section className={`container ${styles.hero}`} aria-labelledby="hero-heading">
         <div className={styles.heroText}>
-          <p className={styles.eyebrow}>ML engineer · MBA candidate, USC Marshall</p>
+          <p className={styles.eyebrow}>
+            <span className={styles.pulse} aria-hidden="true" />
+            {headline.role}
+          </p>
           <h1 id="hero-heading" className={styles.name}>
             {profile.name}
           </h1>
           <p className={styles.pitch}>
-            I build working products for hard business questions, along with the strategy that explains why they
-            matter.
+            I build working products for hard business questions, <em>and the strategy behind them.</em>
           </p>
 
           <div className={styles.heroActions}>
             <a className={styles.ctaPrimary} href="#work">
-              See the work <span aria-hidden="true">↓</span>
+              See {work.length} live projects <span aria-hidden="true">↓</span>
             </a>
             {email ? (
               <a className={styles.ctaSecondary} href={email.href}>
@@ -49,24 +53,24 @@ export default function HomePage() {
           </div>
 
           <dl className={styles.stats}>
-            <div>
-              <dt>Live products</dt>
-              <dd>{work.length}</dd>
-            </div>
-            <div>
-              <dt>Open-source repos</dt>
-              <dd>{repoCount}</dd>
-            </div>
-            <div>
-              <dt>Domains</dt>
-              <dd>{workCategories.length}</dd>
-            </div>
+            {highlights.map((item) => (
+              <div key={item.label}>
+                <dt>{item.label}</dt>
+                <dd>{item.value}</dd>
+              </div>
+            ))}
           </dl>
+          <p className={styles.statsNote}>At Ascent Business Solutions, building AI for U.S. medical coding.</p>
         </div>
 
         <div className={styles.collage} aria-hidden="true">
           {heroShots.map((slug, index) => (
-            <span key={slug} className={styles.collageShot} style={{ ["--n" as string]: index }}>
+            <span key={slug} className={styles.collageShot} style={{ "--n": index } as CSSProperties}>
+              <span className={styles.collageBar}>
+                <i />
+                <i />
+                <i />
+              </span>
               {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized JPEGs */}
               <img src={workImage(slug)} alt="" width={1200} height={750} />
             </span>
@@ -77,71 +81,123 @@ export default function HomePage() {
       {/* ---- Work -------------------------------------------------------- */}
       <section id="work" className={`container ${styles.section}`} aria-labelledby="work-heading">
         <div className={styles.sectionHead}>
+          <p className={styles.kicker}>01 — Work</p>
           <h2 id="work-heading" className={styles.sectionTitle}>
-            Work
+            {work.length} products, all live.
           </h2>
           <p className={styles.sectionNote}>
-            Every project is live. Open the demo, read the code, or go deeper in a case study.
+            Each card is a recording of the real product. Open the demo, read the code, or go deeper in a case study.
           </p>
         </div>
         <WorkGrid />
       </section>
 
       {/* ---- About ------------------------------------------------------- */}
-      <section id="about" className={`container ${styles.section} ${styles.about}`} aria-labelledby="about-heading">
-        <h2 id="about-heading" className={styles.sectionTitle}>
-          About
-        </h2>
-        <div className={styles.aboutBody}>
-          <p className={styles.aboutLead}>
-            I started as a machine learning engineer, and I&rsquo;m now an MBA candidate at USC Marshall. I care
-            about where technology creates value, what makes that value defensible, and what has to be true for the
-            economics to work.
-          </p>
-          <p className={styles.aboutText}>
-            So instead of writing a memo, I build the answer. Each project here is a working product on real public
-            data: Census, SEC filings, CMS rules, survey benchmarks. The assumptions are out in the open so you can
-            argue with them.
-          </p>
+      <section id="about" className={`container ${styles.section}`} aria-labelledby="about-heading">
+        <div className={styles.sectionHead}>
+          <p className={styles.kicker}>02 — About</p>
+          <h2 id="about-heading" className={styles.sectionTitle}>
+            Engineer first. <em>Strategist by training.</em>
+          </h2>
+        </div>
 
-          <div className={styles.aboutGrid}>
-            <div>
-              <h3 className={styles.aboutLabel}>Education</h3>
-              <ul className={styles.education}>
-                {profile.education.map((entry) => (
-                  <li key={entry.institution}>
-                    <strong>{entry.institution}</strong>
-                    <span>{entry.credential}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {skills.map((group) => (
-              <div key={group.label}>
-                <h3 className={styles.aboutLabel}>{group.label}</h3>
-                <ul className={styles.skillList}>
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
+        <div className={styles.about}>
+          <aside className={styles.aboutSide}>
+            {intro.map((paragraph, index) => (
+              <p key={paragraph} className={index === 0 ? styles.aboutLead : styles.aboutText}>
+                {paragraph}
+              </p>
             ))}
+            <dl className={styles.facts}>
+              <div>
+                <dt>Based in</dt>
+                <dd>{headline.location}</dd>
+              </div>
+              <div>
+                <dt>Languages</dt>
+                <dd>{languages.join(", ")}</dd>
+              </div>
+              <div>
+                <dt>Off the clock</dt>
+                <dd>{interests.join(", ")}</dd>
+              </div>
+            </dl>
+          </aside>
+
+          <div className={styles.aboutMain}>
+            <h3 className={styles.blockTitle}>Experience</h3>
+            <ol className={styles.timeline}>
+              {experience.map((role) => (
+                <li key={`${role.org}-${role.title}`} className={styles.role}>
+                  <p className={styles.period}>{role.period}</p>
+                  <div>
+                    <h4 className={styles.roleTitle}>{role.title}</h4>
+                    <p className={styles.roleOrg}>
+                      {role.org} <span>· {role.place}</span>
+                    </p>
+                    {role.context ? <p className={styles.roleContext}>{role.context}</p> : null}
+                    <ul className={styles.points}>
+                      {role.points.map((point) => (
+                        <li key={point}>{point}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <h3 className={styles.blockTitle}>Education</h3>
+            <ul className={styles.timeline}>
+              {education.map((entry) => (
+                <li key={entry.school} className={styles.role}>
+                  <p className={styles.period}>{entry.period}</p>
+                  <div>
+                    <h4 className={styles.roleTitle}>{entry.degree}</h4>
+                    <p className={styles.roleOrg}>{entry.school}</p>
+                    {entry.detail ? <p className={styles.roleContext}>{entry.detail}</p> : null}
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            <h3 className={styles.blockTitle}>Publication</h3>
+            <div className={styles.publication}>
+              <p className={styles.pubTitle}>“{publication.title}”</p>
+              <p className={styles.roleOrg}>{publication.venue}</p>
+              <p className={styles.roleContext}>{publication.note}</p>
+            </div>
+
+            <h3 className={styles.blockTitle}>Skills</h3>
+            <div className={styles.skills}>
+              {skills.map((group) => (
+                <div key={group.label}>
+                  <p className={styles.skillLabel}>{group.label}</p>
+                  <ul className={styles.skillList}>
+                    {group.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ---- Contact ----------------------------------------------------- */}
       <section id="contact" className={`container ${styles.contact}`} aria-labelledby="contact-heading">
+        <p className={styles.kicker}>03 — Contact</p>
         <h2 id="contact-heading" className={styles.contactTitle}>
-          Let&rsquo;s talk.
+          Let&rsquo;s build <em>something.</em>
         </h2>
         <p className={styles.contactText}>
-          Open to strategy, product, and AI roles, and always happy to talk about any of the work above.
+          Open to conversations about strategy, product, and AI roles, and happy to walk through any project above.
         </p>
         <div className={styles.contactLinks}>
           {email ? (
             <a className={styles.contactEmail} href={email.href}>
               {email.href.replace("mailto:", "")}
+              <span aria-hidden="true"> →</span>
             </a>
           ) : null}
           {socials.map((link) => (

@@ -1,9 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type RefObject } from "react";
 import { flushSync } from "react-dom";
-import { work, workCategories, workImage, type WorkCategory, type WorkItem } from "@/content/work";
+import {
+  work,
+  workCategories,
+  workImage,
+  workVideo,
+  type WorkCategory,
+  type WorkItem,
+} from "@/content/work";
 import styles from "./work-grid.module.css";
 
 type Filter = "All" | WorkCategory;
@@ -13,9 +20,10 @@ const counts = Object.fromEntries(
 ) as Record<WorkCategory, number>;
 
 /**
- * All projects in one grid. Without JavaScript every card renders; the filter
- * chips only narrow the list once hydrated, animating with the View
- * Transitions API where the browser supports it.
+ * All projects in one grid. Without JavaScript every card renders with its
+ * screenshot; once hydrated, the filter chips narrow the list (animated with
+ * the View Transitions API where supported) and each card plays a recorded
+ * walkthrough of the live product while it is on screen.
  */
 export function WorkGrid() {
   const [filter, setFilter] = useState<Filter>("All");
@@ -57,13 +65,43 @@ export function WorkGrid() {
   );
 }
 
+/** Plays while at least half visible; pauses otherwise. Reduced motion: hover only. */
+function useAutoplayInView(ref: RefObject<HTMLVideoElement | null>) {
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (video.preload !== "auto") video.preload = "auto";
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.5 },
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, [ref]);
+}
+
 function WorkCard({ item, index }: { item: WorkItem; index: number }) {
   const host = new URL(item.demoUrl).host;
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+  useAutoplayInView(videoRef);
+  const play = () => {
+    videoRef.current?.play().catch(() => {});
+  };
 
   return (
     <li
       className={styles.card}
-      style={{ viewTransitionName: `work-${item.slug}`, "--i": index % 3 } as CSSProperties}
+      style={{ viewTransitionName: `work-${item.slug}`, "--i": index % 2 } as CSSProperties}
+      onMouseEnter={play}
+      onFocus={play}
     >
       <a
         className={styles.shot}
@@ -80,22 +118,35 @@ function WorkCard({ item, index }: { item: WorkItem; index: number }) {
             <i />
           </span>
           <span className={styles.url}>{host}</span>
+          <span className={styles.live} data-playing={playing ? "true" : undefined}>
+            <span className={styles.liveDot} />
+            {playing ? "Demo" : "Live"}
+          </span>
         </span>
         <span className={styles.frame}>
-          {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized JPEGs */}
-          <img
-            src={workImage(item.slug)}
-            alt=""
+          <video
+            ref={videoRef}
+            className={styles.video}
+            poster={workImage(item.slug)}
+            muted
+            loop
+            playsInline
+            preload="none"
             width={1200}
             height={750}
-            loading={index < 3 ? "eager" : "lazy"}
-            decoding="async"
-          />
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
+          >
+            <source src={workVideo(item.slug)} type="video/webm" />
+          </video>
         </span>
       </a>
 
       <div className={styles.body}>
-        <p className={styles.category}>{item.category}</p>
+        <div className={styles.meta}>
+          <span className={styles.number}>{String(work.indexOf(item) + 1).padStart(2, "0")}</span>
+          <span className={styles.category}>{item.category}</span>
+        </div>
         <h3 className={styles.title}>{item.title}</h3>
         <p className={styles.tagline}>{item.tagline}</p>
         <p className={styles.why}>
@@ -109,7 +160,7 @@ function WorkCard({ item, index }: { item: WorkItem; index: number }) {
         </ul>
         <div className={styles.actions}>
           <a className={styles.primary} href={item.demoUrl} target="_blank" rel="noopener noreferrer">
-            Live demo <span aria-hidden="true">↗</span>
+            Open live demo <span aria-hidden="true">↗</span>
             <span className="visuallyHidden">: {item.title} (opens in a new tab)</span>
           </a>
           {item.repositoryUrl ? (

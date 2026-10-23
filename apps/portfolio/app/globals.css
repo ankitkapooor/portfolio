@@ -47,6 +47,7 @@ body {
   font-size: var(--type-body);
   line-height: var(--leading-body);
   font-weight: 400;
+  font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -57,7 +58,7 @@ h3 {
   font-family: var(--family-sans);
   font-weight: 600;
   line-height: var(--leading-heading);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.035em;
   text-wrap: pretty;
 }
 
@@ -227,6 +228,8 @@ hr {
 }
 
 html { scroll-behavior: smooth; scroll-padding-top: 104px; color-scheme: dark; }
+@media (prefers-color-scheme: light) { html:not([data-theme="dark"]) { color-scheme: light; } }
+html[data-theme="light"] { color-scheme: light; }
 ::selection { background: var(--accent); color: var(--paper); }
 main { animation: page-enter 600ms ease-out both; }
 .button, .buttonQuiet { gap: 18px; min-height: 48px; border-radius: 4px; }
