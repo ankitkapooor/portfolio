@@ -32,16 +32,6 @@ export type Role = {
 
 export const experience: readonly Role[] = [
   {
-    period: "2026 — Present",
-    title: "AVP of Technology",
-    org: "Marshall Graduate Student Association",
-    place: "USC Marshall",
-    points: [
-      "Leading initiatives to raise AI and technology literacy across the MBA cohort.",
-      "Working with Marshall administration to improve the student experience.",
-    ],
-  },
-  {
     period: "Mar 2023 — Jul 2026",
     title: "Machine Learning Engineer → Team Lead",
     org: "Ascent Business Solutions",
@@ -83,8 +73,10 @@ export const education = [
 
 export const publication = {
   title: "Implementing Natural Language Generation Through Industry-Specific Chatbots",
-  venue: "SCRS, 2023",
-  note: "Co-author. Built a GPT-2 medical-query chatbot trained on about 45,000 conversational exchanges.",
+  authors: "Ankit Kapoor, Sujala Shetty",
+  venue: "Soft Computing Research Society (SCRS), 2023",
+  note: "Built a GPT-2 medical-query chatbot trained on about 45,000 conversational exchanges to show how text generation fixes the rigidity of template chatbots.",
+  url: "https://publications.scrs.in/uploads/final_menuscript/ffd0acb2d2310fccd6ef0d02ff945938.pdf",
 };
 
 export const skills = [

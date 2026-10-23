@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { footerNav } from "@/content/site";
 import { profile } from "@/content/profile";
+import { Signature } from "@/components/signature";
 import styles from "./site-footer.module.css";
 
 /**
@@ -15,7 +16,9 @@ export function SiteFooter() {
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
         <div>
-          <p className={styles.name}>{profile.name}</p>
+          <Link href="/" className={styles.sigLink} aria-label={`${profile.name}, home`}>
+            <Signature className={styles.sig} label="" />
+          </Link>
           {profile.locationOptional ? (
             <p className={styles.meta}>{profile.locationOptional}</p>
           ) : null}
@@ -37,7 +40,7 @@ export function SiteFooter() {
             ))}
           </ul>
           <p className={styles.meta}>
-            &copy; {year} {profile.name}. Strategy, grounded in evidence.
+            &copy; {year} {profile.name}. Built and signed by hand.
           </p>
         </div>
       </div>

@@ -47,18 +47,19 @@ body {
   font-size: var(--type-body);
   line-height: var(--leading-body);
   font-weight: 400;
-  font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 h1,
 h2,
-h3 {
-  font-family: var(--family-sans);
+h3,
+h4 {
+  font-family: var(--family-display);
   font-weight: 600;
+  font-optical-sizing: auto;
   line-height: var(--leading-heading);
-  letter-spacing: -0.035em;
+  letter-spacing: -0.025em;
   text-wrap: pretty;
 }
 

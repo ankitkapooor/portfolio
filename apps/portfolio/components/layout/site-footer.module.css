@@ -10,11 +10,18 @@
   gap: var(--space-4);
 }
 
-.name {
-  font-family: var(--family-mono);
-  font-size: 19px;
-  line-height: 1;
+.sigLink {
+  display: inline-block;
   color: var(--ink);
+  transition: color var(--motion) var(--ease);
+}
+
+.sigLink:hover {
+  color: var(--accent);
+}
+
+.sig {
+  width: 132px;
 }
 
 .links {

@@ -189,6 +189,7 @@ describe("layout and type tokens match the specification", () => {
     expect(token("family-serif")).toContain("serif");
     expect(token("family-serif")).toContain("Georgia");
     expect(token("family-sans")).toContain("sans-serif");
+    expect(token("family-display")).toContain("sans-serif");
     expect(token("family-mono")).toContain("monospace");
   });
 });

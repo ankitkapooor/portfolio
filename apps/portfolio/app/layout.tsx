@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Bricolage_Grotesque, Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { siteDescription, siteName, siteOrigin } from "@/content/site";
@@ -21,14 +21,29 @@ const serif = Instrument_Serif({
   fallback: ["Iowan Old Style", "Palatino", "Georgia", "serif"],
 });
 
-const sans = Geist({
+/*
+ * Bricolage Grotesque carries the display type: its optical-size axis turns
+ * the large headings tight and characterful while staying legible small.
+ * Instrument Sans is the reading face and pairs with Instrument Serif, which
+ * supplies the italic accents. JetBrains Mono handles labels and data.
+ */
+const display = Bricolage_Grotesque({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-sans",
+  variable: "--font-display",
+  axes: ["opsz", "wdth"],
   fallback: ["-apple-system", "Segoe UI", "Roboto", "Helvetica Neue", "Arial"],
 });
 
-const mono = Geist_Mono({
+const sans = Instrument_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+  axes: ["wdth"],
+  fallback: ["-apple-system", "Segoe UI", "Roboto", "Helvetica Neue", "Arial"],
+});
+
+const mono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-mono",
@@ -69,7 +84,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${serif.variable} ${display.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

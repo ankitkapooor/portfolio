@@ -1,0 +1,48 @@
+.signature {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/*
+ * Each stroke is normalised to pathLength 1, so a dash of 1 hidden by an
+ * offset of 1 is "not yet written". Strokes start in left-to-right order.
+ */
+@keyframes sig-write {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .signature[data-draw="load"] path,
+  .signature[data-draw="view"] path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+
+  .signature[data-draw="load"] path {
+    animation: sig-write var(--dur) cubic-bezier(0.4, 0, 0.6, 1) calc(var(--sig-delay, 0s) + var(--start)) forwards;
+  }
+
+  /* Drawn as the signature scrolls into view; no JavaScript involved. */
+  @supports (animation-timeline: view()) {
+    .signature[data-draw="view"] {
+      view-timeline-name: --sig;
+    }
+
+    .signature[data-draw="view"] path {
+      animation: sig-write linear both;
+      animation-timeline: --sig;
+      animation-range: cover calc(10% + var(--p0) * 35%) cover calc(10% + var(--p1) * 35%);
+    }
+  }
+
+  /* Browsers without scroll timelines draw it once on load instead. */
+  @supports not (animation-timeline: view()) {
+    .signature[data-draw="view"] path {
+      animation: sig-write var(--dur) cubic-bezier(0.4, 0, 0.6, 1) calc(var(--sig-delay, 0s) + var(--start)) forwards;
+    }
+  }
+}

@@ -203,7 +203,7 @@
   margin-top: var(--space-3);
   font-size: clamp(26px, 2.4vw, 34px);
   line-height: 1.1;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
 }
 
 .tagline {

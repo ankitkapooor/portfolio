@@ -88,8 +88,31 @@
   margin-top: var(--space-6);
   font-size: var(--type-hero);
   font-weight: 600;
-  line-height: 0.92;
-  letter-spacing: -0.065em;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  font-stretch: 88%;
+}
+
+.nameLine {
+  position: relative;
+  display: block;
+  width: fit-content;
+}
+
+/*
+ * The signature signs in the open space after the first name, sized in em so
+ * it scales with the heading at every breakpoint.
+ */
+.heroSig {
+  position: absolute;
+  left: calc(100% + 0.18em);
+  bottom: 0.02em;
+  width: 2.3em;
+  color: var(--accent);
+  transform: rotate(-4deg);
+  transform-origin: 0 100%;
+  pointer-events: none;
+  filter: drop-shadow(0 6px 18px color-mix(in srgb, var(--accent) 30%, transparent));
 }
 
 .pitch {
@@ -193,7 +216,8 @@
   font-size: clamp(32px, 3.2vw, 48px);
   font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.035em;
+  font-family: var(--family-display);
   font-variant-numeric: tabular-nums;
 }
 
@@ -300,7 +324,8 @@
   margin-top: var(--space-4);
   font-size: clamp(40px, 5.4vw, 80px);
   line-height: 0.98;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.04em;
+  font-stretch: 94%;
   text-wrap: balance;
 }
 
@@ -468,6 +493,37 @@
   background: var(--surface);
 }
 
+.pubLink {
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color var(--motion) var(--ease);
+}
+
+.pubLink:hover {
+  border-color: var(--accent);
+}
+
+.pubLink:hover {
+  color: var(--accent);
+}
+
+.pubLink:hover .pubTitle {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.pubCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-4);
+  font-size: var(--type-ui-sm);
+  font-weight: 600;
+  color: var(--accent);
+}
+
 .pubTitle {
   font-family: var(--family-serif);
   font-size: clamp(20px, 1.8vw, 24px);
@@ -518,7 +574,8 @@
   margin-top: var(--space-4);
   font-size: clamp(56px, 9vw, 150px);
   line-height: 0.9;
-  letter-spacing: -0.065em;
+  letter-spacing: -0.045em;
+  font-stretch: 88%;
 }
 
 .contactText {
@@ -526,6 +583,36 @@
   max-width: 50ch;
   font-size: clamp(17px, 1.4vw, 20px);
   color: var(--muted-ink);
+}
+
+.contactInner {
+  display: grid;
+  gap: var(--space-8);
+  align-items: end;
+}
+
+@media (min-width: 1024px) {
+  .contactInner {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  }
+}
+
+.signOff {
+  justify-self: end;
+  width: min(100%, 460px);
+}
+
+.signOffLabel {
+  margin-bottom: var(--space-3);
+  font-family: var(--family-mono);
+  font-size: 11px;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--muted-ink);
+}
+
+.signOffSig {
+  color: var(--ink);
 }
 
 .contactLinks {
@@ -539,6 +626,7 @@
 .contactEmail {
   display: inline-flex;
   align-items: center;
+  gap: 0.4em;
   min-height: 56px;
   padding: 0 var(--space-6);
   border-radius: 999px;

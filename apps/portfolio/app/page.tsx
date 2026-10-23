@@ -13,11 +13,14 @@ import {
   skills,
 } from "@/content/about";
 import { WorkGrid } from "@/components/work-grid";
+import { Signature } from "@/components/signature";
 import styles from "./page.module.css";
 
 const email = profile.verifiedLinks.find((link) => link.href.startsWith("mailto:"));
 const socials = profile.verifiedLinks.filter((link) => !link.href.startsWith("mailto:"));
 const heroShots = ["market-entry-war-room", "valuelens", "orthocode-ai"];
+const [firstName, ...rest] = profile.name.split(" ");
+const lastName = rest.join(" ");
 
 export default function HomePage() {
   return (
@@ -30,7 +33,11 @@ export default function HomePage() {
             {headline.role}
           </p>
           <h1 id="hero-heading" className={styles.name}>
-            {profile.name}
+            <span className={styles.nameLine}>
+              {firstName}
+              <Signature className={styles.heroSig} draw="load" delay={0.9} label="" />
+            </span>{" "}
+            <span className={styles.nameLine}>{lastName}</span>
           </h1>
           <p className={styles.pitch}>
             I build working products for hard business questions, <em>and the strategy behind them.</em>
@@ -161,11 +168,17 @@ export default function HomePage() {
             </ul>
 
             <h3 className={styles.blockTitle}>Publication</h3>
-            <div className={styles.publication}>
+            <a className={`${styles.publication} ${styles.pubLink}`} href={publication.url} target="_blank" rel="noopener noreferrer">
               <p className={styles.pubTitle}>“{publication.title}”</p>
-              <p className={styles.roleOrg}>{publication.venue}</p>
+              <p className={styles.roleOrg}>
+                {publication.authors} <span>· {publication.venue}</span>
+              </p>
               <p className={styles.roleContext}>{publication.note}</p>
-            </div>
+              <span className={styles.pubCta}>
+                Read the paper (PDF) <span aria-hidden="true">↗</span>
+                <span className="visuallyHidden"> (opens in a new tab)</span>
+              </span>
+            </a>
 
             <h3 className={styles.blockTitle}>Skills</h3>
             <div className={styles.skills}>
@@ -187,24 +200,32 @@ export default function HomePage() {
       {/* ---- Contact ----------------------------------------------------- */}
       <section id="contact" className={`container ${styles.contact}`} aria-labelledby="contact-heading">
         <p className={styles.kicker}>03 — Contact</p>
-        <h2 id="contact-heading" className={styles.contactTitle}>
-          Let&rsquo;s build <em>something.</em>
-        </h2>
-        <p className={styles.contactText}>
-          Open to conversations about strategy, product, and AI roles, and happy to walk through any project above.
-        </p>
-        <div className={styles.contactLinks}>
-          {email ? (
-            <a className={styles.contactEmail} href={email.href}>
-              {email.href.replace("mailto:", "")}
-              <span aria-hidden="true"> →</span>
-            </a>
-          ) : null}
-          {socials.map((link) => (
-            <a key={link.href} className={styles.ctaLink} href={link.href} rel="me noopener" target="_blank">
-              {link.label} <span aria-hidden="true">↗</span>
-            </a>
-          ))}
+        <div className={styles.contactInner}>
+          <div>
+            <h2 id="contact-heading" className={styles.contactTitle}>
+              Let&rsquo;s build <em>something.</em>
+            </h2>
+            <p className={styles.contactText}>
+              Open to conversations about strategy, product, and AI roles, and happy to walk through any project above.
+            </p>
+            <div className={styles.contactLinks}>
+              {email ? (
+                <a className={styles.contactEmail} href={email.href}>
+                  {email.href.replace("mailto:", "")}
+                  <span aria-hidden="true">→</span>
+                </a>
+              ) : null}
+              {socials.map((link) => (
+                <a key={link.href} className={styles.ctaLink} href={link.href} rel="me noopener" target="_blank">
+                  {link.label} <span aria-hidden="true">↗</span>
+                </a>
+              ))}
+            </div>
+          </div>
+          <div className={styles.signOff}>
+            <p className={styles.signOffLabel}>Thanks for scrolling this far —</p>
+            <Signature className={styles.signOffSig} draw="view" />
+          </div>
         </div>
       </section>
     </main>
