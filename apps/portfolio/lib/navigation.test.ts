@@ -20,21 +20,13 @@ import robots from "@/app/robots";
 /** Every route the app renders. */
 const ROUTES = [
   "/",
-  "/about",
   "/method",
-  "/more-projects",
   ...projects.map((project) => projectPath(project)),
 ];
 
 describe("primary navigation", () => {
-  it("is exactly Work, More Projects, Method, About, Contact", () => {
-    expect(primaryNav.map((item) => item.label)).toEqual([
-      "Work",
-      "More Projects",
-      "Method",
-      "About",
-      "Contact",
-    ]);
+  it("is exactly Work, About, Contact", () => {
+    expect(primaryNav.map((item) => item.label)).toEqual(["Work", "About", "Contact"]);
   });
 
   it("points Work and Contact at home anchors that work from any route", () => {
@@ -44,9 +36,9 @@ describe("primary navigation", () => {
     );
   });
 
-  it("promotes Method to the primary navigation", () => {
-    expect(primaryNav.map((item) => item.label)).toContain("Method");
-    expect(footerNav.map((item) => item.label)).toEqual(["More Projects"]);
+  it("keeps Method as a quiet footer link", () => {
+    expect(primaryNav.map((item) => item.label)).not.toContain("Method");
+    expect(footerNav.map((item) => item.label)).toEqual(["Method"]);
   });
 
   it("resolves every navigation href to a real route", () => {
@@ -100,7 +92,7 @@ describe("sitemap", () => {
     );
     expect(byPath.get("/")).toBe(1);
     expect(byPath.get("/work/priced-in")).toBe(0.8);
-    expect(byPath.get("/about")).toBe(0.6);
+    expect(byPath.get("/method")).toBe(0.6);
   });
 });
 
@@ -118,11 +110,6 @@ describe("robots policy", () => {
 
 describe("static route list", () => {
   it("matches the non-project routes the app builds", () => {
-    expect([...staticRoutes]).toEqual([
-      "/",
-      "/about",
-      "/method",
-      "/more-projects",
-    ]);
+    expect([...staticRoutes]).toEqual(["/", "/method"]);
   });
 });

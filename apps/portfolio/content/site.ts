@@ -43,18 +43,16 @@ export type NavItem = {
   href: string;
 };
 
-/** Primary navigation. Method is central to the portfolio thesis. */
+/** Primary navigation: three anchors on the homepage, reachable from any route. */
 export const primaryNav: readonly NavItem[] = [
   { label: "Work", href: "/#work" },
-  { label: "More Projects", href: "/more-projects" },
-  { label: "Method", href: "/method" },
-  { label: "About", href: "/about" },
+  { label: "About", href: "/#about" },
   { label: "Contact", href: "/#contact" },
 ] as const;
 
 export const footerNav: readonly NavItem[] = [
-  { label: "More Projects", href: "/more-projects" },
+  { label: "Method", href: "/method" },
 ] as const;
 
 /** Routes the sitemap should list. Project routes are appended from content. */
-export const staticRoutes = ["/", "/about", "/method", "/more-projects"] as const;
+export const staticRoutes = ["/", "/method"] as const;

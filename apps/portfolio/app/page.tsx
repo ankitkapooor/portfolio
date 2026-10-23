@@ -1,78 +1,155 @@
-import Link from "next/link";
-import { projects } from "@/content/projects";
-import { contactPlaceholder, profile } from "@/content/profile";
-import { DecisionAtlas } from "@/components/decision-atlas";
-import { FeaturedSystem } from "@/components/featured-system";
-import { LabProjectCard } from "@/components/lab-project-card";
-import { approachSteps } from "@/content/approach";
+import { profile } from "@/content/profile";
+import { work, workCategories, workImage } from "@/content/work";
+import { WorkGrid } from "@/components/work-grid";
 import styles from "./page.module.css";
 
-const featuredProjects = projects.filter((project) => project.portfolioGroup === "featured");
-const labProjects = projects.filter((project) => project.portfolioGroup === "lab");
+const email = profile.verifiedLinks.find((link) => link.href.startsWith("mailto:"));
+const socials = profile.verifiedLinks.filter((link) => !link.href.startsWith("mailto:"));
+const repoCount = work.filter((item) => item.repositoryUrl).length;
+const heroShots = ["market-entry-war-room", "valuelens", "orthocode-ai"];
+
+const skills = [
+  { label: "Build", items: ["Python", "TypeScript", "React / Next.js", "FastAPI", "PostgreSQL", "Cloudflare Workers"] },
+  {
+    label: "Analyze",
+    items: ["Machine learning", "LLM pipelines", "Monte Carlo simulation", "DCF valuation", "Survey measurement (IRT)"],
+  },
+  { label: "Data", items: ["Census ACS", "SEC EDGAR / XBRL", "CMS NCCI & MUE", "ANES / CES"] },
+];
 
 export default function HomePage() {
   return (
     <main id="main" className={styles.main}>
+      {/* ---- Hero -------------------------------------------------------- */}
       <section className={`container ${styles.hero}`} aria-labelledby="hero-heading">
-        <div className={styles.heroBody}>
-          <p className={styles.eyebrow}><span className={styles.dot} /> ENGINEERING × STRATEGY</p>
-          <h1 id="hero-heading" className={styles.heroHeadline}>
-            I build decision<br />systems for<br /><span>ambiguous<br />strategic questions.</span>
+        <div className={styles.heroText}>
+          <p className={styles.eyebrow}>ML engineer · MBA candidate, USC Marshall</p>
+          <h1 id="hero-heading" className={styles.name}>
+            {profile.name}
           </h1>
-          <p className={styles.heroBackground}>Former machine learning engineer.<br />MBA candidate at USC Marshall.</p>
-          <p className={styles.heroIntro}>I turn messy questions about technology and business into working models. Assumptions you can challenge. Evidence you can inspect. Decisions you can explain.</p>
+          <p className={styles.pitch}>
+            I build working products for hard business questions, along with the strategy that explains why they
+            matter.
+          </p>
+
           <div className={styles.heroActions}>
-            <Link className="button" href="/#work">Explore the work</Link>
-            <Link className={styles.heroSecondary} href="/about">A little about me <span aria-hidden="true">↗</span></Link>
+            <a className={styles.ctaPrimary} href="#work">
+              See the work <span aria-hidden="true">↓</span>
+            </a>
+            {email ? (
+              <a className={styles.ctaSecondary} href={email.href}>
+                Get in touch
+              </a>
+            ) : null}
+            {socials.map((link) => (
+              <a key={link.href} className={styles.ctaLink} href={link.href} rel="me noopener" target="_blank">
+                {link.label} <span aria-hidden="true">↗</span>
+              </a>
+            ))}
           </div>
+
+          <dl className={styles.stats}>
+            <div>
+              <dt>Live products</dt>
+              <dd>{work.length}</dd>
+            </div>
+            <div>
+              <dt>Open-source repos</dt>
+              <dd>{repoCount}</dd>
+            </div>
+            <div>
+              <dt>Domains</dt>
+              <dd>{workCategories.length}</dd>
+            </div>
+          </dl>
         </div>
-        <DecisionAtlas projects={projects.map(({slug, number, title, question, decisionDomain}) => ({slug, number, title, question, decisionDomain}))} />
-        <div className={styles.heroFoot}><span>FIVE QUESTIONS. FIVE WORKING SYSTEMS.</span><a href="#work">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a></div>
+
+        <div className={styles.collage} aria-hidden="true">
+          {heroShots.map((slug, index) => (
+            <span key={slug} className={styles.collageShot} style={{ ["--n" as string]: index }}>
+              {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized JPEGs */}
+              <img src={workImage(slug)} alt="" width={1200} height={750} />
+            </span>
+          ))}
+        </div>
       </section>
 
+      {/* ---- Work -------------------------------------------------------- */}
       <section id="work" className={`container ${styles.section}`} aria-labelledby="work-heading">
         <div className={styles.sectionHead}>
-          <div><p className={styles.eyebrow}>01 / SELECTED WORK</p><h2 id="work-heading" className={styles.sectionTitle}>Strategy you can <em>interact with.</em></h2></div>
-          <p className={styles.sectionNote}>Two deeper investigations.<br />From an open question to an inspectable decision.</p>
+          <h2 id="work-heading" className={styles.sectionTitle}>
+            Work
+          </h2>
+          <p className={styles.sectionNote}>
+            Every project is live. Open the demo, read the code, or go deeper in a case study.
+          </p>
         </div>
-        <div className={styles.featuredSystems}>
-          {featuredProjects.map((project, index) => <FeaturedSystem key={project.slug} project={project} priority={index === 0} />)}
+        <WorkGrid />
+      </section>
+
+      {/* ---- About ------------------------------------------------------- */}
+      <section id="about" className={`container ${styles.section} ${styles.about}`} aria-labelledby="about-heading">
+        <h2 id="about-heading" className={styles.sectionTitle}>
+          About
+        </h2>
+        <div className={styles.aboutBody}>
+          <p className={styles.aboutLead}>
+            I started as a machine learning engineer, and I&rsquo;m now an MBA candidate at USC Marshall. I care
+            about where technology creates value, what makes that value defensible, and what has to be true for the
+            economics to work.
+          </p>
+          <p className={styles.aboutText}>
+            So instead of writing a memo, I build the answer. Each project here is a working product on real public
+            data: Census, SEC filings, CMS rules, survey benchmarks. The assumptions are out in the open so you can
+            argue with them.
+          </p>
+
+          <div className={styles.aboutGrid}>
+            <div>
+              <h3 className={styles.aboutLabel}>Education</h3>
+              <ul className={styles.education}>
+                {profile.education.map((entry) => (
+                  <li key={entry.institution}>
+                    <strong>{entry.institution}</strong>
+                    <span>{entry.credential}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {skills.map((group) => (
+              <div key={group.label}>
+                <h3 className={styles.aboutLabel}>{group.label}</h3>
+                <ul className={styles.skillList}>
+                  {group.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className={`container ${styles.section}`} aria-labelledby="lab-heading">
-        <div className={styles.sectionHead}>
-          <div><p className={styles.eyebrow}>02 / THE STRATEGY LAB</p><h2 id="lab-heading" className={styles.sectionTitle}>Follow the <em>question.</em></h2></div>
-          <p className={styles.sectionNote}>Competitive moves. Product moats. Business value.<br />Three experiments to think with.</p>
-        </div>
-        <div className={styles.labGrid}>{labProjects.map((project) => <LabProjectCard key={project.slug} project={project} />)}</div>
-        <div className={styles.labFoot}>
-          <span>TECHNICAL SYSTEMS &amp; DOMAIN ENGINES</span>
-          <Link className={styles.textLink} href="/more-projects">
-            Explore More Projects <span aria-hidden="true">↗</span>
-          </Link>
-        </div>
-      </section>
-
-      <section className={`container ${styles.section}`} aria-labelledby="approach-heading">
-        <div className={styles.sectionHead}>
-          <div><p className={styles.eyebrow}>03 / HOW I THINK</p><h2 id="approach-heading" className={styles.sectionTitle}>Make the reasoning <em>visible.</em></h2></div>
-          <Link className={styles.textLink} href="/method">Inside the method <span aria-hidden="true">↗</span></Link>
-        </div>
-        <ol className={styles.steps}>{approachSteps.map((step, index) => (
-          <li key={step.title} className={styles.step}><p className={styles.stepIndex}>{String(index + 1).padStart(2, "0")}</p><h3 className={styles.stepTitle}>{step.title}</h3><p className={styles.stepBody}>{step.body}</p></li>
-        ))}</ol>
-      </section>
-
-      <section className={`container ${styles.section} ${styles.about}`} aria-labelledby="about-heading">
-        <div><p className={styles.eyebrow}>04 / A LITTLE CONTEXT</p><h2 id="about-heading" className={styles.aboutTitle}>From building models<br />to questioning<br /><em>what they mean.</em></h2><Link className={styles.textLink} href="/about">More about me <span aria-hidden="true">↗</span></Link></div>
-        <div className={styles.aboutSide}><p className={styles.aboutText}>{profile.longBio[0]}</p><ul className={styles.educationList}>{profile.education.map((entry) => <li key={entry.institution}><strong>{entry.institution}</strong><span>{entry.credential}</span></li>)}</ul></div>
-      </section>
-
+      {/* ---- Contact ----------------------------------------------------- */}
       <section id="contact" className={`container ${styles.contact}`} aria-labelledby="contact-heading">
-        <p className={styles.eyebrow}>HAVE A QUESTION WORTH WORKING ON?</p>
-        <h2 id="contact-heading" className={styles.contactTitle}>Let’s think it <em>through.</em></h2>
-        {profile.verifiedLinks.length > 0 ? <ul className={styles.contactLinks}>{profile.verifiedLinks.map((link) => <li key={link.href}><a href={link.href} rel="me noopener">{link.label}<span aria-hidden="true">↗</span></a></li>)}</ul> : <p className={styles.contactBody}>{contactPlaceholder}</p>}
+        <h2 id="contact-heading" className={styles.contactTitle}>
+          Let&rsquo;s talk.
+        </h2>
+        <p className={styles.contactText}>
+          Open to strategy, product, and AI roles, and always happy to talk about any of the work above.
+        </p>
+        <div className={styles.contactLinks}>
+          {email ? (
+            <a className={styles.contactEmail} href={email.href}>
+              {email.href.replace("mailto:", "")}
+            </a>
+          ) : null}
+          {socials.map((link) => (
+            <a key={link.href} className={styles.ctaLink} href={link.href} rel="me noopener" target="_blank">
+              {link.label} <span aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
       </section>
     </main>
   );

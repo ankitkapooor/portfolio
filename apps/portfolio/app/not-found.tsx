@@ -48,7 +48,7 @@ export default function NotFound() {
             </li>
           ))}
           <li>
-            <Link href="/about">
+            <Link href="/#about">
               <span className={styles.listNumber} aria-hidden="true">
                 —
               </span>
