@@ -16,19 +16,16 @@
   width: 100%;
   height: 100%;
   overflow: visible;
-}
-
-.svgText {
-  font-family: var(--family-hand);
-  fill: currentColor;
+  transition: opacity 260ms ease;
 }
 
 /*
- * The same words as plain font text. Shown only without JavaScript (the
- * inline head script marks <html class="js">) or if the strokes fail to load.
+ * Plain font text in the same box. `.fallback` is the server-rendered copy
+ * for visitors without JavaScript; `.final` replaces the pen strokes once
+ * the writing finishes, so the settled phrase is exactly the font.
  */
 .fallback,
-.fallbackShown {
+.final {
   position: absolute;
   inset: 0 auto auto 0;
   line-height: 1.17;
@@ -36,4 +33,17 @@
 
 :global(html.js) .fallback {
   visibility: hidden;
+}
+
+.final {
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.final[data-shown] {
+  opacity: 1;
+}
+
+.svg[data-done] {
+  opacity: 0;
 }

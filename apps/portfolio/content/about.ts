@@ -65,9 +65,9 @@ export const education = [
   },
   {
     school: "Birla Institute of Technology & Science, Pilani — Dubai",
-    degree: "Bachelor of Engineering (Hons.), Computer Science",
+    degree: "Bachelor of Engineering (Hons.)",
     period: "2022",
-    detail: null,
+    detail: "Computer Science",
   },
 ] as const;
 

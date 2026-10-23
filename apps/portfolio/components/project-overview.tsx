@@ -1,5 +1,6 @@
 import { ProjectActions } from "@/components/project-meta";
 import { hasLaunchAction, type Project } from "@/lib/content-validation";
+import { Hand } from "@/components/hand";
 import styles from "./project-overview.module.css";
 
 export function ProjectOverview({ project }: { project: Project }) {
@@ -10,9 +11,9 @@ export function ProjectOverview({ project }: { project: Project }) {
       aria-labelledby="overview-heading"
     >
       <div className={styles.head}>
-        <p className={styles.eyebrow}>{project.decisionDomain}</p>
+        <p className={`hand ${styles.eyebrow}`}>{project.decisionDomain}</p>
         <h2 id="overview-heading" className={styles.title}>
-          System at a glance
+          <Hand text="System at a glance" draw="view" />
         </h2>
       </div>
 
@@ -32,7 +33,7 @@ export function ProjectOverview({ project }: { project: Project }) {
       </dl>
 
       <div className={styles.workflow}>
-        <h3 className={styles.subhead}>How it works</h3>
+        <h3 className={`hand ${styles.subhead}`}>How it works</h3>
         <ol className={styles.steps}>
           {project.workflow.map((step, index) => (
             <li key={step} className={styles.step}>
@@ -47,7 +48,7 @@ export function ProjectOverview({ project }: { project: Project }) {
 
       <div className={styles.output}>
         <div>
-          <h3 className={styles.subhead}>Decision output</h3>
+          <h3 className={`hand ${styles.subhead}`}>Decision output</h3>
           <p>{project.decisionOutput}</p>
         </div>
         {hasLaunchAction(project) ? (

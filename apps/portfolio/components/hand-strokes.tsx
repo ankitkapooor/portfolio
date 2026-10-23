@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
-import { handAscent, handBox } from "@/content/handwriting";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { handBox } from "@/content/handwriting";
+import { useInk } from "./use-ink";
 import ink from "./ink.module.css";
 import styles from "./hand.module.css";
 
@@ -22,28 +23,29 @@ function load(id: string) {
   return pending;
 }
 
+/** The traced pen is this fraction of the reveal width stored in the file. */
+const PEN_FROM_MASK = 1 / 2.1;
+
 /**
- * The font text, revealed through a mask of pen paths that draw in writing
- * order. "view" phrases start the first time they are mostly on screen.
+ * Writes a phrase with pen strokes traced through the font's own letters,
+ * starting the first time it is mostly on screen, then settles into the real
+ * font text so the finished phrase is exactly the font.
+ *
+ * Visible strokes rather than an SVG mask: Safari neither animates nor
+ * reliably renders masked text, while stroke animation works everywhere.
  */
-export function HandStrokes({
-  id,
-  text,
-  width,
-  draw,
-  delay,
-}: {
-  id: string;
-  text: string;
-  width: number;
-  draw: "load" | "view";
-  delay: number;
-}) {
+export function HandStrokes({ id, text, width, delay }: { id: string; text: string; width: number; delay: number }) {
   const [data, setData] = useState<StrokeFile | null>(null);
   const [failed, setFailed] = useState(false);
-  const [visible, setVisible] = useState(false);
+  const [done, setDone] = useState(false);
   const svgRef = useRef<SVGSVGElement>(null);
-  const maskId = useId();
+  const timer = useRef<number | undefined>(undefined);
+
+  useInk(svgRef, data !== null, () => {
+    if (!data) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    timer.current = window.setTimeout(() => setDone(true), reduce ? 0 : (delay + data.t) * 1000 + 80);
+  });
 
   useEffect(() => {
     let live = true;
@@ -52,28 +54,13 @@ export function HandStrokes({
       .catch(() => live && setFailed(true));
     return () => {
       live = false;
+      window.clearTimeout(timer.current);
     };
   }, [id]);
 
-  useEffect(() => {
-    const svg = svgRef.current;
-    if (draw !== "view" || !svg) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.6 },
-    );
-    observer.observe(svg);
-    return () => observer.disconnect();
-  }, [draw, data]);
-
   if (failed) {
     return (
-      <span className={`hand ${styles.fallbackShown}`} aria-hidden="true">
+      <span className={`hand ${styles.final}`} data-shown="" aria-hidden="true">
         {text}
       </span>
     );
@@ -81,26 +68,28 @@ export function HandStrokes({
   if (!data) return null;
 
   return (
-    <svg
-      ref={svgRef}
-      className={`${ink.ink} ${styles.svg}`}
-      viewBox={`0 0 ${width} ${handBox}`}
-      aria-hidden="true"
-      data-draw={draw}
-      data-io=""
-      data-visible={visible ? "" : undefined}
-      style={{ "--sig-delay": `${delay}s`, "--total": `${data.t}s` } as CSSProperties}
-    >
-      <mask id={maskId} maskUnits="userSpaceOnUse" x="-200" y="-200" width={width + 400} height={handBox + 400}>
-        <g fill="none" stroke="#fff" strokeWidth={data.m} strokeLinecap="round" strokeLinejoin="round">
-          {data.s.map(([d, p0, p1], index) => (
-            <path key={index} d={d} pathLength={1} style={{ "--p0": p0, "--p1": p1 } as CSSProperties} />
-          ))}
-        </g>
-      </mask>
-      <text x="0" y={handAscent} fontSize="1000" className={styles.svgText} mask={`url(#${maskId})`}>
+    <>
+      <svg
+        ref={svgRef}
+        className={`${ink.ink} ${styles.svg}`}
+        viewBox={`0 0 ${width} ${handBox}`}
+        aria-hidden="true"
+        data-draw="view"
+        data-done={done ? "" : undefined}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={Math.round(data.m * PEN_FROM_MASK)}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{ "--ink-delay": `${delay}s`, "--total": `${data.t}s` } as CSSProperties}
+      >
+        {data.s.map(([d, p0, p1], index) => (
+          <path key={index} d={d} style={{ "--p0": p0, "--p1": p1 } as CSSProperties} />
+        ))}
+      </svg>
+      <span className={`hand ${styles.final}`} data-shown={done ? "" : undefined} aria-hidden="true">
         {text}
-      </text>
-    </svg>
+      </span>
+    </>
   );
 }

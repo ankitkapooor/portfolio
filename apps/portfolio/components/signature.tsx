@@ -1,15 +1,18 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import { useRef, type CSSProperties } from "react";
 import { signatureStroke, signatureStrokes, signatureViewBox } from "@/content/signature";
+import { useInk } from "./use-ink";
 import styles from "./ink.module.css";
 
 const total = Math.max(...signatureStrokes.map(([, start, duration]) => start + duration));
 
 /**
  * The owner's signature as stroked SVG paths, so it takes the current text
- * colour in either theme. `draw="load"` writes itself on page load,
- * `draw="view"` writes itself as it scrolls into view, and `draw="none"` is
- * static. Reduced motion always shows the finished signature. Pass an empty
- * `label` where the signature is purely decorative.
+ * colour in either theme. `draw="view"` writes itself the first time it
+ * scrolls into view; `draw="none"` is static. Reduced motion and no
+ * JavaScript show the finished signature. Pass an empty `label` where the
+ * signature is purely decorative.
  */
 export function Signature({
   className,
@@ -18,12 +21,16 @@ export function Signature({
   delay = 0,
 }: {
   className?: string;
-  draw?: "load" | "view" | "none";
+  draw?: "view" | "none";
   label?: string;
   delay?: number;
 }) {
+  const ref = useRef<SVGSVGElement>(null);
+  useInk(ref, draw === "view");
+
   return (
     <svg
+      ref={ref}
       className={`${styles.ink} ${className ?? ""}`}
       viewBox={signatureViewBox}
       data-draw={draw}
@@ -35,16 +42,14 @@ export function Signature({
       strokeWidth={signatureStroke}
       strokeLinecap="round"
       strokeLinejoin="round"
-      style={{ "--sig-delay": `${delay}s`, "--total": `${total}s` } as CSSProperties}
+      style={{ "--ink-delay": `${delay}s`, "--total": `${total}s` } as CSSProperties}
     >
       {signatureStrokes.map(([d, start, duration], index) => (
         <path
           key={index}
           d={d}
-          pathLength={1}
           style={
             {
-              // This stroke's share of the timeline.
               "--p0": start / total,
               "--p1": Math.min(1, (start + duration) / total),
             } as CSSProperties

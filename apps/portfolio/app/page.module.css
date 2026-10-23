@@ -441,7 +441,7 @@
 }
 
 .roleTitle {
-  font-size: clamp(22px, 2vw, 28px);
+  font-size: clamp(20px, 2vw, 28px);
   line-height: 1.45;
   font-weight: 400;
   letter-spacing: -0.025em;

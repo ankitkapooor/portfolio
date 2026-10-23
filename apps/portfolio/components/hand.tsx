@@ -6,8 +6,9 @@ import styles from "./hand.module.css";
 /**
  * Text in the owner's handwriting font, "Ankit Hand".
  *
- * With `draw="none"` this is simply text set in the font. With `draw="load"`
- * or `draw="view"`, phrases listed in content/handwriting.ts write themselves:
+ * With `draw="none"` this is simply text set in the font. With `draw="view"`,
+ * phrases listed in content/handwriting.ts write themselves once they scroll
+ * into view:
  * pen paths traced through the font's own letters reveal the real text stroke
  * by stroke, so the finished result is exactly the font. Phrases without
  * traced paths fall back to plain text in the font.
@@ -22,7 +23,7 @@ export function Hand({
   className,
 }: {
   text: string;
-  draw?: "load" | "view" | "none";
+  draw?: "view" | "none";
   delay?: number;
   className?: string;
 }) {
@@ -44,13 +45,13 @@ export function Hand({
       <span className={`hand ${styles.fallback}`} aria-hidden="true">
         {text}
       </span>
-      <HandStrokes id={phrase.id} text={text} width={phrase.w} draw={draw} delay={delay} />
+      <HandStrokes id={phrase.id} text={text} width={phrase.w} delay={delay} />
     </span>
   );
 }
 
 /** Splits on " → " so each side of a role change writes itself. */
-export function HandText({ text, draw = "none", className }: { text: string; draw?: "load" | "view" | "none"; className?: string }) {
+export function HandText({ text, draw = "none", className }: { text: string; draw?: "view" | "none"; className?: string }) {
   const pieces = text.split(" → ");
   return (
     <span className={className}>

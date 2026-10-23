@@ -7,55 +7,28 @@
 
 /*
  * Shared "pen" animation for the signature and handwritten phrases.
- * Each stroke is normalised to pathLength 1, so a dash of 1 hidden by an
- * offset of 1 is "not yet written". Strokes start in left-to-right order.
+ *
+ * use-ink.ts gives each path a dash of its own length, offset so that
+ * nothing is drawn, plus its slice (--p0 to --p1) of the --total writing
+ * time in left-to-right order. Animating the offset to 0 writes the stroke
+ * from its start. Nothing starts until the SVG is on screen.
  */
-@keyframes sig-write {
+@keyframes ink-write {
   to {
     stroke-dashoffset: 0;
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .ink[data-draw="load"] path,
-  .ink[data-draw="view"] path {
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
+  /* With JavaScript, hold animated ink back until it has been measured. */
+  :global(html.js) .ink[data-draw="view"]:not([data-measured]) {
+    visibility: hidden;
   }
 
-  /* Each path carries its share of the timeline (--p0 to --p1) of --total. */
-  .ink[data-draw="load"] path {
-    animation: sig-write calc((var(--p1) - var(--p0)) * var(--total)) cubic-bezier(0.4, 0, 0.6, 1)
-      calc(var(--sig-delay, 0s) + var(--p0) * var(--total)) forwards;
-  }
-
-  /*
-   * Phrases (HandStrokes) mark themselves data-io and write over time once
-   * they are on screen, so they are never left half-written mid-scroll.
-   */
-  .ink[data-draw="view"][data-io][data-visible] path {
-    animation: sig-write calc((var(--p1) - var(--p0)) * var(--total)) cubic-bezier(0.4, 0, 0.6, 1)
-      calc(var(--sig-delay, 0s) + var(--p0) * var(--total)) forwards;
-  }
-
-  /* The signature sign-off draws as it scrolls into view; no JavaScript. */
-  @supports (animation-timeline: view()) {
-    .ink[data-draw="view"]:not([data-io]) {
-      view-timeline-name: --ink;
-    }
-
-    .ink[data-draw="view"]:not([data-io]) path {
-      animation: sig-write linear both;
-      animation-timeline: --ink;
-      animation-range: cover calc(10% + var(--p0) * 35%) cover calc(10% + var(--p1) * 35%);
-    }
-  }
-
-  /* Browsers without scroll timelines draw it once on load instead. */
-  @supports not (animation-timeline: view()) {
-    .ink[data-draw="view"]:not([data-io]) path {
-      animation: sig-write calc((var(--p1) - var(--p0)) * var(--total)) cubic-bezier(0.4, 0, 0.6, 1)
-        calc(var(--sig-delay, 0s) + var(--p0) * var(--total)) forwards;
-    }
+  /* Dash, offset, duration, and delay are set per path by use-ink.ts. */
+  .ink[data-draw="view"][data-measured][data-visible] path {
+    animation-name: ink-write;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+    animation-fill-mode: forwards;
   }
 }

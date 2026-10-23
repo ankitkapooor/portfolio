@@ -94,16 +94,18 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
       {/* ---- Header ------------------------------------------------- */}
       <header className={`container grid ${styles.header}`}>
         <div className={styles.headerBody}>
-          <Link className={styles.backLink} href="/#work">
+          <Link className={`hand ${styles.backLink}`} href="/#work">
             ← All work
           </Link>
 
-          <p className={styles.number}>Project {project.number}</p>
-          <p className={styles.domain}>{project.decisionDomain}</p>
+          <p className={`hand ${styles.number}`}>Project {project.number}</p>
+          <p className={`hand ${styles.domain}`}>{project.decisionDomain}</p>
           <h1 className={styles.title}>
-            <Hand text={project.title} draw="load" delay={0.2} />
+            <Hand text={project.title} draw="view" delay={0.2} />
           </h1>
-          <p className={styles.question}>{project.question}</p>
+          <p className={styles.question}>
+            <Hand text={project.question} draw="view" delay={1.2} />
+          </p>
           <p className={styles.purpose}>{project.purpose}</p>
 
           <div className={styles.metaBlock}>
@@ -136,7 +138,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
       >
         <div className={styles.briefHead}>
           <h2 id="brief-heading" className={styles.briefTitle}>
-            Decision record
+            <Hand text="Decision record" draw="view" />
           </h2>
           <p className={styles.briefNote}>
             Evidence: {evidenceStatusLabels[project.evidenceStatus]}
@@ -164,7 +166,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
       {/* ---- Body -------------------------------------------------- */}
       <div className={`container ${styles.bodyWrap}`}>
         <nav className={styles.rail} aria-label="Contents">
-          <p className={styles.railTitle}>Contents</p>
+          <p className={`hand ${styles.railTitle}`}>Contents</p>
           <ul className={styles.railList}>
             {SECTIONS.map((section) => (
               <li key={section.id}>
@@ -181,7 +183,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
             aria-labelledby="context-heading"
           >
             <h2 id="context-heading" className={styles.sectionTitle}>
-              Context and decision
+              <Hand text="Context and decision" draw="view" />
             </h2>
             <Paragraphs text={project.sections.context} />
           </section>
@@ -192,7 +194,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
             aria-labelledby="alternatives-heading"
           >
             <h2 id="alternatives-heading" className={styles.sectionTitle}>
-              Alternatives considered
+              <Hand text="Alternatives considered" draw="view" />
             </h2>
             <ul className={styles.records}>
               {project.alternatives.map((alternative) => (
@@ -217,7 +219,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
             aria-labelledby="method-heading"
           >
             <h2 id="method-heading" className={styles.sectionTitle}>
-              Method and model
+              <Hand text="Method and model" draw="view" />
             </h2>
             <Paragraphs text={project.sections.methodAndModel} />
           </section>
@@ -228,7 +230,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
             aria-labelledby="evidence-heading"
           >
             <h2 id="evidence-heading" className={styles.sectionTitle}>
-              Evidence and results
+              <Hand text="Evidence and results" draw="view" />
             </h2>
             <Paragraphs text={project.sections.evidenceAndResults} />
             <ul className={styles.records}>
@@ -261,7 +263,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
             aria-labelledby="interpretation-heading"
           >
             <h2 id="interpretation-heading" className={styles.sectionTitle}>
-              Interpretation
+              <Hand text="Interpretation" draw="view" />
             </h2>
             <Paragraphs text={project.sections.interpretation} />
             <ul className={styles.records}>
@@ -283,7 +285,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
             aria-labelledby="limitations-heading"
           >
             <h2 id="limitations-heading" className={styles.sectionTitle}>
-              Limitations
+              <Hand text="Limitations" draw="view" />
             </h2>
             <Paragraphs text={project.sections.limitations} />
             <ul className={styles.records}>
@@ -305,7 +307,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
             aria-labelledby="next-test-heading"
           >
             <h2 id="next-test-heading" className={styles.sectionTitle}>
-              Next test
+              <Hand text="Next test" draw="view" />
             </h2>
             <Paragraphs text={project.sections.nextTest} />
           </section>
@@ -316,7 +318,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
             aria-labelledby="sources-heading"
           >
             <h2 id="sources-heading" className={styles.sectionTitle}>
-              Sources
+              <Hand text="Sources" draw="view" />
             </h2>
             <ul className={styles.records}>
               {project.sourceRefs.map((ref) => (
@@ -337,7 +339,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
             aria-labelledby="authorship-heading"
           >
             <h2 id="authorship-heading" className={styles.authorshipTitle}>
-              Authorship and review
+              <Hand text="Authorship and review" draw="view" />
             </h2>
             <dl className={styles.authorshipList}>
               {(
@@ -374,17 +376,17 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
         className={`container ${styles.caseFooter}`}
         aria-labelledby="other-cases-heading"
       >
-        <p id="other-cases-heading" className={styles.caseFooterTitle}>
+        <p id="other-cases-heading" className={`hand ${styles.caseFooterTitle}`}>
           Other cases
         </p>
         <ul className={styles.caseFooterList}>
           {others.map((other) => (
             <li key={other.slug}>
               <Link className={styles.caseFooterLink} href={projectPath(other)}>
-                <span className={styles.caseFooterMeta}>
+                <span className={`hand ${styles.caseFooterMeta}`}>
                   Project {other.number}
                 </span>
-                {other.title}
+                <Hand text={other.title} />
               </Link>
             </li>
           ))}

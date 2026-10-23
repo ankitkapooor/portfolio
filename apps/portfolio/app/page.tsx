@@ -32,11 +32,11 @@ export default function HomePage() {
             {headline.role}
           </p>
           <h1 id="hero-heading" className={styles.name}>
-            <Hand text={profile.name} draw="load" delay={0.15} />
+            <Hand text={profile.name} draw="view" delay={0.15} />
           </h1>
           <p className={styles.pitch}>
             I build working products for hard business questions,{" "}
-            <Hand text="and the strategy behind them." draw="load" delay={1.4} className={styles.pitchHand} />
+            <Hand text="and the strategy behind them." draw="view" delay={1.4} className={styles.pitchHand} />
           </p>
 
           <div className={styles.heroActions}>

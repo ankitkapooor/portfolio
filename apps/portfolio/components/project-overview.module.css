@@ -142,3 +142,20 @@
 .summaryRow dd { color: var(--muted-ink); font-size: 17px; line-height: 1.8; }
 .step { padding-block: 18px; }
 .output { border-color: var(--rule); }
+
+/* Handwritten labels and heading (Ankit Hand); last so they win. */
+.eyebrow,
+.subhead {
+  font-family: var(--family-hand);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.title {
+  font-size: clamp(30px, 3vw, 40px);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
