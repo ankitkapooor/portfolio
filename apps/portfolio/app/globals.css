@@ -215,6 +215,15 @@ hr {
   color: var(--surface);
 }
 
+/* Text in the owner's handwriting font (see components/hand.tsx). */
+.hand {
+  font-family: var(--family-hand);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0;
+  font-stretch: normal;
+}
+
 /* Visually hidden but available to assistive technology. */
 .visuallyHidden {
   position: absolute;

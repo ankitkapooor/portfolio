@@ -2,6 +2,7 @@ import Link from "next/link";
 import { primaryNav } from "@/content/site";
 import { profile } from "@/content/profile";
 import { ThemeToggle } from "./theme-toggle";
+import { Hand } from "@/components/hand";
 import styles from "./site-header.module.css";
 
 /**
@@ -21,7 +22,9 @@ export function SiteHeader() {
           <span className={styles.mark} aria-hidden="true">
             {initials}
           </span>
-          <span className={styles.name}>{profile.name}</span>
+          <span className={styles.name}>
+            <Hand text={profile.name} />
+          </span>
         </Link>
 
         <nav className={styles.nav} aria-label="Primary">
@@ -29,7 +32,7 @@ export function SiteHeader() {
             {primaryNav.map((item) => (
               <li key={item.href}>
                 <Link className={styles.link} href={item.href}>
-                  {item.label}
+                  <Hand text={item.label} />
                 </Link>
               </li>
             ))}

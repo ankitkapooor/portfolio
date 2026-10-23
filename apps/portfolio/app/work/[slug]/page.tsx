@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getProject, projectPath, projects } from "@/content/projects";
 import { siteOrigin } from "@/content/site";
 import { EvidenceFigure } from "@/components/evidence-figure";
+import { Hand } from "@/components/hand";
 import { ProjectOverview } from "@/components/project-overview";
 import { ProjectActions, ProjectStatus } from "@/components/project-meta";
 import {
@@ -99,7 +100,9 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
 
           <p className={styles.number}>Project {project.number}</p>
           <p className={styles.domain}>{project.decisionDomain}</p>
-          <h1 className={styles.title}>{project.title}</h1>
+          <h1 className={styles.title}>
+            <Hand text={project.title} draw="load" delay={0.2} />
+          </h1>
           <p className={styles.question}>{project.question}</p>
           <p className={styles.purpose}>{project.purpose}</p>
 

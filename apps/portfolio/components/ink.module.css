@@ -1,0 +1,61 @@
+.ink {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/*
+ * Shared "pen" animation for the signature and handwritten phrases.
+ * Each stroke is normalised to pathLength 1, so a dash of 1 hidden by an
+ * offset of 1 is "not yet written". Strokes start in left-to-right order.
+ */
+@keyframes sig-write {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ink[data-draw="load"] path,
+  .ink[data-draw="view"] path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+
+  /* Each path carries its share of the timeline (--p0 to --p1) of --total. */
+  .ink[data-draw="load"] path {
+    animation: sig-write calc((var(--p1) - var(--p0)) * var(--total)) cubic-bezier(0.4, 0, 0.6, 1)
+      calc(var(--sig-delay, 0s) + var(--p0) * var(--total)) forwards;
+  }
+
+  /*
+   * Phrases (HandStrokes) mark themselves data-io and write over time once
+   * they are on screen, so they are never left half-written mid-scroll.
+   */
+  .ink[data-draw="view"][data-io][data-visible] path {
+    animation: sig-write calc((var(--p1) - var(--p0)) * var(--total)) cubic-bezier(0.4, 0, 0.6, 1)
+      calc(var(--sig-delay, 0s) + var(--p0) * var(--total)) forwards;
+  }
+
+  /* The signature sign-off draws as it scrolls into view; no JavaScript. */
+  @supports (animation-timeline: view()) {
+    .ink[data-draw="view"]:not([data-io]) {
+      view-timeline-name: --ink;
+    }
+
+    .ink[data-draw="view"]:not([data-io]) path {
+      animation: sig-write linear both;
+      animation-timeline: --ink;
+      animation-range: cover calc(10% + var(--p0) * 35%) cover calc(10% + var(--p1) * 35%);
+    }
+  }
+
+  /* Browsers without scroll timelines draw it once on load instead. */
+  @supports not (animation-timeline: view()) {
+    .ink[data-draw="view"]:not([data-io]) path {
+      animation: sig-write calc((var(--p1) - var(--p0)) * var(--total)) cubic-bezier(0.4, 0, 0.6, 1)
+        calc(var(--sig-delay, 0s) + var(--p0) * var(--total)) forwards;
+    }
+  }
+}

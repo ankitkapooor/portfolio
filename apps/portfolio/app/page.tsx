@@ -14,13 +14,12 @@ import {
 } from "@/content/about";
 import { WorkGrid } from "@/components/work-grid";
 import { Signature } from "@/components/signature";
+import { Hand, HandText } from "@/components/hand";
 import styles from "./page.module.css";
 
 const email = profile.verifiedLinks.find((link) => link.href.startsWith("mailto:"));
 const socials = profile.verifiedLinks.filter((link) => !link.href.startsWith("mailto:"));
 const heroShots = ["market-entry-war-room", "valuelens", "orthocode-ai"];
-const [firstName, ...rest] = profile.name.split(" ");
-const lastName = rest.join(" ");
 
 export default function HomePage() {
   return (
@@ -33,14 +32,11 @@ export default function HomePage() {
             {headline.role}
           </p>
           <h1 id="hero-heading" className={styles.name}>
-            <span className={styles.nameLine}>
-              {firstName}
-              <Signature className={styles.heroSig} draw="load" delay={0.9} label="" />
-            </span>{" "}
-            <span className={styles.nameLine}>{lastName}</span>
+            <Hand text={profile.name} draw="load" delay={0.15} />
           </h1>
           <p className={styles.pitch}>
-            I build working products for hard business questions, <em>and the strategy behind them.</em>
+            I build working products for hard business questions,{" "}
+            <Hand text="and the strategy behind them." draw="load" delay={1.4} className={styles.pitchHand} />
           </p>
 
           <div className={styles.heroActions}>
@@ -88,23 +84,28 @@ export default function HomePage() {
       {/* ---- Work -------------------------------------------------------- */}
       <section id="work" className={`container ${styles.section}`} aria-labelledby="work-heading">
         <div className={styles.sectionHead}>
-          <p className={styles.kicker}>01 — Work</p>
-          <h2 id="work-heading" className={styles.sectionTitle}>
-            {work.length} products, all live.
+          <p className={`hand ${styles.kicker}`}>01 — Work</p>
+          <h2 id="work-heading" className={styles.handTitle}>
+            <Hand text={`${work.length} products, all live.`} draw="view" />
           </h2>
           <p className={styles.sectionNote}>
             Each card is a recording of the real product. Open the demo, read the code, or go deeper in a case study.
           </p>
         </div>
-        <WorkGrid />
+        <WorkGrid
+          titles={Object.fromEntries(work.map((item) => [item.slug, <Hand key={item.slug} text={item.title} draw="view" />]))}
+        />
       </section>
 
       {/* ---- About ------------------------------------------------------- */}
       <section id="about" className={`container ${styles.section}`} aria-labelledby="about-heading">
         <div className={styles.sectionHead}>
-          <p className={styles.kicker}>02 — About</p>
+          <p className={`hand ${styles.kicker}`}>02 — About</p>
           <h2 id="about-heading" className={styles.sectionTitle}>
-            Engineer first. <em>Strategist by training.</em>
+            Engineer first.{" "}
+            <span className={styles.titleHand}>
+              <Hand text="Strategist by training." draw="view" />
+            </span>
           </h2>
         </div>
 
@@ -136,9 +137,11 @@ export default function HomePage() {
             <ol className={styles.timeline}>
               {experience.map((role) => (
                 <li key={`${role.org}-${role.title}`} className={styles.role}>
-                  <p className={styles.period}>{role.period}</p>
+                  <p className={`hand ${styles.period}`}>{role.period}</p>
                   <div>
-                    <h4 className={styles.roleTitle}>{role.title}</h4>
+                    <h4 className={styles.roleTitle}>
+                      <HandText text={role.title} draw="view" />
+                    </h4>
                     <p className={styles.roleOrg}>
                       {role.org} <span>· {role.place}</span>
                     </p>
@@ -157,9 +160,11 @@ export default function HomePage() {
             <ul className={styles.timeline}>
               {education.map((entry) => (
                 <li key={entry.school} className={styles.role}>
-                  <p className={styles.period}>{entry.period}</p>
+                  <p className={`hand ${styles.period}`}>{entry.period}</p>
                   <div>
-                    <h4 className={styles.roleTitle}>{entry.degree}</h4>
+                    <h4 className={styles.roleTitle}>
+                      <HandText text={entry.degree} draw="view" />
+                    </h4>
                     <p className={styles.roleOrg}>{entry.school}</p>
                     {entry.detail ? <p className={styles.roleContext}>{entry.detail}</p> : null}
                   </div>
@@ -199,11 +204,11 @@ export default function HomePage() {
 
       {/* ---- Contact ----------------------------------------------------- */}
       <section id="contact" className={`container ${styles.contact}`} aria-labelledby="contact-heading">
-        <p className={styles.kicker}>03 — Contact</p>
+        <p className={`hand ${styles.kicker}`}>03 — Contact</p>
         <div className={styles.contactInner}>
           <div>
             <h2 id="contact-heading" className={styles.contactTitle}>
-              Let&rsquo;s build <em>something.</em>
+              <Hand text="Let's build something." draw="view" />
             </h2>
             <p className={styles.contactText}>
               Open to conversations about strategy, product, and AI roles, and happy to walk through any project above.

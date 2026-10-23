@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { signatureStroke, signatureStrokes, signatureViewBox } from "@/content/signature";
-import styles from "./signature.module.css";
+import styles from "./ink.module.css";
 
 const total = Math.max(...signatureStrokes.map(([, start, duration]) => start + duration));
 
@@ -24,7 +24,7 @@ export function Signature({
 }) {
   return (
     <svg
-      className={`${styles.signature} ${className ?? ""}`}
+      className={`${styles.ink} ${className ?? ""}`}
       viewBox={signatureViewBox}
       data-draw={draw}
       role={label ? "img" : undefined}
@@ -35,7 +35,7 @@ export function Signature({
       strokeWidth={signatureStroke}
       strokeLinecap="round"
       strokeLinejoin="round"
-      style={{ "--sig-delay": `${delay}s` } as CSSProperties}
+      style={{ "--sig-delay": `${delay}s`, "--total": `${total}s` } as CSSProperties}
     >
       {signatureStrokes.map(([d, start, duration], index) => (
         <path
@@ -44,9 +44,7 @@ export function Signature({
           pathLength={1}
           style={
             {
-              "--start": `${start}s`,
-              "--dur": `${duration}s`,
-              // Unitless share of the timeline, for the scroll-driven variant.
+              // This stroke's share of the timeline.
               "--p0": start / total,
               "--p1": Math.min(1, (start + duration) / total),
             } as CSSProperties

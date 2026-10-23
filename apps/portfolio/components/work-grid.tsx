@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type CSSProperties, type RefObject } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode, type RefObject } from "react";
 import { flushSync } from "react-dom";
 import {
   work,
@@ -25,7 +25,7 @@ const counts = Object.fromEntries(
  * the View Transitions API where supported) and each card plays a recorded
  * walkthrough of the live product while it is on screen.
  */
-export function WorkGrid() {
+export function WorkGrid({ titles = {} }: { titles?: Record<string, ReactNode> }) {
   const [filter, setFilter] = useState<Filter>("All");
   const visible = filter === "All" ? work : work.filter((item) => item.category === filter);
 
@@ -58,7 +58,7 @@ export function WorkGrid() {
 
       <ul className={styles.grid}>
         {visible.map((item, index) => (
-          <WorkCard key={item.slug} item={item} index={index} />
+          <WorkCard key={item.slug} item={item} index={index} title={titles[item.slug]} />
         ))}
       </ul>
     </>
@@ -87,7 +87,11 @@ function useAutoplayInView(ref: RefObject<HTMLVideoElement | null>) {
   }, [ref]);
 }
 
-function WorkCard({ item, index }: { item: WorkItem; index: number }) {
+/**
+ * `title` is the handwritten project name, rendered on the server and passed
+ * in so the stroke data never ships in this client bundle.
+ */
+function WorkCard({ item, index, title }: { item: WorkItem; index: number; title?: ReactNode }) {
   const host = new URL(item.demoUrl).host;
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -144,13 +148,13 @@ function WorkCard({ item, index }: { item: WorkItem; index: number }) {
 
       <div className={styles.body}>
         <div className={styles.meta}>
-          <span className={styles.number}>{String(work.indexOf(item) + 1).padStart(2, "0")}</span>
+          <span className={`hand ${styles.number}`}>{String(work.indexOf(item) + 1).padStart(2, "0")}</span>
           <span className={styles.category}>{item.category}</span>
         </div>
-        <h3 className={styles.title}>{item.title}</h3>
+        <h3 className={styles.title}>{title ?? item.title}</h3>
         <p className={styles.tagline}>{item.tagline}</p>
         <p className={styles.why}>
-          <span>Why it matters</span>
+          <span className="hand">Why it matters</span>
           {item.why}
         </p>
         <ul className={styles.stack} aria-label="Built with">
