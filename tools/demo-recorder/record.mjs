@@ -11,28 +11,55 @@
 import { open, record, click, scroll, type, cut, dump, moveTo } from './lib.mjs';
 const role = (p, r, name) => p.getByRole(r, { name });
 
+/** Drags a range input's thumb from its current value to a fraction of its track. */
+async function dragRange(p, locator, to, steps) {
+  const el = locator.first();
+  await el.scrollIntoViewIfNeeded();
+  const from = await el.evaluate((i) => (i.value - (i.min || 0)) / ((i.max || 100) - (i.min || 0)));
+  await drag(p, el, from, to, steps);
+}
+
 /** Drags a range input's thumb between two fractions of its width, visibly. */
-async function drag(p, locator, from, to) {
+async function drag(p, locator, from, to, steps) {
   const el = locator.first();
   await el.scrollIntoViewIfNeeded();
   const box = await el.boundingBox();
   const y = box.y + box.height / 2;
   await moveTo(p, box.x + box.width * from, y, 500);
   await p.mouse.down();
-  await moveTo(p, box.x + box.width * to, y, 1100);
+  if (steps) {
+    for (let i = 1; i <= steps; i++) {
+      await p.mouse.move(box.x + box.width * (from + ((to - from) * i) / steps), y);
+      await p.waitForTimeout(140);
+    }
+    await moveTo(p, box.x + box.width * to, y, 50);
+  } else {
+    await moveTo(p, box.x + box.width * to, y, 1100);
+  }
   await p.mouse.up();
 }
 export const flows = {
   'market-entry-war-room': ['https://warroom.ankitkapoor.me/ui/', async p => {
-    await click(p, role(p, 'button', 'Premium fitness'), { wait: 500 });
-    await click(p, role(p, 'button', 'Interpret the business'));
-    await cut(p, () => p.waitForTimeout(3000));
-    await scroll(p, 500, 1200);
-    await click(p, role(p, 'button', 'Run the model'));
-    await cut(p, () => p.waitForTimeout(6000));
-    await p.waitForTimeout(1500);
-    await scroll(p, 500, 1600);
-    await p.waitForTimeout(1500);
+    await p.waitForTimeout(700);
+    await click(p, role(p, 'button', 'PREMIUM FITNESS'), { wait: 500 });
+    await click(p, role(p, 'button', 'INTERPRET THE BUSINESS'));
+    // The mission fields are prefilled, so wait out the parser call instead.
+    await cut(p, () => p.waitForTimeout(3500));
+    await click(p, role(p, 'button', 'RUN THE MODEL'));
+    await cut(p, () => p.waitForFunction(() => /holds first/i.test(document.body.innerText), null, { timeout: 90000 }));
+    await p.waitForTimeout(1800);
+    // Move the Growth weight and watch the board re-rank.
+    // Few input events: every one re-ranks 393 metros.
+    await dragRange(p, p.getByLabel('Growth'), 0.62, 6);
+    await p.waitForTimeout(900);
+    await scroll(p, 520, 1200);
+    await p.waitForTimeout(900);
+    await click(p, p.getByRole('button', { name: /Stress test/ }), { wait: 700 });
+    await click(p, role(p, 'button', 'RUN THE SIMULATION'));
+    await cut(p, () => p.waitForTimeout(3500));
+    await p.waitForTimeout(800);
+    await scroll(p, 520, 1500);
+    await p.waitForTimeout(1600);
   }],
   'disrupt-this-business': ['https://disrupt.ankitkapoor.me/play', async p => {
     await scroll(p, 350, 900);
