@@ -10,6 +10,18 @@
  */
 import { open, record, click, scroll, type, cut, dump, moveTo } from './lib.mjs';
 const role = (p, r, name) => p.getByRole(r, { name });
+
+/** Drags a range input's thumb between two fractions of its width, visibly. */
+async function drag(p, locator, from, to) {
+  const el = locator.first();
+  await el.scrollIntoViewIfNeeded();
+  const box = await el.boundingBox();
+  const y = box.y + box.height / 2;
+  await moveTo(p, box.x + box.width * from, y, 500);
+  await p.mouse.down();
+  await moveTo(p, box.x + box.width * to, y, 1100);
+  await p.mouse.up();
+}
 export const flows = {
   'market-entry-war-room': ['https://warroom.ankitkapoor.me/ui/', async p => {
     await click(p, role(p, 'button', 'Premium fitness'), { wait: 500 });
@@ -101,6 +113,36 @@ export const flows = {
     await scroll(p, 800, 1800);
     await p.waitForTimeout(900);
     await scroll(p, 800, 1800);
+    await p.waitForTimeout(1200);
+  }],
+  'exception-engine': ['https://exceptionengine.ankitkapoor.me', async p => {
+    await p.waitForTimeout(900);
+    await click(p, role(p, 'link', 'Board the laboratory'));
+    await p.waitForTimeout(1400);
+    await drag(p, p.locator('input[type=range]').first(), 0.4, 0.1);
+    await p.waitForTimeout(900);
+    await click(p, role(p, 'button', 'Change one fact'), { wait: 1400 });
+    await click(p, p.getByRole('tab', { name: /Decision surface/ }), { wait: 1800 });
+    await scroll(p, 300, 1000);
+    await p.waitForTimeout(1200);
+  }],
+  'escalation-frontier': ['https://escalation.ankitkapoor.me', async p => {
+    await p.waitForTimeout(1200);
+    await click(p, role(p, 'link', 'Explore the frontier'));
+    await p.waitForTimeout(1600);
+    const slider = p.locator('#threshold');
+    await drag(p, slider, 0.78, 0.45);
+    await p.waitForTimeout(700);
+    await drag(p, slider, 0.45, 0.96);
+    await p.waitForTimeout(1500);
+  }],
+  'wordle-solver': ['https://wordle.ankitkapoor.me', async p => {
+    await p.waitForTimeout(600);
+    for (const letter of 'arose') await click(p, `button[data-key="${letter}"]`, { wait: 120 });
+    await click(p, p.getByRole('button', { name: /Letter 2,/ }), { wait: 250 });
+    await click(p, p.getByRole('button', { name: /Letter 5,/ }), { wait: 250 });
+    await click(p, p.getByRole('button', { name: /Letter 5,/ }), { wait: 250 });
+    await click(p, role(p, 'button', 'Submit guess'), { wait: 1600 });
     await p.waitForTimeout(1200);
   }],
 };

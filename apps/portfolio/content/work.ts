@@ -10,7 +10,7 @@
  * 2026 (see tools/demo-recorder).
  */
 
-export const workCategories = ["Strategy", "Finance", "Healthcare", "Research"] as const;
+export const workCategories = ["Strategy", "Applied AI", "Finance", "Healthcare", "Research", "Just for fun"] as const;
 export type WorkCategory = (typeof workCategories)[number];
 
 export type WorkItem = {
@@ -40,6 +40,18 @@ export const work: readonly WorkItem[] = [
     casePath: "/work/market-entry-war-room",
   },
   {
+    slug: "exception-engine",
+    title: "The Exception Engine",
+    category: "Applied AI",
+    tagline:
+      "A policy lab built on EU air-passenger rights. Code applies the rules, an AI model answers bounded factual questions, and a confidence threshold decides when a person steps in.",
+    why: "Most automation decisions live in the grey area. This makes the trade-off between automating and asking a human explicit, case by case, across 600 recorded model assessments.",
+    stack: ["TypeScript", "Vite", "Cloudflare Workers", "TypeSafe JEV", "EU 261/2004"],
+    demoUrl: "https://exceptionengine.ankitkapoor.me",
+    repositoryUrl: "https://github.com/ankitkapooor/exception-engine",
+    casePath: null,
+  },
+  {
     slug: "valuelens",
     title: "ValueLens",
     category: "Finance",
@@ -49,6 +61,18 @@ export const work: readonly WorkItem[] = [
     stack: ["JavaScript", "Cloudflare Workers", "SEC EDGAR / XBRL", "DCF", "Monte Carlo"],
     demoUrl: "https://valuelens.ankitkapoor.me",
     repositoryUrl: "https://github.com/ankitkapooor/smart-invest",
+    casePath: null,
+  },
+  {
+    slug: "escalation-frontier",
+    title: "The Escalation Frontier",
+    category: "Applied AI",
+    tagline:
+      "Routes 1,270 recorded banking-support decisions between a fast classifier, a reasoning model, and human review. Move the confidence threshold and watch cost, accuracy, and latency shift.",
+    why: "Not every decision deserves the same model. This puts a price on extra certainty, so the routing threshold becomes a business choice instead of a guess.",
+    stack: ["TypeScript", "React", "Node.js", "TypeSafe JEV", "Claude Sonnet 4.5", "BANKING77"],
+    demoUrl: "https://escalation.ankitkapoor.me",
+    repositoryUrl: "https://github.com/ankitkapooor/escalation-frontier",
     casePath: null,
   },
   {
@@ -157,6 +181,18 @@ export const work: readonly WorkItem[] = [
     stack: ["TypeScript", "Vite", "Cloudflare D1", "R (IRT)"],
     demoUrl: "https://polskew.ankitkapoor.me",
     repositoryUrl: "https://github.com/ankitkapooor/pol-skew",
+    casePath: null,
+  },
+  {
+    slug: "wordle-solver",
+    title: "Wordle Solver",
+    category: "Just for fun",
+    tagline:
+      "Type the word you played and the colors Wordle gave back. It narrows 5,757 possible answers and suggests the best next guesses.",
+    why: "A small one, built for fun: elimination plus letter-frequency scoring, ported from Python to run entirely in the browser.",
+    stack: ["JavaScript", "Python", "Cloudflare Workers"],
+    demoUrl: "https://wordle.ankitkapoor.me",
+    repositoryUrl: "https://github.com/ankitkapooor/WordleSolver",
     casePath: null,
   },
 ];
