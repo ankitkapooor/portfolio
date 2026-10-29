@@ -31,18 +31,6 @@ export type WorkItem = {
 
 export const work: readonly WorkItem[] = [
   {
-    slug: "tandem",
-    title: "tandem",
-    category: "Applied AI",
-    tagline: "A Mac app that puts you, Claude Code, and Codex in one shared conversation, with Solo, Relay, Parallel, and Debate modes.",
-    why: "A second perspective is useful only if it has the context. tandem lets the agents read each other’s replies, challenge assumptions, and work in an order you control.",
-    stack: ["Electron", "Node.js", "Claude Code", "Codex CLI"],
-    demoUrl: "https://tandem.ankitkapoor.me",
-    delivery: "download",
-    repositoryUrl: "https://github.com/ankitkapooor/tandem",
-    casePath: null,
-  },
-  {
     slug: "market-entry-war-room",
     title: "Market Entry War Room",
     category: "Strategy",
@@ -100,6 +88,18 @@ export const work: readonly WorkItem[] = [
     stack: ["Python", "FastAPI", "Next.js", "PostgreSQL", "OpenAI Structured Outputs"],
     demoUrl: "https://orthocode.ankitkapoor.me",
     repositoryUrl: "https://github.com/ankitkapooor/autocode",
+    casePath: null,
+  },
+  {
+    slug: "tandem",
+    title: "tandem",
+    category: "Applied AI",
+    tagline: "A Mac app that puts you, Claude Code, and Codex in one shared conversation, with Solo, Relay, Parallel, and Debate modes.",
+    why: "A second perspective is useful only if it has the context. tandem lets the agents read each other’s replies, challenge assumptions, and work in an order you control.",
+    stack: ["Electron", "Node.js", "Claude Code", "Codex CLI"],
+    demoUrl: "https://tandem.ankitkapoor.me",
+    delivery: "download",
+    repositoryUrl: "https://github.com/ankitkapooor/tandem",
     casePath: null,
   },
   {
