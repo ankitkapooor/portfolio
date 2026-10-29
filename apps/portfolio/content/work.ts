@@ -4,10 +4,11 @@
  * One list replaces the old Featured / Strategy Lab / More Projects tiers.
  * Each entry answers the three things a visitor scans for: what it is
  * (`tagline`), why it matters (`why`), and how to see it (`demoUrl`,
- * `repositoryUrl`, `casePath`). Each project has a screenshot poster at
+ * `repositoryUrl`, `casePath`). Browser projects have a screenshot poster at
  * public/work/<slug>.jpg and a short recorded walkthrough at
  * public/work/<slug>.webm, both captured from the live demos on 23 October
- * 2026 (see tools/demo-recorder).
+ * 2026 (see tools/demo-recorder). Downloadable apps use a still image of
+ * their information page instead.
  */
 
 export const workCategories = ["Strategy", "Applied AI", "Finance", "Healthcare", "Research", "Just for fun"] as const;
@@ -21,12 +22,26 @@ export type WorkItem = {
   why: string;
   stack: readonly string[];
   demoUrl: string;
+  /** Downloadable apps link to their information and installation page. */
+  delivery?: "download";
   repositoryUrl: string | null;
   /** Long-form case study on this site, where one exists. */
   casePath: string | null;
 };
 
 export const work: readonly WorkItem[] = [
+  {
+    slug: "tandem",
+    title: "tandem",
+    category: "Applied AI",
+    tagline: "A Mac app that puts you, Claude Code, and Codex in one shared conversation, with Solo, Relay, Parallel, and Debate modes.",
+    why: "A second perspective is useful only if it has the context. tandem lets the agents read each other’s replies, challenge assumptions, and work in an order you control.",
+    stack: ["Electron", "Node.js", "Claude Code", "Codex CLI"],
+    demoUrl: "https://tandem.ankitkapoor.me",
+    delivery: "download",
+    repositoryUrl: "https://github.com/ankitkapooor/tandem",
+    casePath: null,
+  },
   {
     slug: "market-entry-war-room",
     title: "Market Entry War Room",
