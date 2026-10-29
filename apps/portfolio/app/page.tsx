@@ -41,7 +41,7 @@ export default function HomePage() {
 
           <div className={styles.heroActions}>
             <a className={styles.ctaPrimary} href="#work">
-              See {work.length} live projects <span aria-hidden="true">↓</span>
+              Explore {work.length} projects <span aria-hidden="true">↓</span>
             </a>
             {email ? (
               <a className={styles.ctaSecondary} href={email.href}>
@@ -86,10 +86,10 @@ export default function HomePage() {
         <div className={styles.sectionHead}>
           <p className={`hand ${styles.kicker}`}>01 — Work</p>
           <h2 id="work-heading" className={styles.handTitle}>
-            <Hand text={`${work.length} products, all live.`} draw="view" />
+            <Hand text={`${work.length} products, ready to explore.`} draw="view" />
           </h2>
           <p className={styles.sectionNote}>
-            Each card is a recording of the real product. Open the demo, read the code, or go deeper in a case study.
+            Explore browser demos and downloadable apps. Open a project, read the code, or go deeper in a case study.
           </p>
         </div>
         <WorkGrid

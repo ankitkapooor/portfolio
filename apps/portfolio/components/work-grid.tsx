@@ -124,11 +124,14 @@ function WorkCard({ item, index, title }: { item: WorkItem; index: number; title
           <span className={styles.url}>{host}</span>
           <span className={styles.live} data-playing={playing ? "true" : undefined}>
             <span className={styles.liveDot} />
-            {playing ? "Demo" : "Live"}
+            {item.delivery === "download" ? "Mac app" : playing ? "Demo" : "Live"}
           </span>
         </span>
         <span className={styles.frame}>
-          <video
+          {item.delivery === "download" ? (
+            // eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized JPEG
+            <img className={styles.video} src={workImage(item.slug)} alt="" width={1200} height={750} loading="lazy" />
+          ) : <video
             ref={videoRef}
             className={styles.video}
             poster={workImage(item.slug)}
@@ -142,7 +145,7 @@ function WorkCard({ item, index, title }: { item: WorkItem; index: number; title
             onPause={() => setPlaying(false)}
           >
             <source src={workVideo(item.slug)} type="video/webm" />
-          </video>
+          </video>}
         </span>
       </a>
 
@@ -164,7 +167,7 @@ function WorkCard({ item, index, title }: { item: WorkItem; index: number; title
         </ul>
         <div className={styles.actions}>
           <a className={styles.primary} href={item.demoUrl} target="_blank" rel="noopener noreferrer">
-            Open live demo <span aria-hidden="true">↗</span>
+            {item.delivery === "download" ? "Download & setup" : "Open live demo"} <span aria-hidden="true">↗</span>
             <span className="visuallyHidden">: {item.title} (opens in a new tab)</span>
           </a>
           {item.repositoryUrl ? (
