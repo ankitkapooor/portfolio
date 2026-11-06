@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Chivo } from "next/font/google";
 import localFont from "next/font/local";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -8,47 +8,16 @@ import { profile } from "@/content/profile";
 import "./globals.css";
 
 /*
- * next/font self-hosts both families at build time: no runtime request to
+ * next/font self-hosts the family at build time: no runtime request to
  * Google, and no layout shift. Licence notices are recorded in
- * ASSET_LICENCES.md. `display: swap` plus the fallback stacks in
- * styles/tokens.css keep a coherent serif/sans hierarchy if the files fail.
+ * ASSET_LICENCES.md. Chivo is the one typeface for headings, text and
+ * figures; the owner's handwriting is the only other voice on the page.
  */
-const serif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  display: "swap",
-  variable: "--font-serif",
-  fallback: ["Iowan Old Style", "Palatino", "Georgia", "serif"],
-});
-
-/*
- * Bricolage Grotesque carries the display type: its optical-size axis turns
- * the large headings tight and characterful while staying legible small.
- * Instrument Sans is the reading face and pairs with Instrument Serif, which
- * supplies the italic accents. JetBrains Mono handles labels and data.
- */
-const display = Bricolage_Grotesque({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-display",
-  axes: ["opsz", "wdth"],
-  fallback: ["-apple-system", "Segoe UI", "Roboto", "Helvetica Neue", "Arial"],
-});
-
-const sans = Instrument_Sans({
+const sans = Chivo({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
-  axes: ["wdth"],
   fallback: ["-apple-system", "Segoe UI", "Roboto", "Helvetica Neue", "Arial"],
-});
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-mono",
-  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
 });
 
 /* "Ankit Hand": the owner's handwriting as a font (tools/handwriting). */
@@ -63,7 +32,7 @@ const hand = localFont({
  * Runs before first paint: marks <html class="js"> (handwritten phrases hide
  * their plain-text fallback), and applies a saved theme choice so a visitor
  * who picked light or dark never sees the other one flash. With no saved choice the
- * stylesheet follows prefers-color-scheme on its own.
+ * stylesheet follows prefers-color-scheme on its own, light when the device states none.
  */
 const themeScript = `document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`;
 
@@ -94,7 +63,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${serif.variable} ${display.variable} ${sans.variable} ${mono.variable} ${hand.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${sans.variable} ${hand.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

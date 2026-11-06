@@ -1,7 +1,7 @@
 .footer {
   margin-top: var(--section-gap);
-  padding-block: var(--space-6) var(--space-7);
-  border-top: var(--border-width) solid var(--rule);
+  padding-block: var(--space-8) var(--space-8);
+  background: var(--surface);
 }
 
 .inner {
@@ -21,7 +21,7 @@
 }
 
 .sig {
-  width: 132px;
+  width: 180px;
 }
 
 .links {
@@ -34,7 +34,8 @@
 
 .links a {
   color: var(--ink);
-  text-decoration-color: var(--rule);
+  font-weight: 700;
+  text-decoration-color: color-mix(in srgb, var(--ink) 30%, transparent);
 }
 
 .links a:hover {
@@ -42,7 +43,7 @@
 }
 
 .meta {
-  font-size: var(--type-label);
+  font-size: var(--type-ui-sm);
   line-height: 1.6;
   color: var(--muted-ink);
   max-width: 60ch;
