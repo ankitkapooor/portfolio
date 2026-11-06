@@ -340,9 +340,14 @@
   animation: rise-in 320ms var(--ease) both;
 }
 
-/* Keeps recording and text inside one viewport so the section never runs long. */
+/* The recording fills the stage at its own 16:10 shape, never cropped to fit. */
 .stageWindow {
-  height: clamp(290px, calc(100svh - var(--header-height) - 350px), 580px);
+  width: 100%;
+}
+
+.stageWindow .frame {
+  flex: none;
+  aspect-ratio: 16 / 10;
 }
 
 .stageMedia:hover .window {
