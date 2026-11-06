@@ -638,3 +638,16 @@
     font-size: 15px;
   }
 }
+
+/* Handwritten phrases are drawn at a fixed width; scale them with the screen on small phones. */
+@media (max-width: 400px) {
+  .handTitle,
+  .sectionTitle,
+  .contactTitle {
+    font-size: 9.6vw;
+  }
+
+  .roleTitle {
+    font-size: min(20px, 5.3vw);
+  }
+}

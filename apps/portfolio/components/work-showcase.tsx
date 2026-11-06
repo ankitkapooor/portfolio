@@ -316,7 +316,7 @@ function Swipe() {
                 transition: drag.active ? "none" : leaving ? "transform 280ms cubic-bezier(.5,0,.9,.4)" : undefined,
               }
             : {
-                transform: `translateY(${depth * 14}px) scale(${1 - depth * 0.05})`,
+                transform: `translateY(${depth * 12}px) scale(${1 - depth * 0.04})`,
                 transition: drag.active ? "none" : undefined,
               };
 
