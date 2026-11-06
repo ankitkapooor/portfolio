@@ -36,7 +36,6 @@
   font-size: var(--type-ui-sm);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  letter-spacing: var(--tracking-label);
   color: var(--page-accent);
 }
 
@@ -45,8 +44,6 @@
   font-family: var(--family-sans);
   font-size: var(--type-label);
   font-weight: 600;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--muted-ink);
 }
 
@@ -126,8 +123,6 @@
 .briefNote {
   font-size: var(--type-label);
   font-weight: 600;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--muted-ink);
 }
 
@@ -149,8 +144,6 @@
   font-family: var(--family-sans);
   font-size: var(--type-label);
   font-weight: 700;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--page-accent);
 }
 
@@ -214,8 +207,6 @@
   font-family: var(--family-sans);
   font-size: var(--type-label);
   font-weight: 600;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--muted-ink);
   padding-bottom: var(--space-3);
   border-bottom: var(--border-width) solid var(--ink);
@@ -311,8 +302,6 @@
   font-family: var(--family-sans);
   font-size: var(--type-label);
   font-weight: 600;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--page-accent);
 }
 
@@ -358,8 +347,6 @@
   font-family: var(--family-sans);
   font-size: var(--type-label);
   font-weight: 700;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--muted-ink);
 }
 
@@ -388,8 +375,6 @@
   font-family: var(--family-sans);
   font-size: var(--type-label);
   font-weight: 600;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--muted-ink);
 }
 
@@ -427,8 +412,6 @@
   font-family: var(--family-sans);
   font-size: var(--type-label);
   font-weight: 600;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--muted-ink);
 }
 
@@ -447,7 +430,7 @@
 .brief, .caseFooter { border-top: 1px solid var(--rule); }
 .rail { top: 112px; }
 .railTitle { border-color: var(--rule); font-family: var(--family-mono); font-weight: 400; }
-.railList a { color: var(--muted-ink); padding-block: 9px; font-size: 12px; }
+.railList a { color: var(--muted-ink); padding-block: 9px; font-size: 13px; }
 .sectionTitle { font-size: 32px; }
 .sectionBody p { color: var(--muted-ink); font-size: 17px; line-height: 1.85; }
 .authorship { padding: 32px; background: color-mix(in srgb, var(--surface) 30%, var(--paper)); }

@@ -8,11 +8,11 @@ type Theme = "light" | "dark";
 function currentTheme(): Theme {
   const chosen = document.documentElement.dataset.theme;
   if (chosen === "light" || chosen === "dark") return chosen;
-  return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 function subscribe(onChange: () => void) {
-  const media = window.matchMedia("(prefers-color-scheme: light)");
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
   const observer = new MutationObserver(onChange);
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
   media.addEventListener("change", onChange);

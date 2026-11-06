@@ -1,15 +1,12 @@
 /*
- * Sticky, translucent header. Global scroll padding keeps anchored headings
- * clear of it.
+ * Sticky plain bar on the page colour. Global scroll padding keeps anchored
+ * headings clear of it.
  */
 .header {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: color-mix(in srgb, var(--paper) 90%, transparent);
-  backdrop-filter: saturate(1.4) blur(14px);
-  -webkit-backdrop-filter: saturate(1.4) blur(14px);
-  border-bottom: var(--border-width) solid var(--rule);
+  background: var(--paper);
 }
 
 .inner {
@@ -29,28 +26,13 @@
   text-decoration: none;
 }
 
-.mark {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: var(--ink);
-  color: var(--paper);
-  font-family: var(--family-mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  transition: background-color var(--motion) var(--ease);
-}
-
-.wordmark:hover .mark {
-  background: var(--accent);
-}
-
 .name {
-  font-size: 22px;
+  font-size: 26px;
   line-height: 1;
+}
+
+.wordmark:hover .name {
+  color: var(--accent);
 }
 
 .nav {
@@ -71,9 +53,8 @@
   align-items: center;
   min-height: 40px;
   padding: 0 var(--space-3);
-  border-radius: 999px;
-  font-size: 22px;
-  color: var(--muted-ink);
+  font-size: 24px;
+  color: var(--ink);
   text-decoration: none;
   transition:
     color var(--motion) var(--ease),
@@ -81,8 +62,7 @@
 }
 
 .link:hover {
-  color: var(--ink);
-  background: var(--raised);
+  color: var(--accent);
 }
 
 .themeToggle {
@@ -91,8 +71,8 @@
   width: 40px;
   height: 40px;
   margin-left: var(--space-1);
-  border: var(--border-width) solid var(--rule);
-  border-radius: 999px;
+  border: 0;
+  border-radius: 50%;
   background: transparent;
   color: var(--ink);
   cursor: pointer;
@@ -102,45 +82,58 @@
 }
 
 .themeToggle:hover {
-  border-color: var(--muted-ink);
-  background: var(--raised);
+  background: var(--surface);
 }
 
-/* Sun in light mode, moon in dark: the cut-out circle hides part of the core. */
+/* Sun in light mode (the default), moon in dark: the cut-out circle bites the core. */
 .moonCut {
   fill: var(--paper);
   transform-origin: 17px 8px;
-  transform: scale(1);
+  transform: scale(0);
   transition: transform 300ms var(--ease);
 }
 
 .sunRays {
-  opacity: 0;
+  opacity: 1;
   transition: opacity 300ms var(--ease);
 }
 
 .sunCore {
   transform-origin: 12px 12px;
-  transform: scale(1.55);
+  transform: scale(1);
   transition: transform 300ms var(--ease);
 }
 
-:global(html[data-theme="light"]) .moonCut { transform: scale(0); }
-:global(html[data-theme="light"]) .sunRays { opacity: 1; }
-:global(html[data-theme="light"]) .sunCore { transform: scale(1); }
+:global(html[data-theme="dark"]) .moonCut { transform: scale(1); }
+:global(html[data-theme="dark"]) .sunRays { opacity: 0; }
+:global(html[data-theme="dark"]) .sunCore { transform: scale(1.55); }
 
-@media (prefers-color-scheme: light) {
-  :global(html:not([data-theme="dark"])) .moonCut { transform: scale(0); }
-  :global(html:not([data-theme="dark"])) .sunRays { opacity: 1; }
-  :global(html:not([data-theme="dark"])) .sunCore { transform: scale(1); }
+@media (prefers-color-scheme: dark) {
+  :global(html:not([data-theme="light"])) .moonCut { transform: scale(1); }
+  :global(html:not([data-theme="light"])) .sunRays { opacity: 0; }
+  :global(html:not([data-theme="light"])) .sunCore { transform: scale(1.55); }
+}
+
+.name {
+  white-space: nowrap;
 }
 
 @media (max-width: 520px) {
   .name {
-    display: none;
+    font-size: 19px;
+  }
+
+  .list {
+    gap: 0;
   }
 
   .link {
-    padding: 0 var(--space-2);
+    padding: 0 6px;
+    font-size: 19px;
+  }
+
+  .themeToggle {
+    width: 36px;
+    margin-left: 0;
   }
 }

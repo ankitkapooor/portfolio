@@ -10,18 +10,10 @@ import styles from "./site-header.module.css";
  * no menu to open; the only client code is the theme toggle.
  */
 export function SiteHeader() {
-  const initials = profile.name
-    .split(" ")
-    .map((part) => part[0])
-    .join("");
-
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
         <Link className={styles.wordmark} href="/" aria-label={`${profile.name}, home`}>
-          <span className={styles.mark} aria-hidden="true">
-            {initials}
-          </span>
           <span className={styles.name}>
             <Hand text={profile.name} />
           </span>

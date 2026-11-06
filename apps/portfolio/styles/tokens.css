@@ -10,35 +10,37 @@
 :root {
   /* ---- Palette -------------------------------------------------------- */
   /*
-   * Neutral canvas, one warm accent. The product screenshots and demos carry
-   * the colour; the site stays out of their way. Raw values for both themes
-   * live here so lib/design-tokens.test.ts can check every pairing.
+   * "Sheet and biro": a white sheet, black ink, and one ballpoint blue for
+   * links and the main action. The site's only ornament is the owner's
+   * handwriting; the product recordings carry the colour. Raw values for
+   * both themes live here so lib/design-tokens.test.ts can check every pair.
    */
-  --dark-paper: #0b0b0c;
-  --dark-surface: #141416;
-  --dark-raised: #1c1c1f;
-  --dark-ink: #f2f1ee;
-  --dark-muted-ink: #a3a3a8;
-  --dark-rule: #27272a;
-  --dark-accent: #ff7a45;
-
-  --light-paper: #fafaf8;
-  --light-surface: #ffffff;
-  --light-raised: #f1f0ec;
+  --light-paper: #ffffff;
+  --light-surface: #f4f4f4;
+  --light-raised: #ebebeb;
   --light-ink: #111111;
-  --light-muted-ink: #5c5c63;
-  --light-rule: #e4e3df;
-  --light-accent: #c2410c;
+  --light-muted-ink: #5e5e5e;
+  --light-rule: #e5e5e5;
+  --light-accent: #1a4be0;
 
-  /* Active theme (dark by default; light via system or toggle, below). */
-  --paper: var(--dark-paper);
-  --surface: var(--dark-surface);
-  --raised: var(--dark-raised);
-  --ink: var(--dark-ink);
-  --muted-ink: var(--dark-muted-ink);
-  --rule: var(--dark-rule);
-  --accent: var(--dark-accent);
-  --accent-soft: color-mix(in srgb, var(--accent) 14%, transparent);
+  --dark-paper: #121212;
+  --dark-surface: #1c1c1c;
+  --dark-raised: #262626;
+  --dark-ink: #f0f0f0;
+  --dark-muted-ink: #a3a3a3;
+  --dark-rule: #2c2c2c;
+  --dark-accent: #8fa8ff;
+
+  /* Active theme: light by default; dark via the system setting or the toggle, below. */
+  color-scheme: light;
+  --paper: var(--light-paper);
+  --surface: var(--light-surface);
+  --raised: var(--light-raised);
+  --ink: var(--light-ink);
+  --muted-ink: var(--light-muted-ink);
+  --rule: var(--light-rule);
+  --accent: var(--light-accent);
+  --accent-soft: color-mix(in srgb, var(--accent) 10%, transparent);
 
   /* Kept for the case pages and OG cards: one accent across every project. */
   --project-accent-01: var(--accent);
@@ -62,15 +64,19 @@
    * next/font sets --font-serif / --font-sans. The fallback stacks keep a
    * coherent serif/sans hierarchy if the self-hosted files fail to load.
    */
-  --family-serif: var(--font-serif), "Iowan Old Style", "Palatino Linotype",
-    Palatino, Georgia, "Times New Roman", serif;
+  /* One family plus the handwriting. Serif and mono resolve to it so no
+   * label falls back to a third face; real code uses --family-code. */
+  --family-serif: var(--font-sans), ui-sans-serif, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif, Georgia, serif;
   --family-hand: var(--font-hand), "Bradley Hand", "Segoe Print", cursive;
-  --family-display: var(--font-display), var(--font-sans), ui-sans-serif,
-    -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --family-display: var(--font-sans), ui-sans-serif, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --family-sans: var(--font-sans), ui-sans-serif, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --family-mono: var(--font-mono), ui-monospace, SFMono-Regular, "SF Mono",
-    Menlo, Consolas, monospace;
+  --family-mono: var(--font-sans), ui-sans-serif, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, monospace;
+  --family-code: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    monospace;
 
   --type-hero: clamp(56px, 8vw, 128px);
   --type-project-title: clamp(32px, 4.4vw, 64px);
@@ -81,7 +87,7 @@
   --type-body-lg: 18px;
   --type-ui: 15px;
   --type-ui-sm: 14px;
-  --type-label: 12px;
+  --type-label: 13px;
 
   --leading-hero: 1.0;
   --leading-title: 1.06;
@@ -89,7 +95,7 @@
   --leading-body: 1.6;
   --leading-tight: 1.35;
 
-  --tracking-label: 0.08em;
+  --tracking-label: 0;
   --tracking-hero: -0.055em;
 
   /* ---- Spacing scale -------------------------------------------------- */
@@ -166,25 +172,27 @@
   }
 }
 
-/* ---- Light theme: follows the system unless the visitor picked one. ---- */
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --paper: var(--light-paper);
-    --surface: var(--light-surface);
-    --raised: var(--light-raised);
-    --ink: var(--light-ink);
-    --muted-ink: var(--light-muted-ink);
-    --rule: var(--light-rule);
-    --accent: var(--light-accent);
+/* ---- Dark theme: follows the system unless the visitor picked one. ---- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: var(--dark-paper);
+    --surface: var(--dark-surface);
+    --raised: var(--dark-raised);
+    --ink: var(--dark-ink);
+    --muted-ink: var(--dark-muted-ink);
+    --rule: var(--dark-rule);
+    --accent: var(--dark-accent);
   }
 }
 
-:root[data-theme="light"] {
-  --paper: var(--light-paper);
-  --surface: var(--light-surface);
-  --raised: var(--light-raised);
-  --ink: var(--light-ink);
-  --muted-ink: var(--light-muted-ink);
-  --rule: var(--light-rule);
-  --accent: var(--light-accent);
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: var(--dark-paper);
+  --surface: var(--dark-surface);
+  --raised: var(--dark-raised);
+  --ink: var(--dark-ink);
+  --muted-ink: var(--dark-muted-ink);
+  --rule: var(--dark-rule);
+  --accent: var(--dark-accent);
 }

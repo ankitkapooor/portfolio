@@ -12,7 +12,7 @@ import {
   publication,
   skills,
 } from "@/content/about";
-import { WorkGrid } from "@/components/work-grid";
+import { WorkShowcase } from "@/components/work-showcase";
 import { Signature } from "@/components/signature";
 import { Hand, HandText } from "@/components/hand";
 import styles from "./page.module.css";
@@ -27,10 +27,6 @@ export default function HomePage() {
       {/* ---- Hero -------------------------------------------------------- */}
       <section className={`container ${styles.hero}`} aria-labelledby="hero-heading">
         <div className={styles.heroText}>
-          <p className={styles.eyebrow}>
-            <span className={styles.pulse} aria-hidden="true" />
-            {headline.role}
-          </p>
           <h1 id="hero-heading" className={styles.name}>
             <Hand text={profile.name} draw="view" delay={0.15} />
           </h1>
@@ -38,13 +34,14 @@ export default function HomePage() {
             I build working products for hard business questions,{" "}
             <Hand text="and the strategy behind them." draw="view" delay={1.4} className={styles.pitchHand} />
           </p>
+          <p className={styles.heroRole}>{headline.role.replace(" · ", ". ")}.</p>
 
           <div className={styles.heroActions}>
             <a className={styles.ctaPrimary} href="#work">
               Explore {work.length} projects <span aria-hidden="true">↓</span>
             </a>
             {email ? (
-              <a className={styles.ctaSecondary} href={email.href}>
+              <a className={styles.ctaLink} href={email.href}>
                 Get in touch
               </a>
             ) : null}
@@ -84,23 +81,22 @@ export default function HomePage() {
       {/* ---- Work -------------------------------------------------------- */}
       <section id="work" className={`container ${styles.section}`} aria-labelledby="work-heading">
         <div className={styles.sectionHead}>
-          <p className={`hand ${styles.kicker}`}>01 — Work</p>
           <h2 id="work-heading" className={styles.handTitle}>
             <Hand text={`${work.length} products, ready to explore.`} draw="view" />
           </h2>
           <p className={styles.sectionNote}>
-            Explore browser demos and downloadable apps. Open a project, read the code, or go deeper in a case study.
+            Explore browser demos and downloadable apps. Open a project, read the code, or go deeper in a case study.{" "}
+            <a className={styles.skipAhead} href="#about">
+              Skip to About <span aria-hidden="true">↓</span>
+            </a>
           </p>
         </div>
-        <WorkGrid
-          titles={Object.fromEntries(work.map((item) => [item.slug, <Hand key={item.slug} text={item.title} draw="view" />]))}
-        />
+        <WorkShowcase />
       </section>
 
       {/* ---- About ------------------------------------------------------- */}
       <section id="about" className={`container ${styles.section}`} aria-labelledby="about-heading">
         <div className={styles.sectionHead}>
-          <p className={`hand ${styles.kicker}`}>02 — About</p>
           <h2 id="about-heading" className={styles.sectionTitle}>
             Engineer first.{" "}
             <span className={styles.titleHand}>
@@ -204,7 +200,6 @@ export default function HomePage() {
 
       {/* ---- Contact ----------------------------------------------------- */}
       <section id="contact" className={`container ${styles.contact}`} aria-labelledby="contact-heading">
-        <p className={`hand ${styles.kicker}`}>03 — Contact</p>
         <div className={styles.contactInner}>
           <div>
             <h2 id="contact-heading" className={styles.contactTitle}>

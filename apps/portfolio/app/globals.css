@@ -38,6 +38,13 @@ svg {
   max-width: 100%;
 }
 
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
 /* ---- Base -------------------------------------------------------------- */
 
 body {
@@ -142,10 +149,8 @@ hr {
 .label {
   margin: 0;
   font-family: var(--family-sans);
-  font-size: var(--type-label);
-  font-weight: 600;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  font-size: var(--type-ui-sm);
+  font-weight: 400;
   color: var(--muted-ink);
 }
 
@@ -155,7 +160,6 @@ hr {
   font-size: var(--type-ui-sm);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  letter-spacing: var(--tracking-label);
   color: var(--page-accent);
 }
 
@@ -237,19 +241,17 @@ hr {
   border: 0;
 }
 
-html { scroll-behavior: smooth; scroll-padding-top: 104px; color-scheme: dark; }
-@media (prefers-color-scheme: light) { html:not([data-theme="dark"]) { color-scheme: light; } }
-html[data-theme="light"] { color-scheme: light; }
+html { scroll-behavior: smooth; scroll-padding-top: 104px; }
 ::selection { background: var(--accent); color: var(--paper); }
 main { animation: page-enter 600ms ease-out both; }
-.button, .buttonQuiet { gap: 18px; min-height: 48px; border-radius: 4px; }
-.button { color: var(--paper); }
-.button:hover { color: var(--paper); }
-.buttonQuiet { border-color: var(--accent); }
-.buttonQuiet:hover { color: var(--paper); }
-.button::after { content: "↗"; font-size: 18px; font-weight: 400; }
-.buttonQuiet::after { content: "→"; font-size: 18px; font-weight: 400; }
-.label { font-family: var(--family-mono); font-weight: 400; }
+.button, .buttonQuiet { gap: 12px; min-height: 48px; border-radius: 999px; }
+.button { border-color: var(--accent); background-color: var(--accent); color: var(--paper); }
+.button:hover { border-color: var(--ink); background-color: var(--ink); color: var(--paper); }
+.buttonQuiet { border-color: transparent; background-color: var(--surface); }
+.buttonQuiet:hover { background-color: var(--raised); color: var(--ink); }
+.button::after { content: "↗"; font-weight: 400; }
+.buttonQuiet::after { content: "→"; font-weight: 400; }
+pre, code, kbd, samp { font-family: var(--family-code); }
 @keyframes page-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

@@ -58,32 +58,32 @@ function themePalette(theme: "dark" | "light"): Palette {
 const themes = { dark: themePalette("dark"), light: themePalette("light") };
 
 describe("palette tokens", () => {
-  it("define a neutral dark and light theme with one warm accent", () => {
-    expect(themes.dark).toEqual({
-      paper: "#0b0b0c",
-      surface: "#141416",
-      raised: "#1c1c1f",
-      ink: "#f2f1ee",
-      mutedInk: "#a3a3a8",
-      rule: "#27272a",
-      accent: "#ff7a45",
-    });
+  it("define a white-sheet light theme and a matching dark theme with one blue accent", () => {
     expect(themes.light).toEqual({
-      paper: "#fafaf8",
-      surface: "#ffffff",
-      raised: "#f1f0ec",
+      paper: "#ffffff",
+      surface: "#f4f4f4",
+      raised: "#ebebeb",
       ink: "#111111",
-      mutedInk: "#5c5c63",
-      rule: "#e4e3df",
-      accent: "#c2410c",
+      mutedInk: "#5e5e5e",
+      rule: "#e5e5e5",
+      accent: "#1a4be0",
+    });
+    expect(themes.dark).toEqual({
+      paper: "#121212",
+      surface: "#1c1c1c",
+      raised: "#262626",
+      ink: "#f0f0f0",
+      mutedInk: "#a3a3a3",
+      rule: "#2c2c2c",
+      accent: "#8fa8ff",
     });
   });
 
-  it("maps the active theme to dark by default and swaps every role for light", () => {
+  it("maps the active theme to light by default and swaps every role for dark", () => {
     for (const role of ["paper", "surface", "raised", "ink", "muted-ink", "rule", "accent"]) {
-      expect(token(role)).toBe(`var(--dark-${role})`);
-      expect(css).toMatch(new RegExp(`prefers-color-scheme: light[\\s\\S]*--${role}: var\\(--light-${role}\\)`));
-      expect(css).toMatch(new RegExp(`data-theme="light"\\][\\s\\S]*--${role}: var\\(--light-${role}\\)`));
+      expect(token(role)).toBe(`var(--light-${role})`);
+      expect(css).toMatch(new RegExp(`prefers-color-scheme: dark[\\s\\S]*--${role}: var\\(--dark-${role}\\)`));
+      expect(css).toMatch(new RegExp(`data-theme="dark"\\][\\s\\S]*--${role}: var\\(--dark-${role}\\)`));
     }
   });
 });

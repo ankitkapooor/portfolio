@@ -1,0 +1,651 @@
+/*
+ * Work showcase: the Explorer on wide screens, the Swipe deck on phones.
+ * Surfaces are told apart by a step in tone, never by a line or a shadow;
+ * corners are square; the accent marks the action and the selected project.
+ */
+
+.onlyWide {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .onlyWide {
+    display: block;
+  }
+
+  .onlyNarrow {
+    display: none;
+  }
+}
+
+/* ---- Shared ----------------------------------------------------------- */
+
+/* A browser window around every recording. */
+.window {
+  display: flex;
+  flex-direction: column;
+  border: var(--border-width) solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--ink) 6%, transparent) inset,
+    0 30px 60px -30px rgba(0, 0, 0, 0.35);
+  transition:
+    transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color var(--motion) var(--ease),
+    box-shadow 500ms var(--ease);
+}
+
+.chrome {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-3);
+  height: 34px;
+  padding: 0 var(--space-3);
+  border-bottom: var(--border-width) solid var(--rule);
+  background: var(--raised);
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dots i:nth-child(1) { background: #ff5f57; }
+.dots i:nth-child(2) { background: #febc2e; }
+.dots i:nth-child(3) { background: #28c840; }
+
+.url {
+  flex: 1;
+  overflow: hidden;
+  font-family: var(--family-code);
+  font-size: 12px;
+  color: var(--muted-ink);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--family-code);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-ink);
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+}
+
+.live[data-playing] {
+  color: var(--accent);
+}
+
+.live[data-playing] .liveDot {
+  background: var(--accent);
+  animation: live-blink 1.4s ease-in-out infinite;
+}
+
+@keyframes live-blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.frame {
+  display: block;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--raised);
+}
+
+.media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.tagline {
+  margin-top: var(--space-3);
+  max-width: 60ch;
+  font-size: var(--type-body);
+  line-height: 1.5;
+}
+
+.why {
+  margin-top: var(--space-4);
+  max-width: 62ch;
+  font-size: var(--type-ui);
+  line-height: 1.55;
+}
+
+.why span {
+  font-size: 1.4em;
+  line-height: 1;
+}
+
+.stack {
+  margin-top: var(--space-3);
+  max-width: 62ch;
+  font-size: var(--type-ui-sm);
+  line-height: 1.5;
+  color: var(--muted-ink);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-5);
+  margin-top: var(--space-5);
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  font-size: var(--type-ui);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.primary {
+  padding: 0 var(--space-5);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--paper);
+  transition:
+    background-color var(--motion) var(--ease),
+    transform var(--motion) var(--ease);
+}
+
+.primary:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.primary:active {
+  transform: translateY(1px);
+}
+
+.secondary {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--ink) 30%, transparent);
+  text-underline-offset: 0.3em;
+}
+
+.secondary:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* ---- Explorer --------------------------------------------------------- */
+
+.explorer {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.6fr);
+  gap: var(--space-7);
+  align-items: start;
+}
+
+.side {
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-4));
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100svh - var(--header-height) - var(--space-7));
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-bottom: var(--space-4);
+}
+
+.filter {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font: 400 var(--type-ui-sm) / 36px var(--family-sans);
+  cursor: pointer;
+  transition: background-color var(--motion) var(--ease);
+}
+
+.filter:hover {
+  background: var(--raised);
+}
+
+.filter[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.filterCount {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.6;
+}
+
+.list {
+  position: relative;
+  min-height: 0;
+  overflow-y: auto;
+  list-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--raised) transparent;
+}
+
+.listItem {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: 6px var(--space-2);
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color var(--motion) var(--ease),
+    color var(--motion) var(--ease);
+}
+
+.listItem:hover {
+  background: var(--surface);
+}
+
+.listItem[aria-current="true"] {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+.listThumb {
+  width: 56px;
+  height: 35px;
+  border-radius: 5px;
+  object-fit: cover;
+  object-position: top;
+  background: var(--raised);
+}
+
+.listText {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.listTitle {
+  overflow: hidden;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.listCategory {
+  flex: none;
+  font-size: var(--type-ui-sm);
+  opacity: 0.7;
+}
+
+.stage {
+  min-width: 0;
+}
+
+.stageMedia {
+  display: block;
+  text-decoration: none;
+  animation: rise-in 320ms var(--ease) both;
+}
+
+/* Keeps recording and text inside one viewport so the section never runs long. */
+.stageWindow {
+  height: clamp(290px, calc(100svh - var(--header-height) - 350px), 580px);
+}
+
+.stageMedia:hover .window {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--rule));
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--ink) 6%, transparent) inset,
+    0 40px 80px -36px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.stageBody {
+  padding-top: var(--space-5);
+  animation: rise-in 320ms var(--ease) 60ms both;
+}
+
+.stageHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.stageTitle {
+  font-size: clamp(32px, 3vw, 46px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.stepper {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--type-ui-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-ink);
+}
+
+.stepper button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 17px;
+  cursor: pointer;
+  transition: background-color var(--motion) var(--ease);
+}
+
+.stepper button:hover {
+  background: var(--raised);
+}
+
+/* ---- Swipe ------------------------------------------------------------ */
+
+.swipe {
+  width: 100%;
+  max-width: 540px;
+  margin-inline: auto;
+}
+
+.deck {
+  display: grid;
+  padding-bottom: 28px; /* room for the cards stacked behind */
+  outline: none;
+}
+
+.deck:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 6px;
+}
+
+.card {
+  position: relative;
+  grid-area: 1 / 1;
+  perspective: 1800px;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+  transform-origin: 50% 110%;
+  transition: transform 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.flipper {
+  position: relative;
+  display: grid;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 560ms cubic-bezier(0.3, 0.9, 0.3, 1);
+}
+
+.flipper[data-flipped] {
+  transform: rotateY(180deg);
+}
+
+/* The face turned away is hidden outright (not only by backface-visibility),
+   swapping at the flip's midpoint, so it never covers the side in view. */
+.face {
+  transition: visibility 0s linear 200ms;
+}
+
+.flipper:not([data-flipped]) .faceBack,
+.flipper[data-flipped] .face:not(.faceBack) {
+  visibility: hidden;
+}
+
+.face {
+  display: flex;
+  flex-direction: column;
+  grid-area: 1 / 1;
+  padding: 10px;
+  border: var(--border-width) solid var(--rule);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.4);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Cards further back in the deck sit one tone step deeper. */
+.card[data-depth="1"] .face {
+  background: var(--raised);
+}
+
+.card[data-depth="2"] .face {
+  background: color-mix(in srgb, var(--raised) 88%, var(--muted-ink));
+}
+
+/* Cards behind the top one show only their edges; their words stay unrendered. */
+.card:not([data-depth="0"]) .cardBody,
+.card:not([data-depth="0"]) .faceBack {
+  visibility: hidden;
+}
+
+/* The front sets the card's size; the back fills it and scrolls if it must. */
+.faceBack {
+  position: absolute;
+  inset: 0;
+  padding: var(--space-5);
+  transform: rotateY(180deg);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.faceBack .actions {
+  margin-top: auto;
+  padding-top: var(--space-5);
+}
+
+.cardWindow {
+  pointer-events: none;
+  box-shadow: none;
+}
+
+.cardWindow .frame {
+  aspect-ratio: 16 / 10;
+}
+
+.cardBody {
+  padding: var(--space-4) var(--space-3) var(--space-3);
+}
+
+.cardCategory {
+  margin-top: var(--space-3);
+  font-size: var(--type-ui-sm);
+  color: var(--muted-ink);
+}
+
+.cardTitle {
+  font-size: clamp(30px, 8vw, 40px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.cardTagline {
+  margin-top: var(--space-3);
+  font-size: var(--type-ui);
+  line-height: 1.5;
+}
+
+.flipBack {
+  align-self: flex-start;
+  min-height: 44px;
+  margin-top: var(--space-2);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted-ink);
+  font: 400 var(--type-ui-sm) / 1.4 var(--family-sans);
+  cursor: pointer;
+}
+
+.flipBack:hover {
+  color: var(--ink);
+}
+
+.stamp {
+  position: absolute;
+  top: var(--space-7);
+  z-index: 2;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font: 700 18px / 1 var(--family-sans);
+  pointer-events: none;
+}
+
+.stampNext {
+  right: var(--space-5);
+  background: var(--ink);
+  color: var(--paper);
+  transform: rotate(6deg);
+}
+
+.stampOpen {
+  left: var(--space-5);
+  background: var(--accent);
+  color: var(--paper);
+  transform: rotate(-6deg);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.control {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--motion) var(--ease),
+    transform var(--motion) var(--ease);
+}
+
+.control:hover {
+  background: var(--raised);
+}
+
+.control:active {
+  transform: scale(0.95);
+}
+
+.controlWide {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  width: auto;
+  height: 52px;
+  padding: 0 var(--space-5);
+  font-size: var(--type-ui);
+  font-weight: 700;
+}
+
+.controlGo {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+.controlGo:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.count {
+  min-width: 56px;
+  font-size: var(--type-ui-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-ink);
+}
+
+.hint {
+  margin-top: var(--space-3);
+  font-size: var(--type-ui-sm);
+  text-align: center;
+  color: var(--muted-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stageMedia,
+  .stageBody {
+    animation: none;
+  }
+
+  .card,
+  .flipper {
+    transition: none;
+  }
+}

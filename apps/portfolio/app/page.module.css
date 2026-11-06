@@ -4,17 +4,6 @@
   overflow-x: clip;
 }
 
-/* Serif italic is the one editorial accent, used inside sans headings. */
-.pitch em,
-.sectionTitle em,
-.contactTitle em {
-  font-family: var(--family-serif);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  color: var(--muted-ink);
-}
-
 /* ---- Hero ------------------------------------------------------------- */
 
 .hero {
@@ -25,18 +14,6 @@
   padding-block: var(--space-8) var(--space-9);
 }
 
-/* A soft accent glow behind the hero, nothing more. */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: -20% -10% auto 40%;
-  height: 120%;
-  z-index: -1;
-  background: radial-gradient(closest-side, var(--accent-soft), transparent 70%);
-  filter: blur(40px);
-  pointer-events: none;
-}
-
 @media (min-width: 1100px) {
   .hero {
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
@@ -45,69 +22,23 @@
   }
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: 6px 14px 6px 10px;
-  border: var(--border-width) solid var(--rule);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--surface) 70%, transparent);
-  font-family: var(--family-mono);
-  font-size: 12px;
-  letter-spacing: 0.02em;
-  color: var(--muted-ink);
-}
-
-.pulse {
-  position: relative;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-.pulse::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: var(--accent);
-  animation: hero-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-@keyframes hero-ping {
-  75%,
-  100% {
-    transform: scale(2.6);
-    opacity: 0;
-  }
-}
-
 .name {
-  margin-top: var(--space-6);
   /* Set in the handwriting font, which runs wide (~5.3em for the name). */
   font-size: clamp(52px, 7.6vw, 112px);
+  font-weight: 400;
   line-height: 1;
-  font-weight: 600;
-  line-height: 0.9;
-  letter-spacing: -0.045em;
-  font-stretch: 88%;
 }
-
-
 
 .pitchHand {
   display: inline-block;
-  margin-top: 0.15em;
-  font-size: clamp(22px, 2.7vw, 40px);
-  color: var(--accent);
+  margin-top: 0.1em;
+  font-size: 1.1em;
+  color: var(--ink);
 }
 
 /* A section title written entirely by hand. */
 .handTitle {
-  margin-top: var(--space-4);
-  font-size: clamp(34px, 6vw, 90px);
+  font-size: clamp(40px, 5.4vw, 80px);
   font-weight: 400;
   line-height: 1.1;
 }
@@ -117,17 +48,22 @@
   display: inline-block;
   font-size: 0.95em;
   font-weight: 400;
-  color: var(--muted-ink);
 }
 
 .pitch {
   margin-top: var(--space-5);
-  max-width: 21ch;
-  font-size: clamp(24px, 2.5vw, 36px);
-  font-weight: 500;
-  line-height: 1.18;
-  letter-spacing: -0.03em;
+  max-width: 26ch;
+  font-size: clamp(20px, 2vw, 30px);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
   text-wrap: balance;
+}
+
+.heroRole {
+  margin-top: var(--space-4);
+  font-size: var(--type-body);
+  color: var(--ink);
 }
 
 .heroActions {
@@ -138,43 +74,30 @@
   margin-top: var(--space-7);
 }
 
-.ctaPrimary,
-.ctaSecondary {
+.ctaPrimary {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   min-height: 48px;
   padding: 0 var(--space-5);
   border-radius: 999px;
+  background: var(--accent);
+  color: var(--paper);
   font-size: var(--type-ui);
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   transition:
     background-color var(--motion) var(--ease),
-    color var(--motion) var(--ease),
-    border-color var(--motion) var(--ease),
     transform var(--motion) var(--ease);
 }
 
-.ctaPrimary {
+.ctaPrimary:hover {
   background: var(--ink);
   color: var(--paper);
 }
 
-.ctaPrimary:hover {
-  background: var(--accent);
-  color: var(--paper);
-  transform: translateY(-1px);
-}
-
-.ctaSecondary {
-  border: var(--border-width) solid var(--rule);
-  color: var(--ink);
-}
-
-.ctaSecondary:hover {
-  border-color: var(--ink);
-  color: var(--ink);
+.ctaPrimary:active {
+  transform: translateY(1px);
 }
 
 .ctaLink {
@@ -183,13 +106,17 @@
   gap: 4px;
   min-height: 44px;
   font-size: var(--type-ui);
-  font-weight: 500;
-  color: var(--muted-ink);
-  text-decoration: none;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  text-decoration-color: color-mix(in srgb, var(--ink) 30%, transparent);
 }
 
 .ctaLink:hover {
-  color: var(--ink);
+  color: var(--accent);
+  text-decoration-color: currentColor;
 }
 
 .stats {
@@ -198,8 +125,6 @@
   gap: var(--space-5);
   max-width: 560px;
   margin-top: var(--space-8);
-  padding-top: var(--space-5);
-  border-top: var(--border-width) solid var(--rule);
 }
 
 .stats div {
@@ -210,27 +135,24 @@
 .stats dt {
   order: 2;
   margin-top: var(--space-2);
-  font-size: 13px;
-  line-height: 1.35;
+  font-size: var(--type-ui-sm);
+  line-height: 1.4;
   color: var(--muted-ink);
 }
 
 .stats dd {
   order: 1;
   margin: 0;
-  font-size: clamp(32px, 3.2vw, 48px);
-  font-weight: 600;
+  font-size: clamp(36px, 3.6vw, 56px);
+  font-weight: 800;
   line-height: 1;
-  letter-spacing: -0.035em;
-  font-family: var(--family-display);
+  letter-spacing: -0.04em;
   font-variant-numeric: tabular-nums;
 }
 
 .statsNote {
   margin-top: var(--space-4);
-  font-family: var(--family-mono);
-  font-size: 11px;
-  letter-spacing: 0.02em;
+  font-size: var(--type-ui-sm);
   color: var(--muted-ink);
 }
 
@@ -291,11 +213,12 @@
   }
 }
 
-/* On phones the demos appear a scroll later in the grid itself. */
+/* On phones the demos appear a scroll later, in the swipe deck. */
 @media (max-width: 699px) {
   .collage {
     display: none;
   }
+
 
   .hero {
     padding-bottom: var(--space-6);
@@ -317,14 +240,7 @@
   margin-bottom: var(--space-8);
 }
 
-.kicker {
-  font-size: 25px;
-  line-height: 1.2;
-  color: var(--accent);
-}
-
 .sectionTitle {
-  margin-top: var(--space-4);
   font-size: clamp(40px, 5.4vw, 80px);
   line-height: 0.98;
   letter-spacing: -0.04em;
@@ -343,6 +259,7 @@
 
 .about {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-8);
 }
 
@@ -375,8 +292,6 @@
   display: grid;
   gap: var(--space-4);
   margin-top: var(--space-7);
-  padding-top: var(--space-5);
-  border-top: var(--border-width) solid var(--rule);
 }
 
 .facts div {
@@ -386,12 +301,8 @@
 }
 
 .facts dt {
-  font-family: var(--family-mono);
-  font-size: 11px;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  font-size: var(--type-ui-sm);
   color: var(--muted-ink);
-  padding-top: 3px;
 }
 
 .facts dd {
@@ -400,13 +311,11 @@
 }
 
 .blockTitle {
-  margin: var(--space-8) 0 var(--space-5);
-  font-family: var(--family-mono);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--accent);
+  margin: var(--space-9) 0 var(--space-5);
+  font-size: clamp(24px, 2vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink);
 }
 
 .blockTitle:first-child {
@@ -415,26 +324,27 @@
 
 .timeline {
   display: grid;
+  gap: var(--space-3);
   list-style: none;
-  border-top: var(--border-width) solid var(--rule);
 }
 
 .role {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-2) var(--space-6);
-  padding-block: var(--space-6);
-  border-bottom: var(--border-width) solid var(--rule);
+  padding-block: var(--space-5);
 }
 
 @media (min-width: 640px) {
   .role {
     grid-template-columns: 150px minmax(0, 1fr);
+    min-width: 0;
   }
 }
 
 .period {
-  padding-top: 6px;
-  font-size: 21px;
+  padding-top: 4px;
+  font-size: 22px;
   line-height: 1.3;
   color: var(--muted-ink);
   font-variant-numeric: tabular-nums;
@@ -474,25 +384,24 @@
 .points li {
   position: relative;
   padding-left: var(--space-5);
-  font-size: var(--type-ui);
+  font-size: var(--type-body);
   line-height: 1.55;
-  color: color-mix(in srgb, var(--ink) 86%, var(--muted-ink));
+  color: var(--ink);
 }
 
 .points li::before {
   content: "";
   position: absolute;
-  left: 2px;
-  top: 0.62em;
-  width: 7px;
-  height: 7px;
-  border-radius: 2px;
-  background: var(--accent);
+  left: 4px;
+  top: 0.7em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
 .publication {
-  padding: var(--space-5);
-  border: var(--border-width) solid var(--rule);
+  padding: var(--space-6);
   border-radius: var(--radius-figure);
   background: var(--surface);
 }
@@ -505,11 +414,7 @@
 }
 
 .pubLink:hover {
-  border-color: var(--accent);
-}
-
-.pubLink:hover {
-  color: var(--accent);
+  background: var(--raised);
 }
 
 .pubLink:hover .pubTitle {
@@ -529,10 +434,10 @@
 }
 
 .pubTitle {
-  font-family: var(--family-serif);
-  font-size: clamp(20px, 1.8vw, 24px);
-  font-style: italic;
+  font-size: clamp(22px, 1.8vw, 26px);
+  font-weight: 700;
   line-height: 1.3;
+  letter-spacing: -0.02em;
 }
 
 .skills {
@@ -547,24 +452,23 @@
 }
 
 .skillLabel {
-  font-size: var(--type-ui-sm);
-  font-weight: 600;
+  font-size: var(--type-ui);
+  font-weight: 700;
 }
 
 .skillList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: var(--space-3);
+  margin-top: var(--space-2);
   list-style: none;
+  font-size: var(--type-ui);
+  line-height: 1.6;
 }
 
 .skillList li {
-  padding: 4px 10px;
-  border: var(--border-width) solid var(--rule);
-  border-radius: 999px;
-  font-size: 13px;
-  color: var(--muted-ink);
+  display: inline;
+}
+
+.skillList li:not(:last-child)::after {
+  content: ", ";
 }
 
 /* ---- Contact ---------------------------------------------------------- */
@@ -575,8 +479,7 @@
 }
 
 .contactTitle {
-  margin-top: var(--space-4);
-  font-size: clamp(34px, 5.6vw, 76px);
+  font-size: clamp(40px, 5.4vw, 80px);
   font-weight: 400;
   line-height: 0.9;
   letter-spacing: -0.045em;
@@ -609,10 +512,7 @@
 
 .signOffLabel {
   margin-bottom: var(--space-3);
-  font-family: var(--family-mono);
-  font-size: 11px;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
+  font-size: var(--type-ui-sm);
   color: var(--muted-ink);
 }
 
@@ -635,7 +535,7 @@
   min-height: 56px;
   padding: 0 var(--space-6);
   border-radius: 999px;
-  background: var(--ink);
+  background: var(--accent);
   color: var(--paper);
   font-size: clamp(15px, 1.6vw, 20px);
   font-weight: 600;
@@ -646,7 +546,7 @@
 }
 
 .contactEmail:hover {
-  background: var(--accent);
+  background: var(--ink);
   color: var(--paper);
 }
 
@@ -656,12 +556,10 @@
   from {
     opacity: 0;
     transform: translateY(24px);
-    filter: blur(8px);
   }
   to {
     opacity: 1;
     transform: none;
-    filter: none;
   }
 }
 
@@ -718,8 +616,25 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .pulse::after {
-    animation: none;
+/* Lets a visitor jump past the project showcase. */
+.skipAhead {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--ink) 30%, transparent);
+  text-underline-offset: 0.3em;
+  white-space: nowrap;
+}
+
+.skipAhead:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+@media (max-width: 520px) {
+  .contactEmail {
+    padding: 0 var(--space-4);
+    font-size: 15px;
   }
 }
