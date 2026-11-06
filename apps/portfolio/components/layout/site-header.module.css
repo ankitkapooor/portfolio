@@ -137,3 +137,19 @@
     margin-left: 0;
   }
 }
+
+/* The smallest phones (320–360px): everything still fits on one row. */
+@media (max-width: 360px) {
+  .name,
+  .link {
+    font-size: 16px;
+  }
+
+  .link {
+    padding: 0 4px;
+  }
+
+  .themeToggle {
+    width: 32px;
+  }
+}
